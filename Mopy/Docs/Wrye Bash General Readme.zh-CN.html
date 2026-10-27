@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<link href="assets/bash_main.css" rel="stylesheet" type="text/css"/>
+<link href="assets/bash_general.css" rel="stylesheet" type="text/css"/>
+<link href="assets/bash.webmanifest" rel="manifest" type="application/manifest+json"/>
+<link href="images/webicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"/>
+<link href="images/webicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="images/webicon/favicon-194x194.png" rel="icon" sizes="194x194" type="image/png"/>
+<link href="images/webicon/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="images/webicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link color="#cc0000" href="images/webicon/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml"/>
+<link href="images/webicon/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<meta content="Wrye Bash Docs" name="apple-mobile-web-app-title"/>
+<meta content="Wrye Bash Docs" name="application-name"/>
+<meta content="#ffc40d" name="msapplication-TileColor"/>
+<meta content="images/webicon/mstile-144x144.png" name="msapplication-TileImage"/>
+<meta content="Wrye Bash Documentation" name="msapplication-tooltip"/>
+<meta content="assets/browserconfig.xml" name="msapplication-config"/>
+<meta content="#ffffcc" name="theme-color"/>
+<script src="assets/bashinit.js"></script>
+<script async="" defer="" src="assets/bashfunc.js"></script>
+<title>《Wrye Bash》通用说明文档</title>
+</head>
+<body>
+<div id="header"><h1>《Wrye Bash》通用说明文档</h1> <a href="javascript:void(0)" id="jstoggle">（JavaScript 切换功能）</a></div>
+<div id="box">
+滚动内容开始
+<div id="fade"></div>
+<h2 id="contents">目录</h2>
+<div class="navboxrhrz" id="navmenu">
+<div id="navtab">M<br/>E<br/>N<br/>U</div>
+<div class="navcontbar">
+<div class="navhead">
+<a class="clsx" href="javascript:void(0)" id="closebutton">←</a>
+<h2>通用说明文档</h2>
+</div>
+<div class="navcontent">
+<ol class="contentsmenu1 menu">
+<li class="list"><a href="#intro">简介</a>
+<ol class="items">
+<li><a href="#intro-glossary">术语表</a>
+</li></ol>
+</li><li class="list"><a href="#install">安装</a>
+</li><li class="list"><a href="#uninstall">卸载</a>
+</li><li class="list"><a href="#bain">安装模组</a>
+<ol class="items">
+<li><a href="#bain-overview">概览</a>
+</li><li><a href="#bain-structure">兼容 BAIN 的安装程序结构</a>
+</li><li><a href="#bain-convert">重新构建包以使其兼容 BAIN</a>
+</li><li><a href="#bain-install">通过 BAIN 安装/卸载</a>
+</li><li><a href="#bain-order">BAIN 包顺序</a>
+</li><li><a href="#bain-symbols">符号与颜色的含义</a>
+</li><li><a href="#bain-commands">实用上下文菜单命令</a>
+</li></ol>
+</li><li class="list"><a href="#load">设置加载顺序</a>
+<ol class="items">
+<li><a href="#load-overview">概览</a>
+</li><li><a href="#load-set">设置加载顺序</a>
+</li><li><a href="#load-undo">撤销与重做加载顺序更改</a>
+</li><li><a href="#load-symbols">符号与颜色的含义</a>
+</li><li><a href="#load-commands">实用上下文菜单命令</a>
+</li></ol>
+</li><li class="list"><a href="#patch">设置 Bashed Patch</a>
+<ol class="items">
+<li><a href="#patch-overview">概述</a>
+</li><li><a href="#patch-configuration">攻击配置</a>
+</li><li><a href="#patch-merging">合并插件</a>
+</li><li><a href="#patch-importing">从插件导入</a>
+</li><li><a href="#patch-tweaking">应用调整设置</a>
+</li><li><a href="#patch-other">其他 Bashed Patch 选项</a>
+</li></ol>
+</li></ol>
+<ol class="contentsmenu2 menu" start="7">
+<li class="list"><a href="#ini">应用INI文件修改内容</a>
+<ol class="items">
+<li><a href="#ini-overview">概览</a>
+</li><li><a href="#ini-symbols">符号与颜色的含义</a>
+</li><li><a href="#ini-commands">按钮与上下文菜单命令</a>
+</li></ol>
+</li><li class="list"><a href="#launchers">启动应用程序</a>
+<ol class="items">
+<li><a href="#launchers-toggles">切换按钮</a>
+</li><li><a href="#launchers-game">游戏与编辑器启动器</a>
+</li><li><a href="#launchers-utils">游戏专用工具</a>
+</li><li><a href="#launchers-apps">其他应用程序</a>
+</li><li><a href="#launchers-features">Wrye Bash功能启动器</a>
+</li><li><a href="#manually-add">手动将工具添加到启动器栏中</a>
+</li></ol>
+</li><li class="list"><a href="#international">国际化</a></li>
+<li class="list"><a href="#trouble">故障排除</a>
+<ol class="items">
+<li><a href="#trouble-dump">生成错误日志</a>
+</li><li><a href="#trouble-permissions">文件权限</a>
+</li><li><a href="#trouble-backup">设置备份与恢复</a>
+</li><li><a href="#trouble-report">如何有效地报告漏洞</a>
+</li><li><a href="#trouble-known">已知漏洞</a>
+</li><li><a href="#trouble-mistakes">常见问题</a>
+</li></ol>
+</li><li class="list"><a href="#credits">致谢</a>
+</li><li class="list"><a href="#contact">联系我们</a>
+</li><li class="list"><a href="#license">许可证</a>
+</li><li class="list"><a href="#advanced">高级自述文件相关主题</a>
+</li></ol>
+</div>
+</div>
+</div>
+<h2 id="intro">简介<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>Wrye Bash 是一款专为基于 Bethesda Creation 引擎开发的游戏设计的强大模组管理工具。其功能包括：</p><ul>
+<li>模组安装与冲突管理工具</li><li>插件加载顺序管理器</li><li>提升了模组兼容性。</li><li>通过自动合并兼容的模组，取消255个插件的限制</li><li>.ini文件与设置文件的调整管理</li><li>截图管理</li><li>还有更多更多。</li></ul>
+<p>它目前支持以下游戏：</p>
+<table>
+<thead>
+<tr>
+<th>支持的游戏</th>
+<th>支持的版本</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>埃恩德拉尔：被遗忘的故事</td>
+<td>Steam平台</td>
+<td></td>
+</tr>
+<tr>
+<td>《艾恩德尔：被遗忘的故事：特别版》</td>
+<td>GOG、Steam</td>
+<td></td>
+</tr>
+<tr>
+<td>《辐射3》</td>
+<td>光盘版/零售版、Epic Games Store、GOG、Steam、Windows 商店</td>
+<td></td>
+</tr>
+<tr>
+<td>《辐射4》</td>
+<td>GOG、Steam、Windows 商店</td>
+<td></td>
+</tr>
+<tr>
+<td>《辐射4》VR版</td>
+<td>Steam平台</td>
+<td></td>
+</tr>
+<tr>
+<td>《辐射：新维加斯》</td>
+<td>Epic Games商店、GOG、Steam、Windows商店</td>
+<td></td>
+</tr>
+<tr>
+<td>《上古卷轴3：晨风》</td>
+<td>光盘版/零售版、GOG平台、Steam平台、Windows商店</td>
+<td>非常早期的支持版本</td>
+</tr>
+<tr>
+<td>尼赫里姆：命运之境</td>
+<td>GOG、Steam</td>
+<td></td>
+</tr>
+<tr>
+<td>《上古卷轴4：湮没》</td>
+<td>光盘版/零售版、GOG平台、Steam平台、Windows商店</td>
+<td></td>
+</tr>
+<tr>
+<td>《上古卷轴4：湮没》重制版</td>
+<td>Steam平台</td>
+<td>仍在开发中，存档功能完全不可用，安装程序仅能处理ESP文件。</td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》</td>
+<td>Steam平台</td>
+<td></td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》特别版</td>
+<td>Epic Games Store、GOG、Steam、Windows Store</td>
+<td></td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》VR版</td>
+<td>Steam平台</td>
+<td></td>
+</tr>
+<tr>
+<td>《星空》</td>
+<td>Steam，Windows 商店</td>
+<td>仍在开发中，仅部分功能得到支持。</td>
+</tr>
+</tbody>
+</table>
+<p>初接触 Wrye Bash 可能会让人感到棘手。为便于使用，相关文档已被拆分为几份针对不同需求编写的说明文件。</p><p>本说明文档仅介绍最常用的功能，以便普通用户能够轻松开始使用 Wrye Bash 而不会感到无从下手。关于较少使用的功能以及本文档中已提及功能的更多技术细节，可查阅相关资料。<a href="Wrye%20Bash%20Advanced%20Readme.html">高级使用说明</a>关于 Wrye Bash 所使用的一些语法及文件格式的详细信息，可见于相关文档中。<a href="Wrye%20Bash%20Technical%20Readme.html">技术说明文档</a>最后，Wrye Bash 的版本历史记录保存在……中。<a href="Wrye%20Bash%20Version%20History.html">版本历史记录</a>文档。</p>
+<h3 id="intro-glossary">术语表<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>针对Creation引擎游戏的模组开发，一直存在着术语混乱的问题。下表列出了在处理模组时常用的一些术语。</p>
+<ul>
+<li><strong>游戏</strong>这就是Wrye Bash正在管理的游戏，也是上述列表中的其中之一。</li>
+<li><strong>EGS</strong>指从 Epic Games 商店购买的游戏。</li>
+<li><strong>GOG平台</strong>指从 GOG.com 购买的游戏。</li>
+<li><strong>Windows应用商店</strong>指通过 Windows 商店安装的游戏。这类游戏也可被称为 Game Pass、Xbox 应用或 Microsoft 商店游戏。</li>
+<li><strong>游戏崩溃</strong>是“Crash To Desktop”的缩写，用于描述游戏崩溃的情况。</li>
+<li><strong>DLC内容</strong>指该游戏的任何官方可下载内容。</li>
+<li><strong>模组</strong>指对游戏进行的任何非官方用户自制修改。</li>
+<li><strong>模组作者</strong>指对游戏进行修改的人。也可指那些参与开发供模组制作者和/或用户使用的工具的人。</li>
+<li><strong>ESM</strong>（区分大小写）或<strong>标记有ESM标签的文件</strong>指游戏将其视为此类文件的任何文件。<strong>大师级</strong>对于《辐射4》之前的游戏，唯一重要的就是文件中的ESM标志。而对于较新的游戏，则是带有特定扩展名的文件。<code>.esm</code>无论是否设置了相应标志，它们都会被视为主控程序。这些程序会在所有 ESP 之前加载（见下文）。Elder Scrolls Master 是其缩写形式。</li>
+<li><strong>.ESM文件</strong>（区分大小写）指的是具有该扩展名的文件。<code>.esm</code>有关它们在不同游戏中的表现说明，请参阅上文中的 ESM 条目。</li>
+<li><strong>ESP/ESL/ESM</strong>（不区分大小写）指任何具有该名称的文件。<code>.esp</code>扩展模块。它是“Elder Scrolls Plugin”的缩写。</li>
+<li><strong>ESM</strong>（区分大小写）指设置了名为 ESL 标志的标志的任何文件。具有该扩展名的文件<code>.esl</code>无论是否设置了相应标志，它们都会被视作 ESL 插件。目前只有《辐射4》和《上古卷轴5：特别版》支持此类插件。可被标记为 ESL 的插件存在一定的限制。它们不会占用常规的加载顺序位置，因此理论上最多可以加载 4096 个 ESL 插件。</li>
+<li><strong>ESM</strong>（区分大小写）指的是具有该扩展名的文件。<code>.esl</code>这些内容会自动获得 ESL 和 ESM 标记。目前仅有《辐射4》与《上古卷轴5：特别版》支持它们。</li>
+<li><strong>ESU</strong>（不区分大小写）指任何具有该名称的文件。<code>.esu</code>扩展程序。这类属于非官方插件，被xEdit所使用，其全称为Elder Scrolls Update。</li>
+<li><strong>叠加层</strong>指的是《星际边境》中引入的一个标志，用于将插件标记为<strong>叠加插件</strong>叠加插件不会占用加载顺序槽位，因此你可以加载无限数量的此类插件。不过它们也有一些限制：这类插件不得包含新记录（只能用于覆盖现有内容），并且必须至少有一个主插件。</li>
+<li><strong>插件</strong>指上述任何一种文件类型。</li>
+<li><strong>大师级</strong>指其他插件为正常运行所依赖的任何插件。（它也可以指 ESM 文件，因为过去只有 ESM 文件才能作为主插件，直到模组作者找到了将 ESP 文件也用作主插件的方法。本文档不会采用后一种定义。）</li>
+<li><strong>游戏的主文件</strong>指的是为使游戏正常运行而必须加载的ESM。下表列出了各游戏的对应主文件：</li>
+<table>
+<thead>
+<tr>
+<th>游戏</th>
+<th>主文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>埃恩德拉尔：被遗忘的故事</td>
+<td>Skyrim.esm 文件</td>
+</tr>
+<tr>
+<td>《艾恩德瑞尔：被遗忘的故事》特别版</td>
+<td>Skyrim.esm 文件</td>
+</tr>
+<tr>
+<td>《辐射3》</td>
+<td>Fallout3.esm</td>
+</tr>
+<tr>
+<td>《辐射4》</td>
+<td>Fallout4.esm</td>
+</tr>
+<tr>
+<td>《辐射4》VR版</td>
+<td>Fallout4.esm</td>
+</tr>
+<tr>
+<td>《辐射：新维加斯》</td>
+<td>FalloutNV.esm</td>
+</tr>
+<tr>
+<td>《上古卷轴3：晨风》</td>
+<td>Morrowind.esm</td>
+</tr>
+<tr>
+<td>尼赫里姆：命运之境</td>
+<td>Nehrim.esm 文件</td>
+</tr>
+<tr>
+<td>《上古卷轴4：湮没》</td>
+<td>Oblivion.esm 文件</td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》</td>
+<td>Skyrim.esm 文件</td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》特别版</td>
+<td>Skyrim.esm 文件</td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》VR版</td>
+<td>Skyrim.esm 文件</td>
+</tr>
+</tbody>
+</table>
+<li><strong>冲突</strong>当两个不同的模组试图修改同一个游戏变量或资源时就会发生冲突，这些变量或资源可以是游戏中的特定对象、脚本或纹理等任何内容。冲突可能会引发各种问题，比如游戏崩溃或存档损坏，但它们并非必然有害，实际上大多数模组的开发正是基于有意制造的冲突而实现的。</li>
+<li><strong>资源冲突</strong>当两个模组在相同位置包含不同的文件时，就会发生这种情况：其中一个模组的文件会覆盖另一个模组的文件。此类冲突可以通过调整模组的安装顺序来解决。</li>
+<li><strong>数据冲突</strong>当两个模组插件同时修改相同的游戏数据时，就会发生这种情况。此类冲突可以通过调整插件的加载顺序或制作补丁来解决。</li>
+<li><strong>BSA模组</strong>这些都是贝塞斯达软件公司的存档资料。<code>.bsa</code> (<strong>除《辐射4》之外的所有游戏</strong>) 或<code>.ba2</code> (<strong>《辐射4》</strong>）文件扩展名。它们可用于存储纹理和网格等资源文件。</li>
+<li><strong>ITM物品</strong>与主记录完全相同，也就是说，某个插件中的数据与该插件主记录中对应数据一致。这通常属于一种意外的编辑错误，被称为<q>恶意修改</q>这会破坏其他那些要求相关记录具有特定值、但其值又被 ITM 记录覆盖的模组的正常功能。</li>
+<li><strong>UDR文件</strong>为未删除且已禁用的引用。已删除的引用可能会导致程序崩溃，可通过先将其恢复再禁用来避免此问题。这是一种<q>脏污
+            编辑</q>请注意，该缩写并非指被删除的引用本身，而是指其已修复后的对应内容。例如：<q>扫描 UDR 文件</q>将会扫描已删除的引用，而不会扫描未被删除或被禁用的引用。BOSS/LOOT功能会显示某个插件的UDR数值，该数值实际上就是可修复的已删除引用数量。</li>
+</ul>
+<p>本说明文件也会使用该占位符。<strong>[游戏]</strong>请将此处替换为您正在使用 Wrye Bash 管理的游戏。针对 Wrye Bash 功能的专用术语会在需要时另行介绍。此外，后面带有链接的内容也会一并处理。<img alt="External Link Icon" role="img" src="../bash/images/external_link.svg"/>跳转到不属于 Wrye Bash 文档范围的页面。</p>
+<h2 id="install">安装<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>安装 Wrye Bash 最简单的方法是使用安装程序，因为它会自动安装 Wrye Bash 及其依赖项。<strong>注意：</strong>如果您想要管理 Windows 商店中的游戏（因为其安装程序不支持也无法处理 Windows 商店游戏），或因其他原因希望手动安装 Wrye Bash，请阅读以下说明。</p>
+<p><strong>注意：</strong>Wrye Bash 有两个版本：Python 版和独立版。其实它们是同一个程序，但独立版的依赖项更少，因此更适合大多数人使用。</p><p><strong>Windows Vista、7、8及10系统用户：</strong>Windows的用户账户控制功能可能会干扰Wrye Bash及其他工具的正常运行。请参阅相关说明。<a href="#trouble-permissions">文件权限</a>解决方案部分。</p><p>手动独立版本安装指南：</p><ol>
+<li>下载并安装该程序。<a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">最新版 MSVC 可再分发组件（x64）</a>.
+    </li><li>现在你有了一个选择：</li>
+<ul>
+<li>将下载好的 Wrye Bash 压缩包解压到任意文件夹中。</li>
+<li>将下载好的 Wrye Bash 压缩包解压到游戏文件夹中（例如：<q>《上古卷轴4：湮没》</q>, <q>《上古卷轴5：天际》</q>或者<q>《辐射》</q>（具体取决于游戏），从而使 Mopy 目录出现在游戏文件夹中。</li></ul>
+<li>双击即可运行 Wrye Bash。<q>Wrye Bash.exe</q>在新的 Mopy 文件夹中。如果您选择了上述第二个选项，Wrye Bash 将会立即打开。不过，对于您安装的每款新游戏，都需要重复此操作。
+        如果您选择了第一个选项，将会出现游戏选择界面。只需从列出的游戏中挑选一款即可继续：</li>
+<img alt="" src="../bash/images/readme/game-select.png"/>
+</ol>
+<p>手动安装 Python 版本：</p><ol>
+<li>下载并安装所有所需的 Python 库以及 Python 本身。  
+        详情请参见<a href="Wrye%20Bash%20Advanced%20Readme.html#install-components">Python组件</a>高级自述文件中的那一部分列出了所包含的库及其版本。如果您之前已经安装过 Python 及其相关库，可能无需再次安装。</li><li>下载并安装该程序。<a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">最新版 MSVC 可再分发组件（x64）</a>.
+    </li><li>将下载好的 Wrye Bash 压缩包解压到您的游戏文件夹中（例如：<q>《上古卷轴4：湮没》</q>, <q>《上古卷轴5：天际》</q>或者<q>《辐射》</q>（具体取决于游戏），从而使 Mopy 目录出现在游戏可执行文件旁。详情请参见<a href="Wrye%20Bash%20Advanced%20Readme.html#install-alternate">其他安装位置</a>如需安装到其他目录，请自行操作。</li><li>进入 Mopy 目录，然后双击运行 Wrye Bash。<q>Wrye Bash 启动器.pyw</q>.
+</li></ol>
+<h2 id="uninstall">卸载<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>能否轻松移除 Wrye Bash 取决于你在管理修改后的游戏时对其使用的频率。</p><ul>
+<li>如果您使用了 Bashed Patch，那么在卸载 Wrye Bash 之前，必须先从游戏存档中移除与之相关的所有依赖项，以避免出现游戏内问题。具体而言，这取决于 Bashed Patch 中包含了哪些内容，有时几乎无法完成此项操作。</li><li>如果您使用 BAIN 来管理已安装的模组，就需要准备一个合适的替代管理系统。因为虽然卸载 Wrye Bash 并不会删除您的模组，但您将无法再使用 BAIN 的冲突解决功能。</li><li>如果您使用了通过 Wrye Bash 进行的任何 INI 配置调整，就需要记下自己做了哪些修改。虽然卸载 Wrye Bash 并不会撤销这些调整，但您将无法再查看之前的配置记录或默认值。</li><li>如果使用“人物”标签页，您需要在 Wrye Bash 之外记录有关人物的信息及其业力值。</li></ul>
+<p>如果以上情况均不适用于您，或者在针对适用的情况采取了必要措施后，您可以通过运行卸载程序来卸载 Wrye Bash（前提是您是通过安装程序安装的），或者如果您是手动安装的，则可以删除相应的文件和文件夹。</p><ul>
+<li><code>[Game]\Mopy</code></li>
+<li><code>[Game]\Data\Bash Patches</code>- 如果您已导出了任何想要保留的CSV文件，请对它们进行备份。</li>
+<li><code>[Game]\Data\BashTags</code>- 如果您手动创建了任何想要保留的标签文件，请对其进行备份。</li>
+<li><code>[Game]\Data\Docs</code>
+</li><li><code>[Game]\Data\INI Tweaks</code>
+</li><li><code>Documents\My Games\[Game]</code>- 仅删除<code>BashProfiles.dat</code>, <code>BashProfiles.dat.bak</code>,
+        <code>BashSettings.dat</code>, <code>BashSettings.dat.bak</code>文件以及<code>Saves\Bash</code>文件夹。</li>
+<li><code>[Game] Mods</code>（对于大多数游戏，位于[游戏名称]所在文件夹内，
+        在<code>Documents\Wrye Bash</code>适用于 Windows 商店游戏）- 该功能<code>Bash Installers</code>该文件夹用于存储通过 BAIN 安装的模组。</li>
+</ul>
+<h2 id="bain">安装模组<a class="back2top" href="#contents">返回顶部</a></h2>
+<h3 id="bain-overview">概览<a class="back2top" href="#contents">返回顶部</a></h3>
+<figure class="slideshow">
+<img alt="" src="../bash/images/readme/installers-1.png"/>
+<img alt="" src="../bash/images/readme/installers-2.png"/>
+<img alt="" src="../bash/images/readme/installers-3.png"/>
+<img alt="" src="../bash/images/readme/installers-4.png"/>
+<img alt="" src="../bash/images/readme/installers-5.png"/>
+<img alt="" src="../bash/images/readme/installers-6.png"/>
+<img alt="" src="../bash/images/readme/installers-7.png"/>
+<img alt="" src="../bash/images/readme/installers-8.png"/>
+<figcaption class="bain-overview-figcap">Wrye Bash 的安装程序选项卡。</figcaption>
+</figure>
+<p>Wrye Bash 模组安装程序被称为<strong><abbr title="Bash Installers">BAIN</abbr></strong> (<strong>BA</strong>sh<strong>中</strong>（即安装程序），它们会显示在“安装程序”选项卡中。首次打开“安装程序”选项卡时，会出现一个对话框询问是否需要初始化 BAIN。如果点击<q>是的</q>BAIN 将被初始化，这一过程可能需要一些时间。之后，打开“安装程序”选项卡时信息刷新的速度会快很多。</p>
+<p>BAIN的主要功能是安装模组包。<strong>BAIN 包</strong>可以压缩。<strong>存档</strong>
+    (<code>.zip</code>, <code>.7z</code>, <code>.rar</code>, <code>.001</code>或者<code>.tar</code>）或称为未压缩目录<strong>项目</strong>当我们同时提及项目与存档时，也会使用这个统称。<strong>软件包</strong>或者<strong>安装程序</strong>.</p>
+<p>如果禁用了 BAIN，也就是说如果你点击了<q>没有</q>在首次选择“安装程序”选项卡时显示的对话框中，可以通过右键点击“安装程序”选项卡中的列标题并选择相应选项来重新启用它。<a href="Wrye%20Bash%20Advanced%20Readme.html#bainEnabled">已启用</a>.
+
+</p><p>包需要被放置到……中。<code>Bash Installers</code>Bash首次在内部运行时所创建的目录<code>"Game" Mods</code>目录。默认情况下，该目录会创建在游戏目录的同一层级（也就是说，如果您的游戏 exe 文件位于 “C:\GAMES\TESIV\Oblivion” 中，那么首次运行时 Bash 会自动在 “C:\GAMES\TESIV\Oblivion Mods\” 目录下创建文件），但您也可以通过设置让 Bash 将此 “Game” Mods 目录创建在任意您指定的位置（或直接使用现有的目录）。<code>--oblivionMods</code>命令行参数或<code>sOblivionMods</code>INI 设置。完成。<em>不</em>不过，应将其放入游戏的 Data 目录中，否则游戏可能会产生混淆并对其进行扫描，从而导致性能下降及模组运行异常。</p><p>若要将安装程序添加到 Wrye Bash 的安装程序列表中，您可以手动将该 zip 文件复制并粘贴到 Bash 安装程序目录中，或者直接将该 zip 文件拖放到“安装程序”标签页上。</p><p>Bash会扫描Bash安装程序目录，找出所有子文件夹及压缩文件——但以下内容除外：</p><ol>
+<li>以……开头的文件夹或文件<code>--</code>将被跳过。</li><li>一个<code>Bain Converters</code>将跳过 Bash 安装程序的子目录。</li><li>以……开头的文件夹或文件<code>bash</code>将跳过。</li><li>你可以通过该选项指定需要跳过的其他目录。<code>sSkippedBashInstallersDirs</code>INI 设置</li></ol>
+<p>现在，BAIN会尝试将它在“Bash安装程序”中检测到的软件包分类到相应的格式中——如果失败，该软件包将被标记为无法识别，需要重新整理结构。</p>
+<h3 id="bain-structure">兼容 BAIN 的安装程序结构<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>在扫描安装程序（包或项目）时，BAIN会遵循某些规则来判断其中包含的内容以及是否可以安装。它会查找特定的目录和文件扩展名（bsa/ba2、ini以及所有插件扩展名）。所有的目录检测均<em>不区分大小写</em>BAIN 所识别的、与游戏无关的目录有：</p>
+<table>
+<thead>
+<tr>
+<th>Wrye Bash 目录</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标签</td>
+<td>其内容将被复制到<code>Data/BashTags</code>.</td>
+</tr>
+<tr>
+<td>攻击补丁</td>
+<td>BAIN会从软件包中将该文件夹内的文件进行安装，这些文件通常以……的形式存在。<code>.csv</code>文件。</td>
+</tr>
+<tr>
+<td>文档</td>
+<td>其内容将被复制到<code>Data/Docs</code>.</td>
+</tr>
+<tr>
+<td>INI配置调整</td>
+<td>此文件中的 INI 配置调整将会被安装到<code>Data/INI Tweaks</code>并显示在 INI 选项卡中——完成。<strong>不</strong>包含子文件夹<code>ini tweaks</code>.</td>
+</tr>
+<tr>
+<td>截图</td>
+<td>其内容将被复制到<code>Data/Docs</code>.</td>
+</tr>
+<tr>
+<td>屏幕</td>
+<td>其内容将被复制到<code>Data/Docs</code>.</td>
+</tr>
+<tr>
+<td>ss</td>
+<td>其内容将被复制到<code>Data/Docs</code>.</td>
+</tr>
+<tr class="tabttl">
+<th colspan="2">所有游戏所支持的游戏目录</th>
+</tr>
+</tbody><tbody>
+<tr>
+<td colspan="2">
+<div class="bain-structure-txtcnt">INI文件、模型、音乐、音效，  
+纹理、视频。</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>还有针对该游戏的专用目录：</p>
+<table>
+<thead>
+<tr>
+<th>游戏</th>
+<th>额外的游戏目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>《上古卷轴3：晨风》</td>
+<td>动画、封面插图、远境地图、字体、图标、MWSE、着色器、启动画面</td>
+</tr>
+<tr>
+<td>《上古卷轴4：湮没》</td>
+<td>_tejon、baseobjectswapper、配置文件、远距离加载，
+                增强型经济系统、面部生成工具、字体、骑士——启示之歌音乐，
+                地图标记、菜单界面、观察功能、pluggy插件、脚本、着色器，
+                法术物品分配器、流程优化、树木模型</td>
+</tr>
+<tr>
+<td>《辐射3》</td>
+<td>配置、远距离加载、面部生成、字体、FOSE、加载设置、菜单、用户界面、脚本、着色器、树木模型</td>
+</tr>
+<tr>
+<td>《辐射：新维加斯》</td>
+<td>baseobjectswapper、配置文件、远距离加载、面部生成、字体，
+关键词、加载设置、菜单、NVSE脚本、赛车菜单预设、用户界面，
+脚本、着色器、树木模型</td>
+</tr>
+<tr>
+<td>《上古卷轴5：天际》</td>
+<td>asi、车身模型、加热工具、对话界面，
+龙裔语音旁白、dyndolod、flm、草地效果、用户界面、资源加载器，
+创建功能、光源放置工具、LOD设置、地图标记、天气系统、mcm，
+mlq、nemesis_engine、网络脚本框架、物体操作功能，
+全面升级版、osa、ostim、pandora_engine、PBR材质对象，
+PBR纹理修复工具、PBR纹理集、平台模型、RMB蜘蛛参考数据，
+各种脚本、季节系统、序列控制、着色器、着色器特效、skse、skyproc，
+各类修补工具、slanims怪物模型、字符串处理功能、各类工具</td>
+</tr>
+<tr>
+<td>《辐射4》</td>
+<td>dtf、dyndolod、f4se、folip、界面、lodsettings、材质，
+mcm、杂项、prkf、程序、脚本、序列、shadersfx、字符串，
+工具、可视化、xdi</td>
+</tr>
+</tbody>
+</table>所有这些目录（无论位于“Global”目录还是“Extra and Bonus Game”目录中）共同构成了<strong>标准游戏目录</strong>适用于本游戏。如果<a href="Wrye%20Bash%20Advanced%20Readme.html#bainHasExtraDirectories">包含额外目录</a>如果该包未启用此功能，则（子）包中的其他顶层目录将被跳过（其内容会显示在“已跳过”选项卡中）。还有一些目录和文件是始终会被跳过的（详细信息请参见……）<a href="Wrye%20Bash%20Advanced%20Readme.html#bain-skipped">已跳过的文件</a>).
+
+<p>大致上，与 BAIN 兼容的包结构共有四种类型：</p>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>简单版</td>
+<td>该包包含 .esp、.esm、.esl 和/或 .bsa 文件，以及/或者根目录下的任何标准游戏子目录。</td>
+</tr>
+<tr>
+<td>复杂</td>
+<td>该包包含多个顶层子目录，每个子目录都具有上述的简单结构。这些顶层子目录（即子包）<strong>不得与该游戏的所有标准游戏目录使用相同的名称。</strong>（类似）<q>文档</q>，或者<q>网格模型</q>否则，BAIN会认为这是一个普通包，并以此方式来处理它。<br/>每个顶层子目录都会被视为一个子包，可根据需要单独启用或禁用。</td>
+</tr>
+<tr>
+<td>复杂/简单</td>
+<td>一个仅包含一个顶层子目录的复杂包。从该顶层子目录开始，它会被视为一个简单包。例如那些带有顶层Data目录的模组即属于此类。</td>
+</tr>
+<tr>
+<td>零星分布</td>
+<td>一种结构不清晰的包，但依然可以被 BAIN 处理，因为它包含了能让 BAIN 理解该包中分散文件的必要信息。目前唯一被支持的此类分散包类型是由 FOMOD 引导的分散包，其形式如下所示：<q>散落状态
+                    （FOMOD）</q>在“安装程序”选项卡中。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>模组作者注意事项：</strong>强烈建议您使用结构清晰、规整的包格式，而非杂乱无章的形式！这样既能方便用户查看您的插件包，还能让他们通过逐一检查子包来手动完成安装。所有主流的模组管理器都支持这类包格式。</p>
+<h3 id="bain-convert">重新构建包以使其兼容 BAIN<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>判断某个软件包是否需要手动转换才能与 BAIN 兼容的最简单方法就是尝试安装它。如果该软件包在软件包列表中显示为灰色复选框加名称的形式，那就意味着 BAIN 无法安装它。由于 BAIN 的灵活性，许多模组已经以兼容的方式打包好了，但对于那些尚未适配的模组，则存在几种可能的情况：</p><ul>
+<li>该模组包含一个<abbr title="BAIN Conversion File">BCF</abbr>BCF是一种特殊包，它能告知BAIN如何重新构建模组，使其无需用户动手即可与BAIN兼容。</li><li>该模组以OMOD形式分发（即具有相应的文件扩展名）。<code>.omod</code>或者<code>.fomod</code>）。这些模组专为通过 Oblivion Mod Manager 或 Nexus Mod Manager 安装而设计。此类模组通常还提供非 OMOD 格式的下载选项：如果有该选项，建议选择其下载，因为这样兼容性更高。否则，只需将 OMOD 文件拖放到“安装程序”标签页中，即可自动转换为项目文件。</li><li>该模组以压缩包形式提供，或是经过转换的OMOD项目，但其文件夹结构并不符合BAIN的识别标准，因此需要手动重新整理。</li><li>该模组以可执行文件形式分发（即带有扩展名）。<code>.exe</code>）。这种情况极为罕见，因为模组并不需要可执行文件的复杂结构，而可执行文件带来的更高安全风险也使其使用率较低。BAIN 无法安装以这种方式分发的模组：通常安装它们的唯一方法就是运行可执行文件。你可以先运行安装程序，将其安装到虚拟文件夹中，然后再重新打包。<q>已安装</q>将文件转换为与BAIN兼容的格式。</li></ul>
+<p>如果某个压缩包包含 BCF，可按照以下说明使用 BAIN 进行转换以便安装。</p><ol>
+<li>请确保BCF已安装在正确的位置。<code>[Game] Mods\Bash Installers\Bain Converters</code>。同时要确保其转换的目标压缩包位于其中。<code>[Game] Mods\Bash Installers</code>.
+    </li><li>从 BAIN 安装程序列表中，选择需要转换的压缩文件。<q>来源</q>选中相应的文件包，右键点击以调出上下文菜单，然后进行选择。<a href="Wrye%20Bash%20Advanced%20Readme.html#bainConversion">转换</a>打开子菜单。</li><li>点击<em>应用</em>打开第二个子菜单，从中选择BCF。如果安装了多个可转换所选软件包的BCF，列表中会显示多个BCF。
+对于每个未被选中的、但该BCF能够转换的压缩文件，其名称末尾会加上星号（“*”）。</li><li>可选地为转换后的存档文件命名。</li><li>当 Wrye Bash 完成转换后，生成的压缩文件将会出现在 BAIN 包列表中，可直接进行安装。此时您可以删除原有的压缩文件了。</li></ol>
+<p>如果某个包未被 BAIN 识别且没有对应的 BCF，那么其内容就需要被重新整理，使其结构符合三种与 BAIN 兼容的包结构之一。</p>
+<h3 id="bain-install">通过 BAIN 安装/卸载<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>首先需要将包放入其中。<code>[Game] Mods\Bash Installers</code>该目录。可以通过 Windows 资源管理器来创建，也可以在“安装程序”选项卡打开时将软件包拖放到 Wrye Bash 窗口中。如果选择拖放方式，则系统会询问你是想复制该软件包还是移动它。</p><p>在大多数情况下，只需右键点击该包并选择即可。<a href="#bainInstall">安装……</a>如果存在向导和FOMOD文件，它将自动使用这些工具；若不存在，则会回退到手动配置方式。如果您想了解更多关于各类包的信息，以及如何手动安装和配置其选项，请继续阅读。</p>
+待办：这部分内容或许应该放在高级用户说明文件中。
+<p>如果某个包中包含 BAIN 工具（即存在该工具）<img alt="a magic wand icon" src="../bash/images/readme/wand-icon.png"/>在其复选框上方显示）：</p>
+<ol>
+<li>右键点击该包，然后选择<a href="#bainInstall">安装……</a>或者，选择“高级安装”&gt;“向导安装程序”&gt;“手动向导”。您也可以选择“自动向导”，让安装程序使用默认设置来完成安装。</li>
+<li>按照向导中的步骤来安装该软件包。  
+如果您选择了“自动向导...”，则会直接跳转到向导的完成界面。</li>
+<li>在巫师的结束界面中，点击<q>完成</q>用于应用所选设置的按钮。</li>
+</ol>
+<p>如果某个插件包含 FOMOD 向导（即存在 FOMOD 单选按钮），则：</p>
+<ol>
+<li>右键点击该包，然后选择<a href="#bainInstall">安装……</a>或者，选择“高级安装”&gt; “FOMOD 安装程序”&gt; “运行 FOMOD”……请注意。<a href="#bainInstall">安装……</a>相比 FOMOD 类法师，我会更倾向于使用 BAIN 类法师，因此有时可能需要采用这种替代方法，比如当 BAIN 类法师无法正常使用时。</li>
+<li>按照步骤操作并选择选项。</li>
+<li>在巫师的结束界面中，点击<q>完成</q>应用所选设置的按钮。</li>
+</ol>
+<p>如果某个包采用简单结构或复杂/简单混合结构：</p>
+<ol>
+<li>在软件包列表中选中该软件包。</li>
+<li>从中选择要安装的插件。<q>插件过滤器</q>位于插件列表最右侧的复选框。已勾选的插件将会被安装，而未勾选的插件则会被跳过。</li>
+<li>右键点击该包，然后选择<a href="#bainInstall">安装……</a>.</li>
+</ol>
+<p>如果某个包具有复杂的结构：</p>
+<ol>
+<li>在软件包列表中选中该软件包。</li>
+<li>从列表中选择要安装的子包。<q>子包</q>移至包列表右侧的框中。已勾选的子包将会被安装，而未勾选的子包则会被跳过。</li>
+<li>从中选择要安装的插件。<q>插件过滤器</q>位于插件列表最右侧的复选框。已勾选的插件将会被安装，而未勾选的插件则会被跳过。</li>
+<li>右键点击该包，然后选择<a href="#bainInstall">安装……</a>.</li>
+</ol>
+<p>如果某个插件具有分散式结构，就必须使用引导式安装方式（请参考上文中的FOMOD安装说明）。</p>
+<p>如果您安装了一个软件包，之后又更改了所选的子软件包或插件文件，只需在列表中右键点击该软件包并选择相应选项，即可应用这些更改。<a href="#bainAnneal">退火处理</a>法师提供了一种脚本化安装方法，对于那些包含众多选项的复杂模组来说非常有用。</p><p>当安装某个软件包时，BAIN会将其中所有看似属于文档的文件一并安装到相应位置。<code>Data\Docs</code>文件夹。所有仅带有简单名称的文件<q>自述文件</q>如 readme.txt、readme.html、readme.doc 等文件将会根据软件包名称进行重命名，以避免各软件包的 readme 文件相互覆盖。</p><p>要在“安装程序”选项卡中卸载任何软件包，只需选中该软件包并右键点击，然后选择相应操作即可。<a href="#bainUninstall">卸载</a>这将卸载所有匹配的文件。不过，BAIN不会卸载那些不匹配的文件。</p>
+<p>所谓“不匹配文件”，指的是在安装后被修改过的文件。BAIN 不会卸载这类文件的原因是：如果文件修改并非通过 BAIN 完成，BAIN 就无法追踪其修改来源。例如，如果该文件是被手动安装的其他模组替换而导致的修改，那么卸载这个不匹配文件可能并无必要。反之，如果文件是通过 TESxEdit 进行过清理或编辑，或是作为 ini 文件被文本编辑器修改过的，那么就应当将这个不匹配文件连同其所属的软件包一起卸载。</p>
+<p>这类文件可以手动从数据文件夹中删除，但通过 BAIN 也有更简单的方法。在卸载该模组之前，首先选中对应的包，右键点击它，然后选择“高级安装”&gt;“安装已配置的版本”。这样就会用包中所含的文件版本覆盖所有不匹配的文件，使其变为匹配状态。现在请选择<a href="#bainUninstall">卸载</a>同时，BAIN会卸载与该软件包相关的所有已安装文件。</p>
+<p>另一种方法，如果您希望将不匹配的文件保留在待卸载的包中，可以使用<a href="bainSyncFromData">从数据同步……</a>.</p>
+<p>您也可以卸载那些并非由 BAIN 安装的软件包，这样就会移除与该软件包中文件相同的已安装文件。这对于清理手动安装的模组非常有用。当然，首先需要将这些软件包添加到 BAIN 中。通过 BAIN 进行卸载时会保留文件的所属关系，也就是说，如果某个模组包含了由安装顺序中更靠后的模组所安装的文件，卸载当前模组时不会同时移除那个更靠后模组的文件。更多相关内容请参见下一节“BAIN 软件包安装顺序”。不过，如果启用了“自动恢复”选项（默认状态），那么之前被已卸载软件包的文件覆盖的其他软件包中的文件将会自动恢复。</p>
+<h3 id="bain-order">BAIN 包顺序<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>在 BAIN 中，各软件包的安装顺序非常重要，因为它决定了在资源冲突时哪些软件包的文件会被优先安装。可以通过左键点击来指定软件包的安装顺序。<q>订购</q>列标题。如果有两个软件包试图安装相同的文件，那么列表中后安装的软件包所对应的文件将会覆盖先安装的软件包中的对应文件。例如，安装顺序为06的软件包中的文件会覆盖安装顺序为04的软件包中的冲突文件。需要注意的是，安装顺序较高的软件包在列表中显示的位置较靠下，这可能会让人误以为它们位于“下方”。</p><p>一个包内的子包顺序遵循与包相同的规则。在子包列表中位置较靠后（编号较小）的已检查子包，会覆盖那些位于列表前面（编号较大）且内容存在冲突的子包。</p><p>软件包冲突的详细信息见<q>冲突</q>选中某个软件包后，列表右侧会出现一个标签页。该标签页会显示哪些软件包中的文件与当前所选软件包中的文件存在冲突。它会提供列表中位于所选软件包之前及之后的那些软件包的相关信息。</p><p>BAIN 允许你通过调整程序包的顺序来轻松改变它们的冲突状态。你可以直接在列表中拖放程序包，或者右键点击程序包后选择相应选项来实现这一操作。<a href="#bainMoveTo">移至……</a>该选项。您也可以选择多个包并移动它们，这样它们就会作为一个整体被移动，且在新位置仍保持原有的相对顺序。第三种方法是选中相应包，然后使用 Ctrl+上箭头（↑）或 Ctrl+下箭头（↓）分别将它们向上或向下移动。</p>
+<h3 id="bain-symbols">符号与颜色代表什么含义<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>BAIN通过软件包列表中的颜色以及复选框的状态，向用户展示这些软件包的当前状态。复选框的状态可以与任何复选框颜色或文本颜色结合使用，具体的状态与颜色组合见下表说明。</p><p><strong>注意：</strong>已安装的包会标有加号，例如：<svg aria-label="Green Plus" class="wb-ico wb-checkbox green inc" data-wb-use="#wb-checkbox-inc"></svg>损坏或不完整的包会标有叉号，例如：<img alt="Red X" height="16" role="img" src="../bash/images/red_x.svg" width="16"/>以……开头和结尾的包<q>==</q>例如：<q>==最后==</q>这些是标记包。它们并不代表某个存档或文件夹，因此不包含任何文件，但可用于整理包列表。</p><table>
+<thead><tr><th>复选框形状</th><th>含义</th></tr></thead><tbody>
+<tr><td><svg aria-label="diamond" class="wb-ico wb-diamond white off" data-wb-use="#wb-diamond-off"></svg></td><td>该包属于项目类型，即是一个目录而非压缩文件。</td></tr><tr><td><svg aria-label="square" class="wb-ico wb-checkbox white off" data-wb-use="#wb-checkbox-off"></svg></td><td>该包是一个压缩文件。</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>复选框颜色</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><svg aria-label="green" class="wb-ico wb-checkbox green off" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>该包中的所有文件均已按照配置要求完成安装。</td>
+</tr>
+<tr>
+<td><svg aria-label="red" class="wb-ico wb-checkbox red off" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>该包中的部分或全部文件未能按照配置要求进行安装。</td>
+</tr>
+<tr>
+<td><svg aria-label="orange" class="wb-ico wb-checkbox orange off" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>所有包文件都已安装，但插件并不完全相同（例如有一个包已安装）<code>mymod.esp</code>另一个软件包安装了该插件的清理版。</td>
+</tr>
+<tr>
+<td><svg aria-label="yellow" class="wb-ico wb-checkbox yellow off" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>所有包文件都已安装，但部分资源文件（即插件以外的文件）并不完全一致（例如某个包已安装）。<code>textures/mytexture.dds</code>另一个软件包安装了该纹理的高分辨率版本。</td>
+</tr>
+<tr>
+<td><svg aria-label="white" class="wb-ico wb-checkbox white off" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>按照当前配置，该软件包没有需要安装的文件。这种情况可能出现在那些复杂的软件包中，因为其所有子包都未被选中进行安装；同时也可能发生在那些需要通过引导式安装来处理的零散软件包上。</td>
+</tr>
+<tr>
+<td><svg aria-label="grey" class="wb-ico wb-checkbox grey off" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>BAIN 无法识别该包的结构，因此无法安装它。</td>
+</tr><tr>
+<td><img alt="no checkbox, just a red X" height="16" role="img" src="../bash/images/red_x.svg" width="16"/></td>
+<td>该包已损坏，或因某些原因无法被 BAIN 读取。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>文本格式化</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="bain-symbols-blutxt">海军蓝</td>
+<td>该包包含子包。</td>
+</tr>
+<tr>
+<td class="bain-symbols-grytxt">灰色</td>
+<td>BAIN 无法识别该包的结构，因此无法安装它。</td>
+</tr>
+<tr>
+<td class="bain-symbols-orgbg">橙色背景</td>
+<td>安装过程出现了异常。这种情况会出现在那些配置已被修改的软件包上，
+                无论是通过更改激活的子软件包和ESMP文件，还是直接修改了软件包本身。
+                可以通过运行相应命令来修复此问题。<a href="#bainAnneal">退火处理</a>或者<a href="#bainAnnealAll">全部退火</a>.</td>
+</tr>
+<tr>
+<td class="bain-symbols-ylwbg">黄色背景</td>
+<td>该软件包包含“覆盖文件”，即其中一些已安装的文件会覆盖其他文件。<em>应该</em>会被更高级别的插件覆盖，但实际上并未被覆盖。这种情况可能发生在重新排序已安装的模组之后。可以通过运行相应命令来修复。<a href="#bainAnneal">退火处理</a>或者<a href="#bainAnnealAll">全部退火</a>.</td>
+</tr>
+<tr>
+<td class="bain-symbols-grybg">灰色背景</td>
+<td>该包中包含的某些文件将会<strong>不</strong>尚未安装。这可能是由于文件结构过于复杂，BAIN仅能处理其中的一部分，或是存在某些BAIN会跳过的文件类型所致。有时可以通过告知BAIN该软件包包含额外的目录来解决此问题。<a href="Wrye%20Bash%20Advanced%20Readme.html#bainHasExtraDirectories">包含额外目录</a>在右键菜单中。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bain-commands">实用上下文菜单命令<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>该包中以及列标题上下文（即右键菜单）中的以下命令，对许多用户来说都非常有用。</p><table>
+<thead>
+<tr>
+<th colspan="3">列标题上下文菜单</th>
+</tr>
+<tr>
+<th colspan="2">命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2">文件..</td>
+<td>打开文件夹...</td>
+<td>打开<q>攻击插件安装程序</q>在系统默认的文件资源管理器中的目录。按下 Ctrl+O 也可达到相同效果。</td>
+</tr>
+<tr>
+<td>新建标记...</td>
+<td>创建一个标记来整理你的包。<q>==</q>将会为您添加。您也可以按下 Ctrl+Shift+N 来达到相同效果。</td>
+</tr>
+<tr>
+<td rowspan="2">数据……</td>
+<td>清理数据……</td>
+<td>从数据文件夹中移除那些并非原版游戏自带或通过 BAIN 安装的文件。这些文件不会被删除，而是会被移动到……<code>[Game] Mods/Bash Installers/Bash</code>改为文件夹。</td>
+</tr>
+<tr>
+<td>刷新数据</td>
+<td>重新扫描 Data 目录及所有项目目录。此操作会在每次运行 Wrye Bash 且首次打开“安装程序”标签页时执行一次。如果之后您手动修改了这些目录，应运行该命令以更新 BAIN，使其反映最新变化。若 Bash 安装程序目录中的软件包发生更改，BAIN 会自动刷新自身。</td>
+</tr>
+<tr>
+<td rowspan="3">软件包..</td>
+<td id="bainAnnealAll">全部退火</td>
+<td>相同。<a href="#bainAnneal">退火处理</a>但它可在所有包上运行。如果你移动过大量包或更改了一些全局的 BAIN 设置（如跳过选项），那么这个工具会非常有用。</td>
+</tr>
+<tr>
+<td>卸载所有软件包</td>
+<td>卸载所有软件包。</td>
+</tr>
+<tr>
+<td>列出软件包……</td>
+<td>显示项目与存档列表，并将该列表复制到剪贴板中。这在将软件包清单发布到论坛上时非常有用，例如在排查安装问题时。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th colspan="3">软件包上下文菜单</th>
+</tr>
+<tr>
+<th colspan="2">命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="4">文件..</td>
+<td>打开……</td>
+<td>在文件系统中打开选中的包。你可以双击该包，或按回车键达到相同效果。</td>
+</tr>
+<tr>
+<td>重命名…</td>
+<td>重命名选中的包或标记。您可以点击已选中的项目，或按 F2 键达到相同效果。</td>
+</tr>
+<tr>
+<td>复制……</td>
+<td>创建所选软件包的副本。</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>删除所选的程序包和/或标记。被删除的程序包会被移至回收站，并非永久性删除。</td>
+</tr>
+<tr>
+<td colspan="2">在…时打开。</td>
+<td>尝试在所选网站上打开该软件包的页面。如果选择了 Google，则会使用该软件包名称在 Google 上进行搜索。对于另外两个网站，此命令假定软件包名称末尾的数字即为该网站上的软件包编号。若这一假设不成立，将会打开一个随机页面或错误页面。</td>
+</tr>
+<tr>
+<td colspan="2">打开自述文件</td>
+<td>如果 BAIN 能在包中找到说明文件，就打开它。</td>
+</tr>
+<tr>
+<td colspan="2" id="bainAnneal">退火处理</td>
+<td>将已安装（“正在使用中”）的软件包更新，以使其与安装配置或软件包顺序中的变化保持一致。例如，如果您选中了某个子软件包，或者更改了两个存在冲突的软件包的顺序，就必须运行此命令。</td>
+</tr>
+<tr>
+<td colspan="2">快速刷新</td>
+<td>刷新所选软件包的所有信息。当 BAIN 存储的软件包信息与数据文件夹中的内容不同步时，例如因您手动修改了相关文件，此功能非常有用。</td></tr>
+<tr>
+<td colspan="2" id="bainMoveTo">移动到…</td>
+<td>将选中的软件包移动到指定位置。</td>
+</tr>
+<tr>
+<td colspan="2" id="bainSyncFromData">从数据同步……</td>
+<td>将“Data”文件夹中那些同样存在于该包内但内容有所差异的文件复制到此包中。如果您修改了该包中的某个文件——例如通过xEdit对其进行了清理处理——而现在希望更新包内的内容以使其保持一致，那么此功能非常有用。</td>
+</tr>
+<tr>
+<td colspan="2" id="bainInstall">安装……</td>
+<td>安装所选的软件包，如有可能，请优先使用可视化方式。</td>
+</tr>
+<tr>
+<td colspan="2" id="bainUninstall">卸载</td>
+<td>卸载所选的软件包。</td>
+</tr>
+<tr>
+<td>包文件。</td>
+<td>列表结构……</td>
+<td>生成包中的文件与目录列表并将其复制到剪贴板。这有助于在论坛上展示包的结构，例如在排除安装问题时使用。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">设置加载顺序<a class="back2top" href="#contents">返回顶部</a></h2>
+<figure class="slideshow">
+<img alt="" src="../bash/images/readme/mods-1.png"/>
+<img alt="" src="../bash/images/readme/mods-2.png"/>
+<img alt="" src="../bash/images/readme/mods-3.png"/>
+<figcaption class="mods-overview-figcap">Wrye Bash 的模组标签页。</figcaption>
+</figure>
+<h3 id="load-overview">概述<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>Wrye Bash会在其中显示你已安装的插件。<q>模组</q>标签页。此处显示了已安装插件的加载顺序，Wrye Bash 会用带勾的复选框标记这些插件。该顺序非常重要，因为它决定了在插件冲突时哪个插件会“胜出”——即后加载的插件会覆盖那些处理相同功能的插件。列表中后加载的模组在“加载顺序”一栏中的数值会更高，一旦与先加载的模组（数值较低）发生冲突，后者就会被后者取代。<strong>加载顺序与BAIN的安装顺序并非同一概念！</strong>安装顺序决定了在文件冲突时，哪个包的文件会覆盖其他包的文件。</p><p>虽然“加载顺序”通常指的是资源的加载先后顺序，但<em>激活状态</em>插件方面，所有已安装的插件都有指定的加载顺序。在《Oblivion》、《Nehrim: At Fate's Edge》、《Fallout 3》以及《Fallout: New Vegas》中，加载顺序取决于插件的修改时间；而在《Skyrim》与《Enderal: Forgotten Stories》中，则遵循社区共同约定的文本文件标准；至于《Fallout 4》及之后的所有游戏，会将所有已安装的插件列在plugins.txt文件中，并用星号标记出处于活跃状态的插件。<code>*</code>例如，即便某些插件处于非激活状态，Bash 仍需要遵循插件加载顺序，这样才能在 Bashed Patch 中正确合并这些非激活的模组。</p>
+<p>可以通过点击插件对应的复选框使其变为已选中状态来激活插件，或者选中某个插件或一组插件后按下键盘上的空格键来激活它们。要关闭插件，则可再次点击其复选框或按下空格键。如果所选的插件组中既有已激活的也有未激活的插件，只需按下一次空格键即可将所有插件全部激活，之后它们就会像正常情况下那样运行。</p><p>有些插件明确依赖于其他插件——它们会将这些插件作为依赖项。<q>大师级</q>当某个插件被激活时，其依赖的插件也会一同被激活。反之，如果其他插件所依赖的插件被关闭，那些插件也会随之被关闭。</p>
+<p>在设置加载顺序时，请确保 Wrye Bash 能够按加载顺序显示您的插件。只需点击相应选项即可实现。<a href="Wrye%20Bash%20Advanced%20Readme.html#mods-col-load-order">加载顺序</a>标签页顶部的列标题。您也可以点击其他列标题，按不同属性对插件进行排序。双击任意列即可反转其显示顺序，但“加载顺序”列除外。插件的加载顺序以十六进制数字表示，范围从00到FE，对应十进制的0到254。（该数值也是记录Form ID的前两位。）</p><p>请注意，包括游戏主文件在内，任何时候激活的插件数量最多不能超过255个。
+    Wrye Bash会在右侧的状态栏中以特定格式显示插件数量。<code>Mods: [active]/[installed]</code>.
+</p><p>一般来说，如果出现无效的加载顺序，Wrye Bash会在启动或刷新时自动修复它，但需要有一个备份副本（包含……）<code>.bak</code>在此之前，将会先制作相应的扩展程序。</p>
+<h4 id="intro-esls">ESL模组</h4>
+<p>随着……的出现<strong>ESL 文件</strong>加载顺序系统已被修改。以下列表列出了关于 Wrye Bash 如何处理 ESL 文件的若干重要信息：</p>
+<ol>
+<li><code>.esl</code>这些文件会自动被标记为ESM类型，因此会按照指定顺序在主文件中加载。<code>plugins.txt</code>.</li>
+<li><code>.esl</code>这些文件会自动被标记为 ESL 标志，因此始终被视为轻型插件。</li>
+<li>带有 ESL 标记的 ESP 也被视为轻量级插件。</li>
+<li>ESL的数量可以超过255的限制——Wrye Bash允许的最高值为4096，即理论上限，但你的游戏很可能在达到这个数值之前就出现故障。</li>
+<li>ESL 标志与叠加层标志不能同时启用（见下文）。</li>
+</ol>
+<p>创作俱乐部文件（采用以下格式）<code>cc*.esl</code>或者<code>cc*.esm</code>）是从游戏中读取的。<code>.ccc</code>如果游戏支持创作俱乐部功能，则会有该文件。例如，《天际：特别版》就包含此文件。<code>[GAME]\Skyrim.ccc</code>而《辐射4》则使用<code>[GAME]\Fallout4.ccc</code>与游戏原作者的做法一样，此加载顺序是硬编码的，因此无法更改——一旦尝试修改，Wrye Bash将会显示错误信息。</p>
+<h4 id="intro-overlays">叠加插件</h4>
+<p>随着《星空》的推出以及……的到来<strong>叠加插件</strong>加载顺序系统又有了新的改进。以下是关于叠加插件以及Wrye Bash对其处理方式的重要信息：</p>
+<ol>
+<li>叠加插件完全不会占用加载顺序槽位。这意味着你可以加载无限数量的此类插件，因此它们非常适合用于解决冲突的补丁等场景。</li>
+<li>叠加插件不应包含新记录（即那些具有特定FormID的记录）。<code>XY012345</code>，即<code>XY</code>大于（或等于）该插件所拥有的主节点数量。如果满足此条件，这些记录将被注入到覆盖层插件的第一个主节点中，从而引发各种问题，从错误的覆盖行为到程序崩溃不等。<ul>
+<li>Wrye Bash 不允许你将带有新记录的插件标记为叠加插件，而 xEdit 也无法保存这类插件。<a href="Wrye%20Bash%20Advanced%20Readme.html#tools-checker">插件检查工具</a>运行时也会高亮显示此类插件。</li>
+</ul>
+</li>
+<li>叠加插件必须至少拥有一个主插件。如果没有，游戏将会忽略该叠加插件的设置，并将其视为普通插件处理。<ul>
+<li>Wrye Bash 不允许将没有主插件的插件标记为叠加插件，而 xEdit 也无法保存这类插件。<a href="Wrye%20Bash%20Advanced%20Readme.html#tools-checker">插件检查工具</a>运行时也会高亮显示此类插件。</li>
+</ul>
+</li>
+<li>Overlay标志与ESL标志是互斥的（见上文）。如果游戏同时检测到这两个标志，它会忽略ESL标志。<ul>
+<li>Wrye Bash与xEdit均不允许将带有ESL标记的插件标记为叠加型插件，反之亦然。<a href="Wrye%20Bash%20Advanced%20Readme.html#tools-checker">插件检查器</a>运行时也会高亮显示此类插件。</li>
+</ul>
+</li>
+</ol>
+<h3 id="load-set">设置加载顺序<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>设置正确的加载顺序，以尽量减少可能引发游戏内问题的冲突，是一个既困难又耗时的过程。要实现有效的加载顺序管理，通常需要了解加载顺序中每个插件包含的内容，这样才能合理安排它们的加载顺序，从而降低冲突风险。对于简单的模组，其自带的说明文件通常已足以说明其中包含的记录信息；但为确保万无一失，还是需要使用如 xEdit 这样的工具。</p><p><a href="https://loot.github.io/">战利品</a>该工具能够自动为数千个插件定位正确的加载顺序，从而极大简化加载顺序的设置流程。不过，仍有一些插件可能需要手动排序。</p><p>Wrye Bash 提供了多种方式来设置加载顺序：</p><ul>
+<li>通过选中一组插件，然后从右键菜单中选择“文件”→“排序”，即可按字母顺序进行排列。</li><li>通过选中插件并分别使用 Ctrl-Up 或 Ctrl-Down 来调整其加载顺序。此方法同样适用于插件组，且会保持该组内的原有顺序。</li><li>如果插件是按照加载顺序排序的，那么拖放插件也会改变其加载顺序。</li><li><em>仅适用于基于时间戳的游戏。</em>选中一组插件，然后从右键菜单中选择“文件”-&gt;“重新设定时间”。这样即可将第一个插件设置到指定的日期/时间，其余插件则会依次间隔一分钟被设置到相应时间。</li><li><em>仅适用于基于时间戳的游戏。</em>在右侧的详细信息面板中编辑插件修改日期。</li></ul>
+<p>运行 Wrye Bash 时，你还可以通过选择相应选项来锁定加载顺序，从而防止其被意外修改。<a href="#modsLockLoadOrder">锁定加载顺序</a>在右键菜单的列标题中找到该选项。请注意，此选项会阻止其他工具更改加载顺序，因此如果您使用此类工具来设置加载顺序，请取消选中该选项。如果您使用 BOSS/LOOT 工具来管理加载顺序，同时又启用了“锁定加载顺序”功能，请确保<a href="#launchersSuspendLockLoadOrder">暂停锁定加载顺序</a>该选项也被启用，以确保BOSS/战利品系统能够正常运行。</p><p>请注意，在《天际》及后续版本游戏中，Wrye Bash 会自动撤销游戏启动器或任何不遵循基于文本文件的加载顺序标准的工具所做出的所有加载顺序更改，从而确保加载顺序的完整一致性。这意味着不必要的更改将被避免。</p>
+<figure>
+<img alt="" src="../bash/images/readme/toolbar-rclick-boss.png"/>
+<figcaption>通过图形界面选项来发动BOSS攻击。</figcaption>
+</figure>
+<p>该<q>通过图形界面启动</q>在 BOSS 图形界面与命令行界面之间切换。可让玩家快速便捷地使用图形界面提供的各种附加功能，例如<q>编辑用户规则</q>选项。</p>
+<h3 id="load-undo">撤销与重做加载顺序更改<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>Bash拥有先进的撤销/重做加载顺序功能，包括对加载顺序的修改。<em>处于激活状态<strong>或者</strong>未激活
+    插件</em>以及插件的启用/禁用操作。无论你是启用某个插件、将其拖放到其他位置、禁用某个插件（同时也会使其下的子插件被禁用），都可以随时点击<code>Ctrl+Z</code> <em>当模组列表处于焦点状态时</em>撤销操作或<code>Ctrl+Y</code>/<code>Ctrl+Shift+Z</code>需要重新操作。Bash会保留加载顺序（即整体的加载顺序）。<em>全部</em>其内部结构中会存储已安装的插件及其当前激活状态，并在关闭时将这些信息保存到磁盘上。<code>My Games\&lt;Game&gt;\BashLoadOrders.dat</code>这样，你就可以在重新启动 BASH 时撤销或重做操作。</p><p>撤销/重做功能会尽力保留尽可能多的加载顺序——因此与其他应用程序的撤销/重做功能不同，如果您最初的加载顺序为状态A，随后改为状态B，再执行撤销操作（从而回到状态A），接着又改为状态C，那么Wrye Bash会在其内部结构中同时保留状态A、C和B，而大多数其他应用程序最终只会保留状态A和C。撤销/重做加载顺序功能是一项相对较新的特性（自307版本起可用），因此可能还存在一些不完善之处。</p>
+<h3 id="load-symbols">符号与颜色的含义<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>与“安装程序”选项卡一样，Wrye Bash也会通过颜色编码及其他格式化方式来显示插件状态的相关信息。此处会对所使用的各种格式化类型及其含义进行说明。其中许多设置都可以在……中进行修改。<a href="Wrye%20Bash%20Advanced%20Readme.html#tools-colors">颜色配置</a>菜单。</p>
+<table>
+<thead><tr><th>复选框类型</th><th>含义</th></tr></thead><tbody>
+<tr><td><svg aria-label="Checkmark" class="wb-ico wb-checkbox green on" data-wb-use="#wb-checkbox-on"></svg></td><td>插件已激活。</td></tr><tr><td><svg aria-label="Plus" class="wb-ico wb-checkbox green inc" data-wb-use="#wb-checkbox-inc"></svg></td><td>该插件已合并到当前活跃版本中。<a href="#patch">Bashed Patch 更新补丁</a>.
+        </td></tr><tr><td><svg aria-label="Dot" class="wb-ico wb-checkbox green imp" data-wb-use="#wb-checkbox-imp"></svg></td><td>插件已导入到当前活动模块中。<a href="#patch">Bashed Patch 更新补丁</a>.
+        </td></tr><tr><td><svg aria-label="Empty" class="wb-ico wb-checkbox green off" data-wb-use="#wb-checkbox-off"></svg></td><td>该插件未处于激活状态，也未被合并或导入。</td></tr></tbody></table>
+<table>
+<thead><tr><th>复选框颜色</th><th>含义</th></tr></thead><tbody>
+<tr><td><svg aria-label="Blue" class="wb-ico wb-checkbox blue on" data-wb-use="#wb-checkbox-on"></svg></td><td>插件中的主控项顺序与插件中规定的完全一致。</td></tr>
+<tr><td><svg aria-label="Green" class="wb-ico wb-checkbox green on" data-wb-use="#wb-checkbox-on"></svg></td><td>该插件的主控项顺序与插件中指定的相同，但其精确位置有所不同（即两者之间有其他模组）。这并非问题，其效果与带有蓝色复选框的情况并无二致。</td></tr><tr><td><svg aria-label="Yellow" class="wb-ico wb-checkbox yellow on" data-wb-use="#wb-checkbox-on"></svg></td><td>该插件中某些模块的加载顺序与插件文档中规定的不同。游戏会自动处理这一问题，但这可能表明要么是您的设置有误，要么是模组作者的配置存在问题。</td></tr>
+<tr><td><svg aria-label="Orange" class="wb-ico wb-checkbox orange on" data-wb-use="#wb-checkbox-on"></svg></td><td>该插件会在其一个或多个依赖插件之前加载。这会导致游戏崩溃，或使模组以异常方式加载，必须进行修正。</td>
+</tr><tr><td><svg aria-label="Red" class="wb-ico wb-checkbox red on" data-wb-use="#wb-checkbox-on"></svg></td><td>该插件的一个或多个主文件缺失。这通常会导致游戏在启动时崩溃，必须进行修复。</td>
+</tr></tbody></table>
+<table>
+<thead><tr><th>文本格式化</th><th>含义</th></tr></thead>
+<tbody>
+<tr>
+<td class="load-symbols-blutxt">蓝色文字</td>
+<td>“大师”级别——详情请参阅本文档开头的ESM文档。</td>
+</tr>
+<tr>
+<td class="load-symbols-grntxt">绿色文字</td>
+<td>可合并的插件<em>（适用于不支持ESL功能的游戏）</em>或者，可以是被标记为ESL的类型。<em>（适用于支持ESL功能的游戏）</em>.</td>
+</tr>
+<tr>
+<td class="load-symbols-orgtxt">橙色文字</td>
+<td><em>仅适用于支持覆盖层功能的游戏。</em>一种叠加层插件。</td>
+</tr>
+<tr id="load-colors-esls">
+<td class="load-symbols-pnktxt">粉色文字</td>
+<td><em>仅适用于支持ESP功能的游戏。</em>一个被标记为 ESL 的插件。</td>
+</tr>
+<tr>
+<td class="load-symbols-prptxt">紫色文字</td>
+<td><em>仅适用于支持ESP功能的游戏。</em>一个被标记为ESL的插件，同时也是主插件。其颜色是代表主插件的蓝色与代表ESL插件的粉色的组合。</td>
+</tr>
+<tr>
+<td class="load-symbols-redtxt">红色文字</td>
+<td><em>仅适用于支持叠加界面的游戏。</em>一种既是覆盖插件又是主插件的类型。其颜色为用于主插件的蓝色与用于覆盖插件的橙色相结合的色调。</td>
+</tr>
+<tr>
+<td class="load-symbols-ylwtxt">黄色文字</td>
+<td><em>仅适用于不支持ESP功能的游戏。</em>一个不应被合并的插件（即已标记为<code>NoMerge</code>).</td>
+</tr>
+<tr>
+<td class="load-symbols-pnkbg">粉色背景</td>
+<td><em>仅适用于《上古卷轴4：湮没》、《尼赫里姆：命运之境》、《辐射3》以及《辐射：新维加斯》。</em>一种会与另一插件共享其修改日期的插件。只要这两个插件不会同时处于激活状态，就不会出现问题。</td>
+</tr>
+<tr><td class="load-symbols-redkbg">红色背景</td>
+<td><em>仅适用于《上古卷轴4：湮没》、《尼赫里姆：命运之缘》、《辐射3》以及《辐射：新维加斯》。</em>一个处于活动状态的插件，会与另一个处于活动状态的插件共享其修改日期。必须将这一情况修正，确保两者拥有不同的修改日期，否则可能会破坏游戏的加载顺序。</td>
+</tr>
+<tr><td class="load-symbols-lorgbg">浅橙色背景</td>
+<td><em>仅适用于《上古卷轴3：晨风》。</em>在《上古卷轴3：晨风》中，插件文件包含<code>DATA</code>用于存储插件创建时其主文件大小的子记录。如果存储的大小与磁盘上的实际大小不一致，Wrye Bash会用该颜色标出对应的主文件。此功能也适用于那些存在至少一个大小不匹配主文件的插件。这属于<em>非常</em>为低优先级警告，几乎可以忽略不计。</td>
+</tr>
+<tr>
+<td class="load-symbols-grybg">灰色背景</td>
+<td>A<a href="#modsAutoGhost">已消失不见</a>插件。</td>
+</tr>
+<tr>
+<td class="load-symbols-ittxt">倾斜文本</td>
+<td>建议导入后将其禁用的插件
+                （即带有相应标签的插件）<code>Deactivate</code>).</td>
+</tr>
+<tr>
+<td class="load-symbols-ultxt">下划线标注的文本</td>
+<td>被识别为存在脏数据修改的插件（与原始版本完全相同、删除了引用，或需要其他清理操作）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="load-commands">实用上下文菜单命令<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>列标题与插件的上下文菜单中包含大量命令，其中大多数对普通用户而言并无实用价值，因此此处不再详述。</p><table>
+<thead>
+<tr><th colspan="3">列标题上下文菜单</th></tr><tr><th colspan="2">命令</th><th>描述</th></tr></thead><tbody>
+<tr><td>文件..</td><td>新的 Bashed Patch……</td><td>创建一个新的<a href="#patch">Bashed补丁</a>插件。在您意外删除现有插件或希望使用多个插件时非常有用。</td></tr>
+<tr>
+<td colspan="2" id="modsListPlugins">插件列表</td>
+<td>该列表显示了加载顺序、版本信息、激活状态以及主要的加载顺序错误。对于调试出现问题的加载顺序而言，它非常有用。选中此命令时若按住 Shift 键，输出中还会显示插件的 CRC 值；若按住 Ctrl 键，则输出中不会显示插件的版本信息。</td>
+</tr>
+<tr><td colspan="2" id="modsListBashTags">列出 Bash 标签</td><td>此处列出了按加载顺序应用于各插件的所有 Bash 标签，以及这些标签的指定位置与方式。它在调试出问题的加载顺序时非常有用。</td></tr><tr><td colspan="2" id="modsAutoGhost">自动幽灵功能</td><td>《Oblivion》游戏引擎存在一个缺陷，它会读取Data文件夹中的所有插件，当插件数量超过300个时就会影响性能。而在《Skyrim》中则存在不同的问题：如果数据目录中的模组文件超过508个，无论这些模组是否处于激活状态，引擎都会拒绝加载它们（详情请见此处：<a href="https://web.archive.org/web/20190307225426/https://forums.bethsoft.com/topic/1369136-thrashing-thread-1/?hl=+508">挣扎，线程#1，帖子#1</a>）。自动幽灵功能可添加<q>.幽灵</q>该功能会自动将所有未激活的插件扩展应用，防止游戏引擎读取它们，从而避免性能下降。当被隐藏的插件被重新激活时，<q>.幽灵</q>该扩展已被移除，使其能够正常运行。请注意，大多数其他工具无法识别被隐藏的插件，因此可以为各个插件单独设置是否要将其隐藏。如果检测到大量模组及BASA文件，Bash会显示警告提示，你可以通过ini文件来关闭此功能。</td></tr><tr><td colspan="2">ESL 标记的修改补丁</td><td><em>仅适用于《上古卷轴5：天际 特别版》与《辐射4》。</em>如果启用此选项，所有已生成的 Bashed Patches 都会自动被标记为 ESL 类型，从而节省一个加载顺序槽位。</td></tr>
+<tr><td colspan="2" id="modsLockLoadOrder">锁定加载顺序</td><td>这样可防止其他工具修改你的加载顺序。更准确地说，它会在 Wrye Bash 启动或处于活动状态（即位于所有其他程序窗口之上）时检测到加载顺序的变动，并撤销这些改动。</td></tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th colspan="2">插件上下文菜单</th></tr><tr><th>命令</th><th>描述</th></tr></thead><tbody>
+<tr><td>列出大师列表……</td><td>输出所选插件的主文件列表。</td></tr><tr><td>列出 Bash 标签……</td><td>以BBCode格式列出应用于所选插件的所有Bash标签，以及这些标签的指定位置与方式。这对于调试出错的加载顺序非常有用。</td></tr><tr>
+<td>创建战利品条目...</td>
+<td>根据为所选插件设置的标签，生成战利品总表条目。同时还会根据插件所在的 BAIN 包信息，尝试确定该插件的来源网址。</td>
+</tr>
+<tr><td>复制模组信息...</td><td>根据当前显示的列中的信息，输出所选插件的相关报告。</td></tr><tr><td>不要突然消失。</td><td>即使该插件处于非活跃状态，也请勿将其隐藏。<a href="#modsAutoGhost">自动幽灵功能</a>已启用。</td></tr><tr><td>幽灵</td><td>即使该插件处于非激活状态，也请将其设为隐身。<a href="#modsAutoGhost">自动幽灵功能</a>已禁用。</td></tr><tr><td id="modsRebuildPatch">重建补丁……</td><td>使用 Python 补丁工具重新生成选定的 Bashed Patch。</td></tr></tbody></table>
+<h2 id="patch">设置 Bashed Patch<a class="back2top" href="#contents">返回顶部</a></h2>
+<h3 id="patch-overview">概述<a class="back2top" href="#contents">返回顶部</a></h3>
+<div class="prlflex tap clearf">
+<figure class="slideshow" style="width: 679px; min-height:732px;">
+<img alt="" src="../bash/images/readme/bashed-patch-dialog-1.png"/>
+<img alt="" src="../bash/images/readme/bashed-patch-dialog-2.png"/>
+<img alt="" src="../bash/images/readme/bashed-patch-dialog-3.png"/>
+<img alt="" src="../bash/images/readme/bashed-patch-dialog-4.png"/>
+<figcaption style="padding-top: 747px;">Wrye Bash的Bashed Patch配置对话框。</figcaption>
+</figure>
+<div class="patch-overview-txtbox">
+<p>Bashed Patch是一种可配置的插件，具备三大主要功能：</p><ul>
+<li>将插件合并到自身中。已合并的插件可以被禁用，从而避开255个插件的限制。</li><li>从插件中导入特定类型的数据记录。这样可以避免兼容性问题。</li><li>对游戏进行自定义调整。这样就不必再使用其他模组来实现相同的调整效果了。</li></ul>
+</div>
+</div>
+<h3 id="patch-configuration">攻击配置<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>首次运行 Wrye Bash 时，它会自动生成一个 Bashed Patch，该插件即为由此生成。<q><strong>Bashed Patch，0.esp</strong></q>该功能是通过插件上下文菜单命令来配置的。<a href="#modsRebuildPatch">重建补丁……</a>. <strong>每次更改加载顺序后，在开始游戏之前，都应重新生成您的 Bashed Patch。</strong>除非有插件明确要求必须最后加载，否则“Bashed Patch”应放在加载顺序的最后。</p><p>配置对话框左侧为各主要板块的列表，右侧显示所选板块的内容，底部则设有构建与保存按钮。各个板块及其项都配有复选框：选中某个板块即会将其下所有已勾选的项包含在 Bashed Patch 中，未勾选的板块和项则不会被纳入。有些板块没有具体项，只需勾选该板块的复选框即可。</p><p>若将鼠标悬停在窗口底部的某个章节或物品上，就会显示该章节或物品的简短描述。<span class="bolded">加粗项</span>这些内容是自上次构建 Bashed Patch 之后新增的。<span class="italicized">斜体标注的内容</span>由于没有有效的资源文件（例如可导入的模组），该程序将无法运行。
+    Wrye Bash 通常能很好地自动配置大部分设置，但你可能仍需要调整某些选项，尤其是“微调”选项中的内容。</p>
+<table>
+<thead>
+<tr><th colspan="2">Bashed Patch 配置按钮</th></tr><tr><th>按钮</th><th>描述</th></tr></thead><tbody>
+<tr><td>构建补丁</td><td>使用当前配置构建你的 Bashed Patch。</td></tr><tr><td>全选（位于章节列表旁）</td><td>选中列表中的所有选项/插件。如果某个选项存在多个可选值，则会自动选择值列表中的第一个值。</td></tr><tr><td>取消全选（位于章节列表旁）</td><td>取消选中列表中的所有选项/插件。</td></tr><tr><td>全选（位于窗口底部）</td><td>选中所有章节以及各章节中的所有选项/插件。如果某个选项存在多个可选值，则会自动选择值列表中的第一个值。</td></tr><tr><td>取消全选（位于窗口底部）</td><td>取消选中所有分类，以及所有分类列表中的所有选项和插件。</td></tr><tr><td>恢复为默认设置</td><td>将你的 Bashed Patch 恢复为默认配置。</td></tr><tr><td id="patchRevertToSaved">恢复为已保存状态</td><td>恢复您所使用的 Bashed Patch 的上一次保存配置，撤销自上次构建该补丁以来的所有更改。</td></tr><tr><td>导出</td><td>将您的 Bashed Patch 配置保存到外部文件中以进行备份。</td></tr><tr><td>导入</td><td>从导出的补丁配置中恢复你的 Bashed Patch 配置。</td></tr></tbody></table>
+<h3 id="patch-merging">合并插件<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>仅包含特定类型数据记录的插件可以合并到 Bashed Patch 中。这样一来，这些插件就可以被禁用，从而释放加载顺序中的空间。</p><p>如果是要合并插件，无需先启用这些插件即可操作。实际上，在使用 BASH 工具进行合并时：1）会要求你事先关闭它们；2）即便你拒绝了该提示，一旦生成了 Bashed Patch，这些插件仍会被自动关闭。因此，在合并插件时，请在构建之前先将它们置于未启用状态，然后在 Bashed Patch 的构建对话框中选择合并它们。不必担心，以这种方式合并的插件依然能像预期那样被其他补丁工具正常处理。</p><p>请勾选列出的所有插件的复选框。<q>合并补丁</q>该章节，同时请确保该章节也已勾选。</p><p><strong>请勿从您的数据文件夹中移除已合并的模组。</strong>下次重新构建 Bashed Patch 时，他们需要在场。</p>
+<h3 id="patch-importing">从插件导入<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>插件可以被标记上 Bash 标签，以此告知 Wrye Bash：即使其他模组也修改了相同的内容，这些插件中的改动仍需保留。这通常是因为这些改动对模组的正常功能至关重要。在制作 Bashed Patch 时，可以通过不同的“导入”选项来选择哪些插件的哪些类型改动应当被保留。</p><p>如果下表中某个条目的描述以……开头<q>保留原样</q>如果列表中的两个或更多模组修改了相同的内容，那么后加载的插件将会覆盖其他插件。否则，这些修改会被合并。</p><table>
+<thead>
+<tr>
+<th>章节</th>
+<th>描述</th>
+<th>何时应使用它</th>
+<th>可用平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>导入角色</td>
+<td>保留所选模组对角色（即 NPC 和生物）所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportActorsAIPackages">导入角色：AI
+                包</td>
+<td>合并所有已选中模组对角色AI包所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportActorsFaces">导入角色：面部模型</td>
+<td>保留所选模组对NPC面容所做的修改。</td>
+<td>该决定完全取决于用户偏好。请选择你更喜欢的模组中NPC的面部模型。</td>
+<td>《上古卷轴4：湮没》、《尼赫里姆：命运之缘》、《辐射3》以及《辐射：新维加斯》</td>
+</tr>
+<tr>
+<td id="patchImportActorsFactions">导入角色：阵营</td>
+<td>保留所选模组对该角色所属派系所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td>导入角色：技能</td>
+<td>合并所选模组对NPC技能列表所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>自《天际》以来的所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportActorsSpells">导入角色：法术</td>
+<td>合并所选模组对法术演员所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportCells">导入单元格</td>
+<td>保留所选模组对单元格设置所做的更改，包括光照、气候、音乐、名称、所有者、水域等。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td>导入可破坏物体</td>
+<td>保留了对破坏环境某些部分功能所做的修改。</td>
+<td>除非该模组的说明文件另有规定，否则一旦安装了允许破坏部分环境的模组，你就必须使用此功能。</td>
+<td>自《辐射3》以来的所有游戏</td>
+</tr>
+<tr>
+<td>导入效果属性</td>
+<td>保留对魔法/基础效果属性所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td>导入附魔效果</td>
+<td>保留对护甲、武器等物品附魔所做的修改。根据不同游戏的不同，这些改动有时也被称作“物品效果”。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td>导入附魔属性</td>
+<td>保留对附魔效果数据所做的修改。根据不同游戏的不同，这些有时也被称作“物品效果”。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportGraphics">导入图形资源</td>
+<td>保留所选模组对游戏中各类纹理及模型所做的修改。</td>
+<td>该决定完全取决于用户偏好。请选择您更喜欢的模组画面风格即可。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportInventory">导入物品栏</td>
+<td>合并所选插件对各类物品栏中的物品所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td>导入关键词</td>
+<td>保留所选模组对游戏中各类物品关联的关键词所做的所有修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>自《天际》以来的所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportNames">导入名称</td>
+<td>保留所选模组对游戏中各类名称所做的修改。</td>
+<td>该决定完全取决于用户偏好。请选择您更喜欢的模组名称即可。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td>导入对象边界数据</td>
+<td>保留所选模组对世界各地各类物体边界所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>自《辐射3》以来的所有游戏</td>
+</tr>
+<tr>
+<td>导入服装</td>
+<td>合并所有已选模组对NPC服装物品所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>自《天际》以来的所有游戏</td>
+</tr>
+<tr>
+<td>导入种族</td>
+<td>保留所选模组对各种种族属性（如身高、眼睛、头发和声音）所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>《上古卷轴4：湮没》、《尼赫瑞姆：命运之境》、《辐射3》以及《辐射：新维加斯》</td>
+</tr>
+<tr>
+<td>导入种族：关系设定</td>
+<td>合并了种族与派系关系方面的新增内容、修改项及删除内容。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>《上古卷轴4：湮没》、《尼赫瑞姆：命运之境》、《辐射3》以及《辐射：新维加斯》</td>
+</tr>
+<tr>
+<td>导入种族：法术</td>
+<td>合并种族能力与法术方面的新增内容、修改项及删除内容。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>除《辐射3》、《辐射：新维加斯》和《辐射4》之外的所有作品</td>
+</tr>
+<tr>
+<td id="patchImportRelations">导入关联关系</td>
+<td>合并派系关系方面的新增内容、修改项及删除项。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td>导入道路</td>
+<td>保留所选模组对场景道路所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>《上古卷轴4：湮没》与《尼赫瑞姆》：命运之境</td>
+</tr>
+<tr>
+<td id="patch-import-scripts">导入脚本</td>
+<td>保留所选模组对游戏中物品附带的脚本所做的修改。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>《上古卷轴4：湮没》、《尼赫瑞姆：命运之境》、《辐射3》以及《辐射：新维加斯》</td>
+</tr>
+<tr>
+<td id="patchImportSounds">导入音效</td>
+<td>保留所选模组对游戏中各类音效所做的修改。</td>
+<td>该决定完全取决于用户偏好。请选择您更喜欢的模组音效即可。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td id="patchImportSpellStats">导入法术属性</td>
+<td>保留所选模组对法术所做的修改，以此修复漏洞或重新平衡法术强度。根据游戏的不同，这些修改有时也被称作“施法者效果”。</td>
+<td>除非某个模组的说明文件另有规定，否则通常应按照用户的偏好来选择。例如，如果你使用了多个会修改法术属性的模组，那就挑选你更喜欢的那个模组的属性设置即可。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td>导入数据统计信息</td>
+<td>保留为修复漏洞或重新平衡物品而选中的模组所做出的改动。</td><td>除非某个模组的说明文件另有规定，否则通常应按照用户的偏好来选择。例如，如果你使用了多个会修改法术属性的模组，那就挑选你更喜欢的那个模组的属性设置即可。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td>导入文本</td>
+<td>保留所选模组对各类长文本所做的修改（例如书中的文字、护甲、法术、武器等的描述）。</td>
+<td>除非某个模组的说明文件另有规定，否则通常应按照用户的偏好来选择。例如，如果你使用了多个会修改法术属性的模组，那就挑选你更喜欢的那个模组的属性设置即可。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td>导入武器改装内容</td>
+<td>保留所选武器修改模组对武器所做的改动。</td>
+<td>除非模组的自述文件另有说明，否则始终如此。</td>
+<td>《辐射：新维加斯》</td>
+</tr>
+</tbody>
+</table>
+<h3 id="patch-tweaking">应用调整设置<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>Bashed Patch 允许你独立调整大量的游戏设置。每个设置项在被选中时都会显示其说明文字。某些设置项具有多种可选值，当前值会以[方括号]的形式标注在设置名称中。右键点击这些设置项即可弹出菜单，让你选择不同的数值。这些设置项被分成了不同的类别：</p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>描述</th>
+<th>何时应使用它</th>
+<th>可用平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="patchTweakActors">调整角色行为</td>
+<td>允许你修改与角色（即 NPC）相关的多项游戏设置。</td>
+<td>这一决定完全取决于用户偏好。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchTweakAssorted">各种微调设置</td>
+<td>包含一系列针对游戏的各类微调内容。</td>
+<td>在《上古卷轴4：湮没》中，<strong>弓臂修正</strong>推荐所有用户使用，因为它能修复模组可能引发的漏洞。在《Oblivion》中也是如此。<strong>DarNified Books</strong>该选项推荐给使用 DarNified UI 的用户。在《上古卷轴5：天际》及其衍生游戏中，<strong>魔法：召唤吸收
+                    修复</strong>建议所有用户使用，因为它能修复影响众多模组的常见问题。在《上古卷轴5：特别版》及其衍生游戏中，<strong>保存排序修复功能</strong>建议所有用户都安装该补丁，因为它能解决某些由模组添加的地图区域中的存档无法正确关联到对应角色的问题。除此之外，是否安装完全取决于用户的个人选择。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td id="patchTweakClothes">微调衣物外观</td>
+<td>包含一组用于修改游戏服装相关设置的调整项。</td>
+<td>这一决定完全取决于用户偏好。</td>
+<td>《上古卷轴4：湮没》与《尼赫瑞姆》：命运之境</td>
+</tr>
+<tr>
+<td id="patchTweakNames">调整名称</td>
+<td>包含一组用于修改游戏中物品名称的调整选项。这些调整大多旨在改变物品在库存中的排序方式。</td>
+<td>这一决定完全取决于用户偏好。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr><td id="patchTweakRaces">调整种族设定</td>
+<td>包含一组用于修改种族相关属性的调整选项（例如身高、眼睛、头发等）。</td>
+<td>这一决定完全取决于用户偏好。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td id="patchTweakSettings">调整设置</td>
+<td>包含一组用于修改各种全局及非全局游戏设置的调整项。</td>
+<td>在《上古卷轴4：湮没》中，<strong>UOP 吸血鬼衰老与面部修复.esp</strong>建议所有用户都进行调整。除此之外，具体是否操作完全取决于用户的个人偏好。</td>
+<td>所有游戏</td>
+</tr>
+</tbody>
+</table>
+<h3 id="patch-other">其他 Bashed Patch 选项<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>Bashed Patch 还提供了许多其他功能模块，除了上述的合并、导入和调整功能外，还能实现更多用途。这些选项的具体说明如下。</p><table>
+<thead>
+<tr>
+<th>章节</th>
+<th>描述</th>
+<th>何时应使用它</th>
+<th>可用平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="patchAliasPluginNames">别名插件名称</td>
+<td>使 Wrye Bash 能够识别某些常见插件名称的变体，这些名称出现在其作为 Bashed Patch 部分内容而导入的 .csv 数据文件中。相关变体名称应列在此部分的文本框内，格式如下：<code>Old.esp =&gt;
+                    New.esp</code>.</td>
+<td>如果您重新命名了在 Bashed Patch 配置中选定的 CSV 文件中所引用的插件，建议不要这样做，因为这可能会破坏 Wrye Bash 及其他工具的部分功能。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchReplaceFormIDs">替换表单编号</td>
+<td>用由.csv文件定义的另一组formID替换现有的formID。</td>
+<td>如果使用了要求必须按特定方式使用的模组，请遵循该要求。</td>
+<td>《上古卷轴4：湮没》与《尼赫里姆》：命运之境</td>
+</tr>
+<tr>
+<td id="patchCoblCatalogs">Cobl 目录列表</td>
+<td>更新 Cobl 的材料与效果目录，以纳入您所使用的模组新增的内容。</td>
+<td>如果您使用的是 Cobl（即 Common Oblivion）。</td>
+<td>《上古卷轴4：湮没》</td>
+</tr>
+<tr>
+<td>科布尔疲惫状态</td>
+<td>更新所选.csv文件选项中列出的模组所添加的更强能力，使其能够与Cobl的疲惫系统兼容。</td>
+<td>如果您使用的是 Cobl 的疲劳系统功能。</td>
+<td>《上古卷轴4：湮没》</td>
+</tr>
+<tr>
+<td>内容检查器</td>
+<td>检查等级列表、装备、配方及物品栏中是否包含正确类型的条目，并移除任何错误的条目。</td>
+<td>永远如此。</td>
+<td>除《辐射4》之外的所有游戏</td>
+</tr>
+<tr>
+<td id="patchLeveledLists">等级列表</td>
+<td>合并各模组对等级列表所做的修改，以提高它们之间的兼容性。</td>
+<td>始终如此。如果你没有修改等级列表的模组，那么该选项将不会产生任何效果，不过即便如此将其启用也不会有坏处。</td>
+<td>所有游戏</td>
+</tr>
+<tr>
+<td id="patchMorphFactions">形态阵营</td>
+<td>更新各派系，使其更愿意与 Wrye Morph 合作。</td>
+<td>如果您使用的是 Cobl 和 Wrye Morph。</td>
+<td>《上古卷轴4：湮没》</td>
+</tr>
+<tr>
+<td>NPC检测工具</td>
+<td>为原本没有头发和眼睛的 NPC 指定相应的外观。</td>
+<td>永远如此。</td>
+<td>《上古卷轴4：湮没》、《尼赫里姆：命运之境》、《辐射3》以及《辐射：新维加斯》</td>
+</tr>
+<tr>
+<td>种族检测器</td>
+<td>可对种族毛发和眼睛进行排序。请注意，此补丁的应用结果会以ITM格式显示在xEdit中。<strong>这不是 ITM，请勿对其进行清理。</strong>xEdit 团队无法解决此问题，因为一旦修复，会有大量模组出现冲突。详见<a href="../bash/images/readme/race-checker-itm.png">此讨论</a>来自 xEdit Discord 的 xEdit 开发者 ElminsterAU。</td>
+<td>永远如此。</td>
+<td>《上古卷轴4：湮没》、《尼赫瑞姆：命运之境》、《辐射3》以及《辐射：新维加斯》</td>
+</tr>
+<tr>
+<td id="patchSEWorldTests">SEWorld 测试</td>
+<td>修复了角色处于颤抖群岛时任务并未暂停的问题。此功能不适用于模组添加的任务，仅能恢复那些因模组而被取消暂停状态的原版任务。</td>
+<td>始终如此。如果你没有《颤抖群岛》，该选项将不会产生任何效果，但即便如此，将其启用也并无坏处。</td>
+<td>《上古卷轴4：湮没》</td>
+</tr>
+<tr>
+<td>时间轴检查器</td>
+<td>调整草丛的波动周期，使其与时间尺度变化保持一致。请注意，该补丁与那些会修改草丛波动周期以适应不同时间尺度的插件不兼容。使用前请卸载此类插件，否则它们的功能会被该补丁覆盖。</td>
+<td>始终如此。如果不使用非标准时间尺度，则不会产生任何效果，但即便如此，启用它也并无坏处。</td>
+<td>所有游戏</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ini">应用 INI 文件中的修改内容<a class="back2top" href="#contents">返回顶部</a></h2>
+<h3 id="ini-overview">概览<a class="back2top" href="#contents">返回顶部</a></h3>
+<figure class="slideshow">
+<img alt="" src="../bash/images/readme/ini-edits-1.png"/>
+<img alt="" src="../bash/images/readme/ini-edits-2.png"/>
+<img alt="" src="../bash/images/readme/ini-oblivion.png"/>
+<img alt="" src="../bash/images/readme/ini-all_natural.png"/>
+<figcaption class="ini-overview-figcap">Wrye Bash的“INI编辑”选项卡用于修改该模组的配置文件，即SkyrimPrefs.ini、Oblivion.ini和All Natural.ini。</figcaption>
+</figure>
+<p>“INI编辑”选项卡允许用户快速对游戏的INI文件（如Oblivion.ini、Skyrim.ini、Fallout4Custom.ini等）以及模组添加的INI文件进行修改，其中包括用于配置模组的脚本文件。这些修改是通过INI调整文件来实现的，这类文件只是包含所需更改的INI内容行的纯文本文件。INI调整文件则存储在……<code>Data\INI Tweaks</code>该文件位于某个文件夹中，可通过 BAIN 进行安装，也可手动放入该文件夹。</p><p>下拉框可用于选择当前的 ini 文件。<q>浏览…</q>下拉框中的选项可用于选择未列出的 ini 文件。</p><p>选中某个修改项后，其内容会显示在中间列中，而它对当前 ini 文件所做的更改则会高亮显示在右列中。如需应用该修改项，请右键点击它并选择“应用”。<a href="#tweakApply">应用</a>.
+</p><p>支持的文件类型包括<code>.cfg</code>, <code>.ini</code>以及<code>.toml</code>请注意，目前仅支持“类INI”格式的TOML文件。这意味着某些数组和嵌套表格将无法被正确解析。详情请参见<a href="https://toml.io/en/v1.0.0">TOML 规范</a>如需了解有关此术语的更多信息。</p>
+<p><strong>警告：</strong>游戏中的INI文件设置错误可能会导致漏洞、崩溃或其他游戏故障。尤其是那些高级设置，往往具有特定于某台机器的特性，不可随意从一台电脑复制到另一台。</p>
+<h3 id="ini-symbols">符号与颜色的含义<a class="back2top" href="#contents">返回顶部</a></h3>
+<table>
+<thead><tr><th>复选框样式</th><th>含义</th></tr></thead><tbody>
+<tr><td><svg aria-label="Orange" class="wb-ico wb-checkbox orange off" data-wb-use="#wb-checkbox-off"></svg></td><td>该修改项所设置的某些或全部变量在当前的初始化文件中并不存在。</td></tr><tr><td><svg aria-label="Green" class="wb-ico wb-checkbox green off" data-wb-use="#wb-checkbox-off"></svg></td><td>当前 ini 文件中的变量值与该修改项所设置的值不一致。</td></tr><tr><td><svg aria-label="Yellow with Dot" class="wb-ico wb-checkbox yellow imp" data-wb-use="#wb-checkbox-imp"></svg></td><td>当前 ini 文件中的部分变量值与该修改项所设置的值不一致，但并非全部如此。</td></tr><tr><td><svg aria-label="Green with Dot" class="wb-ico wb-checkbox green imp" data-wb-use="#wb-checkbox-imp"></svg></td><td>当前 ini 文件中的部分变量值与该修改项所设定的值不一致，但并非全部如此。那些不匹配的值也是来自同一安装包中的其他修改项。</td></tr><tr><td><svg aria-label="Green with Check" class="wb-ico wb-checkbox green on" data-wb-use="#wb-checkbox-on"></svg></td><td>调整已应用。</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>文本格式化</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="ini-symbols-orgbg">橙色背景</td>
+<td>当前 INI 文件中不存在该标题或设置。</td>
+</tr>
+<tr><td class="ini-symbols-ylwbg">黄色背景</td><td>该变量值与当前初始化文件中的值不一致。</td></tr><tr><td class="ini-symbols-grnbg">绿色背景</td><td>该变量值与当前ini文件中的数值一致。</td></tr></tbody>
+</table>
+<h3 id="ini-commands">按钮与上下文菜单命令<a class="back2top" href="#contents">返回顶部</a></h3>
+<div class="prlflex clearf">
+<figure class="slideshow" style="width: 520px; min-height: 187px">
+<img alt="" src="../bash/images/readme/ini-edits-rclick-ini-header-menu-1.png"/>
+<img alt="" src="../bash/images/readme/ini-edits-rclick-ini-header-menu-2.png"/>
+<img alt="" src="../bash/images/readme/ini-edits-rclick-ini-header-menu-3.png"/>
+<img alt="" src="../bash/images/readme/ini-edits-rclick-ini-header-menu-4.png"/>
+</figure>
+<table id="iniHeaderCommands">
+<thead>
+<tr>
+<th colspan="3">列标题上下文菜单</th>
+</tr>
+<tr>
+<th colspan="2">命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3">排序方式..</td>
+<td>先应用有效的调整项。</td>
+<td>如果启用此选项，将会先显示有效的调整项，再显示无效的调整项（排序依据为当前选定的目标 INI 文件）。</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>按文件名对INI配置项进行排序。</td>
+</tr>
+<tr>
+<td>原文</td>
+<td>如该设置项有所属的软件包名称，可按该名称对INI配置项进行排序。</td>
+</tr>
+<tr>
+<td rowspan="5">列数……</td>
+<td>使用手册</td>
+<td>不要自动更改列宽。</td>
+</tr>
+<tr>
+<td>配件内容</td>
+<td>会自动调整列宽以适配内容。您也可以按下 Ctrl+数字小键盘加号（+）来实现相同效果。</td>
+</tr>
+<tr>
+<td>适配标题栏</td>
+<td>与“适配内容”类似，但需确保每列的宽度足够大，以便完整显示列标题文字。</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>显示或隐藏用于展示每个调整项文件名的列。</td>
+</tr>
+<tr>
+<td>原文</td>
+<td>显示或隐藏用于显示每个修改项所源自的包文件名的列（如有）。</td>
+</tr>
+<tr>
+<td>文件..</td>
+<td>打开文件夹…</td>
+<td>打开<q>INI 文件参数调整</q>在系统默认的文件资源管理器中，进入游戏的数据文件夹下的相应目录。按下Ctrl+O也可达到相同效果。</td>
+</tr>
+<tr>
+<td colspan="2" id="allowTweaksWithNewSettings">允许微调
+                    通过新设置</td>
+<td>允许安装那些包含新章节和/或设置的自定义修改，即那些在 INI 文件中尚不存在的设置和/或章节。请谨慎使用，否则可能会无意间在 INI 文件中添加多余的章节或设置。</td>
+</tr>
+<tr>
+<td colspan="2">列出当前有效的 INI 设置调整项……</td>
+<td>列出当前应用于所选目标 INI 文件的所有 INI 调整项。</td>
+</tr>
+<tr>
+<td colspan="2">存档数据</td>
+<td>立即让 Wrye Bash 将其内部状态保存到磁盘上。  
+关闭 Wrye Bash 时也会自动执行此操作，您也可以按下 Ctrl+S 达到相同效果。</td>
+</tr>
+<tr>
+<td colspan="2">全局设置……</td>
+<td>打开<a href="Wrye%20Bash%20Advanced%20Readme.html#settings">设置菜单</a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="prlflex clearf">
+<figure class="slideshow" style="width: 470px; min-height: 134px">
+<img alt="" src="../bash/images/readme/ini-edits-rclick-ini-menu-1.png"/>
+<img alt="" src="../bash/images/readme/ini-edits-rclick-ini-menu-2.png"/>
+</figure>
+<table id="iniMenuCommands">
+<thead>
+<tr>
+<th colspan="3">调整上下文菜单</th>
+</tr>
+<tr>
+<th colspan="2">命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3">文件..</td>
+<td>打开……</td>
+<td>使用系统默认的文本编辑器打开选中的 INI 配置项。默认的（Wrye Bash）配置项不支持此操作。双击某个配置项或按回车键也能达到相同效果。</td>
+</tr>
+<tr>
+<td>复制...</td>
+<td>创建所选 INI 配置项的副本。</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>删除所选的调整项。被删除的调整项会被送入回收站。默认的（Wrye Bash）调整项无法被删除。按下 Delete 键也能达到相同效果。</td>
+</tr>
+<tr>
+<td colspan="2" id="tweakApply">应用</td>
+<td>将该修改应用到当前选中的目标 INI 文件中。</td>
+</tr>
+<tr>
+<td colspan="2">使用当前设置创建调整项…</td>
+<td>使用与所选 INI 配置项相同的设置创建一个新配置项，但其数值将取自当前的 INI 文件。</td>
+</tr>
+<tr>
+<td colspan="2">列出错误……</td>
+<td>列出无效的修改项（例如，如果当前目标 INI 文件并非 OBSE INI 格式，则其中的 OBSE INI 修改项即为无效）；同时还会列出那些在所选修改项中存在、但在当前目标 INI 文件中缺失的章节标题和/或单个设置。根据具体情况，这类修改项或许仍可被安装。<a href="#allowTweaksWithNewSettings">可通过新设置进行调整</a>设置。</td>
+</tr>
+<tr>
+<td colspan="2">跳转至源代码</td>
+<td>如果“安装程序”选项卡处于启用状态且未被隐藏，且该设置项有对应的安装包，则可跳转至该安装包。同样地，也可以通过按住 Alt 键并点击该设置项来实现相同效果。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<table>
+<thead>
+<tr>
+<th colspan="3">其他标签页功能</th>
+</tr>
+<tr>
+<th>图片</th>
+<th>功能特性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_center"><img alt="" src="../bash/images/readme/ini-feat-dropdown.png"/></td>
+<td><q>目标 INI 文件选择</q>下拉菜单</td>
+<td>更改当前的目标 INI 文件。所有 INI 配置调整都会根据此处所做的选择来被评估并应用。</td>
+</tr>
+<tr>
+<td class="td_center"><img alt="" src="../bash/images/readme/ini-feat-remove.png"/></td>
+<td><q>移除</q>按钮</td>
+<td>从下拉选择框中移除当前选中的目标 INI 文件。此功能无法用于删除游戏默认的 INI 文件。</td>
+</tr>
+<tr>
+<td class="td_center"><img alt="" src="../bash/images/readme/ini-feat-edit.png"/></td>
+<td><q>编辑……</q>按钮</td>
+<td>使用系统默认的文本编辑器打开当前选中的目标 INI 文件进行编辑。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="launchers">启动应用程序<a class="back2top" href="#contents">返回顶部</a></h2>
+<figure class="slideshow">
+<img alt="" src="../bash/images/readme/toolbar-hover-obse-toggle.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-auto-quit.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-launch-game.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-cs.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-doc-browser.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-plugin-checker.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-settings.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-help.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-boss.png"/>
+<img alt="" src="../bash/images/readme/toolbar-hover-loot.png"/>
+<figcaption style="padding-top: 40px;">Wrye Bash 的启动器栏位于其主窗口的底部。</figcaption>
+</figure>
+<p>在 BASH 主窗口的左下角，你可以找到用于启动游戏及其他已安装应用程序的按钮。此外还有几个切换按钮以及一些与 Wrye Bash 相关的功能按钮。只有当相应的应用程序存在于游戏安装目录中，或者（如果该应用并非专为游戏设计）存在于其默认安装位置时，对应的应用程序按钮才会显示出来。</p><p>点击应用程序的图标即可启动该程序，点击切换按钮则可改变其状态。点击 Wrye Bash 的功能按钮则会打开对应功能的窗口。</p>
+<h3 id="launchers-toggles">切换按钮<a class="back2top" href="#contents">返回顶部</a></h3>
+<table>
+<thead>
+<tr>
+<th>图标（开启）</th>
+<th>图标（关闭）</th>
+<th>切换开关</th>
+<th>行为设定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><svg aria-label="checked green checkbox" class="wb-ico wb-checkbox green on wb-32" data-wb-use="#wb-checkbox-on"></svg></td>
+<td><svg aria-label="unchecked green checkbox" class="wb-ico wb-checkbox green off wb-32" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>脚本扩展器</td>
+<td>如果选中此选项，通过状态栏启动器启动游戏或其编辑工具（Construction Set或Creation Kit）时，Wrye Bash将会自动启动游戏的Script Extender。</td>
+</tr>
+<tr>
+<td><svg aria-label="checked red checkbox" class="wb-ico wb-checkbox red on wb-32" data-wb-use="#wb-checkbox-on"></svg></td>
+<td><svg aria-label="unchecked red checkbox" class="wb-ico wb-checkbox red off wb-32" data-wb-use="#wb-checkbox-off"></svg></td>
+<td>自动退出</td>
+<td>如果选中此选项，通过状态栏启动器启动游戏时，Wrye Bash 将会退出。这对于担心内存占用问题的人来说非常有用。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="launchers-game">游戏与编辑器启动器<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>显示的游戏图标与编辑器图标取决于你安装了哪款受支持的游戏的 Wrye Bash。使用 Wrye Bash 的游戏启动器会直接打开游戏本身，而非游戏的原有启动器。</p><table>
+<thead>
+<tr>
+<th colspan="2">游戏</th>
+<th colspan="2">编辑器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Enderal Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/enderal.svg" width="32"/></td>
+<td>埃恩德瑞尔：被遗忘的故事</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《上古卷轴5：天际》创作工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Enderal Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/enderalse.svg" width="32"/></td>
+<td>《艾恩德尔：被遗忘的故事：特别版》</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《上古卷轴5：天际》特别版创建工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Fallout 3 Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/fallout3.svg" width="32"/></td>
+<td>《辐射3》</td>
+<td><img alt="Fallout 3 GECK Icon" height="32" src="../bash/images/tools/geck32.png" width="32"/></td>
+<td><a href="https://geck.bethsoft.com/index.php?title=Main_Page">伊甸园创造工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Fallout 4 Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/fallout4.svg" width="32"/></td>
+<td>《辐射4》</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《辐射4》创作工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Fallout 4 VR Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/fallout4vr.svg" width="32"/></td>
+<td>《辐射4》VR版</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《辐射4》创作工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Fallout&amp;colon; New Vegas Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/falloutnv.svg" width="32"/></td>
+<td>《辐射：新维加斯》</td>
+<td><img alt="Fallout&amp;colon; New Vegas GECK Icon" height="32" src="../bash/images/tools/geck32.png" width="32"/></td>
+<td><a href="https://geck.bethsoft.com/index.php?title=Main_Page">伊甸园创造工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Morrowind Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/morrowind.svg" width="32"/></td>
+<td>《上古卷轴3：晨风》</td>
+<td><img alt="Morrowind CS Icon" src="../bash/images/tools/tescs32.png" width="32"/></td>
+<td><a href="https://en.uesp.net/wiki/Morrowind_Mod:Construction_Set">《上古卷轴3：晨风》建筑套装</a></td>
+</tr>
+<tr>
+<td><img alt="Nehrim Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/nehrim.svg" width="32"/></td>
+<td>尼赫里姆：命运之境</td>
+<td><img alt="Oblivion CS Icon" height="32" src="../bash/images/tools/tescs32.png" width="32"/></td><td>
+<a href="https://cs.elderscrolls.com/index.php?title=The_Elder_Scrolls_Construction_Set">《上古卷轴4：湮没》建造套装</a></td>
+</tr>
+<tr>
+<td><img alt="Oblivion Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/oblivion.svg" width="32"/></td>
+<td>《上古卷轴4：湮没》</td>
+<td><img alt="Oblivion CS Icon" height="32" src="../bash/images/tools/tescs32.png" width="32"/></td>
+<td><a href="https://cs.elderscrolls.com/index.php?title=The_Elder_Scrolls_Construction_Set">《上古卷轴4：湮没》建造套装</a></td>
+</tr>
+<tr>
+<td><img alt="Skyrim Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/skyrim.svg" width="32"/></td>
+<td>《上古卷轴5：天际》</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《上古卷轴5：天际》创作工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Skyrim&amp;colon; Special Edition Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/skyrimse.svg" width="32"/></td>
+<td>《上古卷轴5：天际》特别版</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《上古卷轴5：天际》特别版制作工具包</a></td>
+</tr>
+<tr>
+<td><img alt="Skyrim VR Icon" class="wb-icon wb-32" height="32" src="../bash/images/games/skyrimvr.svg" width="32"/></td>
+<td>《上古卷轴5：天际》VR版</td>
+<td><img alt="Creation Kit Icon" height="32" src="../bash/images/tools/creationkit32.png" width="32"/></td>
+<td><a href="https://www.creationkit.com/">《上古卷轴5：天际》特别版创建工具包</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="launchers-utils">游戏专用工具<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>xEdit、xTrans 和 xView 实际上都是 xEdit 的不同模式，只要存在相应的 xEdit 可执行文件（如 Tes4Edit.exe），这些模式就会可用。xEdit 启动器还提供了额外的选项：</p>
+<ul>
+<li><q>专家模式</q>- 若启用此选项，将会以该参数运行 xEdit。<code>-IKnowWhatImDoing</code>该参数用于在通过状态栏中的启动器运行 xEdit 时，启用更高级的功能。</li>
+<li><q>跳过 BSA 文件</q>- 若启用此选项，将会以该参数运行 xEdit。<code>-skipbsa</code>该参数可跳过BSA文件的加载。虽然速度更快，但以这种方式运行时，xEdit的某些功能将会被禁用。</li>
+<li><q>快速自动清理</q>- 点击后，会立即以快速自动清理模式启动 xEdit。在 xEdit 中可选择单个插件，随后即可通过该快速自动清理流程对其进行处理。这取代了以往通过“应用清理过滤器”等方式进行手动清理的方法。</li>
+<li><q>非常快速的展示存在冲突</q>- 点击后即可立即以 VQSC（快速显示冲突）模式启动 xEdit。xEdit 会自动加载所有的加载顺序，应用所有有效的模组组，并通过优化后的方式执行“应用过滤器以显示冲突”功能，从而提升操作速度。</li>
+</ul>
+<p>如果设置了 Windows 路径变量，那么 Tes4Gecko 和 Oblivion Book Creator 就可以使用了。<code>JAVA_HOME</code>需指向有效的 Java 安装路径（或 Windows\System32 目录中存在 javaw.exe），且其 .jar 文件位于《Oblivion》的安装目录下；对于 OBC，则该文件应位于数据目录中（可在 bash.ini 中覆盖这些默认路径）。</p>
+<p>LOOT与BOSS启动器包含一些选项（对于BOSS，仅当安装了BOSS v2时才可用）：</p>
+<div class="prlflex clearf">
+<figure class="slideshow" style="min-height: 91px; width: 458px;">
+<img alt="" src="../bash/images/readme/toolbar-rclick-boss.png"/>
+<img alt="" src="../bash/images/readme/toolbar-rclick-loot.png"/>
+</figure>
+<ul>
+<li>右键点击BOSS/战利品图标并选择<q id="launchersSuspendLockLoadOrder">暂停锁定加载顺序</q>当通过状态栏中的应用程序启动器运行 BOSS/LOOT 时，这将导致 Wrye Bash 暂时禁用加载顺序锁定功能，以便 BOSS/LOOT 能够设置加载顺序；在 BOSS/LOOT 运行完成后，该功能会重新启用。若从 Wrye Bash 外部运行 BOSS/LOOT，则此功能不会产生任何影响。</li>
+<li>右键点击LOOT图标并选择<q>自动排序</q>这将导致 LOOT 对当前管理的游戏重新排序加载顺序，应用新的加载顺序，随后退出。</li>
+<li>右键点击BOSS图标并选择<q>通过图形界面启动</q>这将导致 Wrye Bash 启动 BOSS 的图形用户界面，而非命令行界面。</li>
+<li>对于BOSS而言，如果<strong>R</strong>点击该图标后，将会执行一级还原操作（恢复到上次排序之前的状态）。</li>
+<li>对于BOSS而言，如果<strong>Shift+R键</strong>点击该图标后按下此键，即可执行二级恢复操作（恢复到倒数第二次排序之前的状态）。</li>
+<li>对于BOSS而言，如果<strong>S</strong>点击该图标后，程序将以静音模式运行 BOSS，这样在运行结束后就不会自动打开 BOSS 日志。</li>
+<li>对于BOSS而言，如果<strong>C</strong>点击该图标后，将会以启用显示文件 CRC 选项的方式运行 BOSS，从而使插件 CRC 值显示在 BOSS 日志中。</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr><th colspan="2">《上古卷轴4：湮没》</th><th colspan="2">《上古卷轴5：天际》</th></tr><tr><th>图标</th><th>应用程序</th><th>图标</th><th>应用安装</th></tr></thead><tbody>
+<tr><td><img alt="" height="32" src="../bash/images/tools/boss32.png" width="32"/></td><td><a href="http://boss-developers.github.io">首领敌人</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/boss32.png" width="32"/></td><td><a href="http://boss-developers.github.io">首领敌人</a>
+</td></tr><tr><td><img alt="" height="32" role="img" src="../bash/images/tools/loot.svg" width="32"/></td><td><a href="https://loot.github.io/">战利品</a>
+</td><td><img alt="" height="32" role="img" src="../bash/images/tools/loot.svg" width="32"/></td><td><a href="https://loot.github.io/">战利品</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/tes4edit32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/11536">TES4Edit</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/tes4edit32.png" width="32"/></td><td><a href="https://www.nexusmods.com/skyrim/mods/25859">TES5Edit</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/tes4lodgenpath32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/15781">TES4LODGen</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/tes4lodgenpath32.png" width="32"/></td><td><a href="https://www.nexusmods.com/skyrim/mods/62698/">TES5LODGen</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/bsacmd32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/3311">BSA指挥官</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/map32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/3961">赛洛迪尔与颤抖群岛互动地图</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/oblivionbookcreatorpath32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/42132">《湮灭》书籍创建工具</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/obfel32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/7808">《上古卷轴4：湮没》面部交换简化版</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/obmm32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/2097">《上古卷轴4：湮没》模组管理器</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/tabula32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/33486">Tabula</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/tes4filespath32.png" width="32"/></td><td><a href="http://modsreloaded.com/tes4files">TES4Files</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/tes4geckopath32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/8665">TES4Gecko</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/isobl32.png" width="32"/></td><td><a href="https://web.archive.org/web/20121102053259/https://tesalliance.org/forums/index.php?/files/file/132-insanitys-oblivion-launcher/">“疯狂悲伤”的《上古卷轴4：湮没》启动器（离线版）</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/obmlg32.png" width="32"/></td><td><a href="https://web.archive.org/web/20121108015410/https://tesalliance.org/forums/index.php?/files/file/280-oblivion-mod-list-generator/">Insanity Sorrow的《Oblivion》模组列表生成器（离线版）</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/isrng32.png" width="32"/></td><td><a href="https://web.archive.org/web/20120618163702/https://tesalliance.org/forums/index.php?/files/file/131-random-name-generator/">Insanity Sorrow随机名称生成器（离线版）</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/isrnpcg32.png" width="32"/></td><td><a href="https://web.archive.org/web/20121105223820/https://tesalliance.org/forums/index.php?/files/file/128-random-npc/">Insanity Sorrow的随机NPC生成器（离线版）</a>
+</td><td></td><td>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/isrmg32.png" width="32"/></td><td><a href="https://web.archive.org/web/20120603032215/https://tesalliance.org/forums/index.php?/files/file/130-insanitys-readme-generator/">“疯狂悲伤”说明文件生成器（离线版）</a>
+</td><td></td><td>
+</td></tr></tbody></table>
+<h3 id="launchers-apps">其他应用程序<a class="back2top" href="#contents">返回顶部</a></h3>
+<table>
+<thead>
+<tr><th colspan="2">模型工具</th><th colspan="2">纹理工具</th><th colspan="2">音频工具</th><th colspan="2">杂项</th></tr><tr><th>图标</th><th>应用程序</th><th>图标</th><th>应用程序</th><th>图标</th><th>应用程序</th><th>图标</th><th>应用程序</th></tr></thead><tbody>
+<tr><td><img alt="" height="32" src="../bash/images/tools/artofillusion32.png" width="32"/></td><td><a href="http://www.artofillusion.org/">幻象艺术</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/anifx32.png" width="32"/></td><td><a href="https://icofx.ro/">AniFX（现名为 icofx）</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/abcamberaudioconverter32.png" width="32"/></td><td><a href="https://archive.org/details/tucows_372588_ABC_Amber_Audio_Converter">ABC Amber音频转换器</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/eggtranslator32.png" width="32"/></td><td><a href="https://www.ei-der-zeit.com/forum/filebase/index.php?entry/325-egg-translator/">蛋类翻译器</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/autocad32.png" width="32"/></td><td><a href="https://www.autodesk.com/products/autocad/overview">AutoCad</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/artweaver32.png" width="32"/></td><td><a href="https://www.artweaver.de/en">艺术编织者</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/audacity32.png" width="32"/></td><td><a href="https://www.audacityteam.org/">大胆行为</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/evgaprecision32.png" width="32"/></td><td><a href="https://www.evga.com/">EVGA Precision</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/blenderpath32.png" width="32"/></td><td><a href="https://www.blender.org">Blender软件</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/crazybump32.png" width="32"/></td><td><a href="https://www.crazybump.com/">CrazyBump</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/switch32.png" width="32"/></td><td><a href="https://www.nch.com.au/switch/index.html">切换</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/fraps32.png" width="32"/></td><td><a href="http://www.fraps.com/">Fraps</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/gmaxpath32.png" width="32"/></td><td><a href="https://www.turbosquid.com/gmax">GMax</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/ddsconverter32.png" width="32"/></td><td><a href="https://www.nexusmods.com/oblivion/mods/8698/">DDSConverter2</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/freemind32.png" width="32"/></td><td><a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/mayapath32.png" width="32"/></td><td><a href="https://www.autodesk.com/products/maya/overview">玛雅</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/deeppaint32.png" width="32"/></td><td><a href="https://www.chip.de/downloads/Deep-Paint_16395518.html">DeepPaint</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/freeplane32.png" width="32"/></td><td><a href="https://freeplane.sourceforge.io/wiki/index.php/Home">Freeplane</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/maxpath32.png" width="32"/></td><td><a href="https://www.autodesk.com/products/3ds-max/overview">3ds Max</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/dogwaffle32.png" width="32"/></td><td><a href="https://www.thebest3d.com/dogwaffle/free/">狗屁废话</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/filezilla32.png" width="32"/></td><td><a href="https://filezilla-project.org/">Filezilla</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/milkshape3d32.png" width="32"/></td><td><a href="http://www.milkshape3d.com/">MilkShape 3D</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/faststone32.png" width="32"/></td><td><a href="https://www.faststone.org/">FastStone 图片查看器</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/logitechkeyboard32.png" width="32"/></td><td><a href="https://support.logitech.com/en_ca/product/g11-gaming-keyboard">罗技 G11 键盘配置工具</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/mudbox32.png" width="32"/></td><td><a href="https://www.autodesk.com/products/mudbox/overview">Mudbox</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/genetica32.png" width="32"/></td><td><a href="http://spiralgraphics.biz/genetica.htm">基因学</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/mediamonkey32.png" width="32"/></td><td><a href="https://www.mediamonkey.com/">媒体猴工具</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/nifskopepath32.png" width="32"/></td><td><a href="http://niftools.sourceforge.net/wiki/NifTools">尼夫斯科普</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/geneticaviewer32.png" width="32"/></td><td><a href="http://spiralgraphics.biz/viewer/">基因视图器</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/npp32.png" width="32"/></td><td><a href="https://notepad-plus-plus.org/">Notepad++</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/sculptris32.png" width="32"/></td><td><a href="https://pixologic.com/sculptris/">Sculptris</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/gimp32.png" width="32"/></td><td><a href="https://www.gimp.org/">GIMP</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/radvideo32.png" width="32"/></td><td><a href="http://www.radgametools.com/bnkdown.htm">RAD视频工具</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/softimagemodtool32.png" width="32"/></td><td><a href="https://developer.valvesoftware.com/wiki/Softimage_Mod_Tool">Softimage 模组工具</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/krita32.png" width="32"/></td><td><a href="https://krita.org/">Krita</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" role="img" src="../bash/images/tools/steam.svg" width="32"/></td><td><a href="https://www.steampowered.com/">Steam平台</a>
+</td></tr><tr><td><img alt="" height="32" role="img" src="../bash/images/tools/speedtree32.png" width="32"/></td><td><a href="https://store.speedtree.com/">SpeedTree</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/icofx32.png" width="32"/></td><td><a href="http://icofx.ro/index.html">icoFX</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/winmerge32.png" width="32"/></td><td><a href="http://winmerge.org/">WinMerge</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/treed32.png" width="32"/></td><td><a href="https://web.archive.org/web/20130915030534/http://www.frecle.net:80/index.php?show=treed.about">树[d]</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/inkscape32.png" width="32"/></td><td><a href="https://www.inkscape.org/">Inkscape</a>
+</td><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/winsnap32.png" width="32"/></td><td><a href="https://www.majorgeeks.com/files/details/winsnap.html">WinSnap功能</a>
+</td></tr><tr><td><img alt="" height="32" src="../bash/images/tools/wings3d32.png" width="32"/></td><td><a href="http://www.wings3d.com/">Wings3D</a>
+</td><td><img alt="" height="32" src="../bash/images/tools/irfanview32.png" width="32"/></td><td><a href="https://www.irfanview.com/">Irfan View 查看器</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/nvidiamelody32.png" width="32"/></td><td><a href="https://www.nvidia.com/object/melody_home.html">NVIDIAMelody</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/paintnet32.png" width="32"/></td><td><a href="https://www.getpaint.net/index.html">Paint.NET</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/paintshopphotopro32.png" width="32"/></td><td><a href="https://www.paintshoppro.com/en/products/paintshop-pro/standard/?pid=prod4220093&amp;storeKey=us">PaintShop Photo Pro</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/photobie32.png" width="32"/></td><td><a href="https://www.majorgeeks.com/files/details/photobie.html">Photobie设计工作室</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/photofiltre32.png" width="32"/></td><td><a href="http://www.photofiltre.com/">PhotoFiltre</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/photoscape32.png" width="32"/></td><td><a href="http://www.photoscape.org/ps/main/index.php">PhotoScape</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/photoseam32.png" width="32"/></td><td><a href="https://www.mediachance.com/pseam/">PhotoSEAM</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/photoshoppath32.png" width="32"/></td><td><a href="https://www.adobe.com/ca/products/photoshop.html">Photoshop</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/pixelstudio32.png" width="32"/></td><td><a href="https://www.softpedia.com/get/Multimedia/Graphic/Graphic-Editors/Pixel32.shtml">Pixel Studio Pro</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/pixia32.png" width="32"/></td><td><a href="https://www.ne.jp/asahi/mighty/knight/index.html">Pixia</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/texturemaker32.png" width="32"/></td><td><a href="http://www.texturemaker.com/download.php">TextureMaker工具</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/twistedbrush32.png" width="32"/></td><td><a href="http://www.pixarra.com/pro_studio.html">扭曲画笔</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/wtv32.png" width="32"/></td><td><a href="https://developer.nvidia.com/sites/default/files/akamai/tools/files/Windows_Texture_Viewer_v089b.rar">Windows纹理查看器</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/xnormal32.png" width="32"/></td><td><a href="https://www.xnormal.net/">xNormal</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr><tr><td></td><td>
+</td><td><img alt="" height="32" src="../bash/images/tools/xnview32.png" width="32"/></td><td><a href="https://www.xnview.com/en/xnview/">XnView</a>
+</td><td></td><td>
+</td><td></td><td>
+</td></tr></tbody></table>
+<h3 id="launchers-features">Wrye Bash 功能启动器<a class="back2top" href="#contents">返回顶部</a></h3>
+<table>
+<thead>
+<tr>
+<th>图标</th>
+<th>功能特性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Book Icon" height="32" role="img" src="../bash/images/book.svg" width="32"/></td>
+<td>文档浏览器</td>
+<td>显示<a href="Wrye%20Bash%20Advanced%20Readme.html#tools-docs">文档浏览器</a>。（你也可以在“Mods”标签页中双击任意模组文件来查看文档浏览器。）</td>
+</tr>
+<tr>
+<td id="launchersPluginChecker"><img alt="Checklist Icon" height="32" role="img" src="../bash/images/checklist.svg" width="32"/></td>
+<td>插件检查工具</td>
+<td>显示<a href="Wrye%20Bash%20Advanced%20Readme.html#tools-checker">插件检查工具</a>.</td>
+</tr>
+<tr>
+<td id="launchersSettingsMenu"><img alt="Gear Icon" height="32" role="img" src="../bash/images/gear.svg" width="32"/></td>
+<td>设置</td>
+<td>打开<a href="Wrye%20Bash%20Advanced%20Readme.html#settings">设置菜单</a>.</td>
+</tr>
+<tr>
+<td><img alt="Question Mark Icon" height="32" role="img" src="../bash/images/help.svg" width="32"/></td>
+<td>帮助</td>
+<td>在默认网页浏览器中显示此说明文件。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="manually-add">手动将工具添加到启动器栏中<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>找到想要添加的工具的可执行文件，右键点击它，然后选择“创建快捷方式”。</p><p>选中生成的图标并使用 Ctrl+X 复制，然后将其粘贴到 Mopy\Apps 文件夹中。另外，也可以通过打开两个资源管理器窗口，再使用 Alt 键拖动需要添加的可执行文件至 Mopy\Apps 文件夹来快速完成操作。</p><p>下次运行 Wrye Bash 时，其图标会出现在启动器栏中，你可以将新图标拖放到所需位置。</p><p>请注意不要用尽所有可用空间，以免导致启动栏旁出现工具提示信息。</p>
+<h2 id="international">国际化<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>Wrye Bash 内置了多语言翻译功能，通过文本文件来指定源代码中哪些英文字符串需要被翻译以及翻译成何种语言。这些文本文件位于<code>Mopy/bash/l10n</code>该仓库中存在相关文件，但正式发布的版本中仅会包含二进制翻译文件。</p>
+<p>过去，翻译 Wrye Bash 的流程相当复杂，但我们现已改用 Weblate，以便让贡献变得尽可能简单。详情请见<a href="https://hosted.weblate.org/engage/wrye-bash/">我们的 Weblate 页面</a>如果您有兴趣帮忙的话！</p>
+<h2 id="trouble">故障排除<a class="back2top" href="#contents">返回顶部</a></h2>
+<h3 id="trouble-dump">生成错误日志<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>Wrye Bash会将调试信息与错误报告写入位于其旁边的BashBugDump.log文件中。<code>Wrye Bash.exe</code>文件（或在其旁边）<code>Wrye Bash Launcher.pyw</code>如使用 Python 版本，则需该文件。</p>
+<p>该日志文件会详细记载导致 Wrye Bash 无法启动的问题原因。请阅读该日志以及本节其余内容，判断问题是否可以自行解决。如果无法解决，请在 Wrye Bash 的官方论坛主题中提交反馈以获取帮助。</p>
+<h3 id="trouble-permissions">文件权限<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>如果您使用的是 Windows Vista 或更高版本，UAC 安全功能可能会妨碍 Wrye Bash（及其他模组程序）正常运行。对于 Windows 商店下载的游戏，没有相应的解决方法；如果出现错误，必须以管理员身份启动该程序（解决方案 4）。针对此问题，共有四种常见的解决办法：</p><ol>
+<li>将游戏安装在外部目录中。<q>程序文件目录</q>或者<q>程序文件（x86）</q>UAC会防止对这些文件夹进行未经授权的修改，因此将游戏安装在这些文件夹之外，就能使其脱离UAC的监控范围，从而更轻松地使用模组。Steam用户可以使用相应工具来移动自己的Steam安装目录及游戏文件。<a href="https://support.steampowered.com/kb_article.php?ref=7418-YUBN-8129">这些说明</a>.
+    </li><li>关闭用户账户控制功能。可通过“控制面板”来实现，这样就能让整个电脑都停止使用用户账户控制功能。是否在没有风险的情况下这么做，以及是否认为现有的安全措施已经足够，由您自行决定。</li><li>奖励给自己<q>完全控制</q>对游戏安装文件夹的权限。这样你就可以在保持UAC处于激活状态、监控未被运行的程序所做的任何修改的同时，进行任意编辑；同时也不必将游戏重新安装到其他位置。</li><li>无需操作。Wrye Bash 会自动检测是否需要以管理员身份运行，并弹出包含若干选项的对话框。<ol>
+<li>以管理员身份启动 Wrye Bash：这样就能赋予它完整的管理员权限，使其无需额外操作即可正常运行，但有一个例外情况：<ul>
+<li>您无法将压缩文件拖放到安装程序窗口中，以便将其移动或复制到 BAIN 中。这是因为非管理员进程（如 explorer.exe）不允许以这种方式与管理员进程（Wrye Bash）进行通信。</li></ul>
+</li><li>正常启动即可。这样无需管理员权限就能启动 Wrye Bash。<ul>
+<li>许多需要管理员权限的操作都会触发UAC提示框。常见的包括：<ul>
+<li>首次启动 Wrye Bash 时，根据其需要创建的目录数量不同，该过程大约会重复 4 到 6 次。</li><li>在重新生成 Bashed Patch 时，需要执行两次操作：一次针对 Bashed Patch 本身，另一次针对其对应的 README 文件。</li><li>在“安装程序”选项卡中，那些需要修改游戏数据文件夹的安装、卸载、退火以及其他操作。</li><li>在关闭程序时，如果“Bash 安装程序”文件夹与“Bash 模组数据”文件夹处于 UAC 保护状态，系统可能会多次提示您将各种 .dat 文件保存到这些文件夹中。</li></ul>
+</li><li>有部分动作是被限制的：<ul>
+<li>将文件保存到受 UAC 保护的区域：Windows 不允许“保存文件”对话框选择位于 UAC 保护文件夹内的目标位置。</li><li>隐藏功能：Wrye Bash 无法取消对已隐藏模组的隐藏处理。同时，它也不会主动将模组隐藏起来。要实现这两项功能，都需要重新命名模组文件。</li><li>那些需要管理员权限的其他操作可能尚未有对应的解决方案。请注意，在受 UAC 保护的目录中以非管理员身份运行时出现的任何错误，很可能都无法得到修复。请采用其他替代方案来解决这些错误。</li></ul>
+</li></ul>
+</li></ol>使用某些命令行参数启动 Wrye Bash 即可避免出现此对话框：<ul>
+<li>--no-uac：始终以普通模式启动，无需管理员权限</li><li>--uac：如需的话，始终以管理员身份启动。</li></ul>
+</li></ol>
+<p>对于那些希望选择第三种选项并为自己……的人<q>完全控制</q>关于权限，以下是相关指南：</p><ol>
+<li>右键点击您想要更改权限的文件夹，然后选择<q>属性</q>.
+    </li><li>在<q>属性</q>，选择<q>安全性</q>点击该选项卡，然后进行操作。<q>编辑……</q>点击该按钮。可能会出现 UAC 提示，直接允许即可继续。</li><li>在……中<q>群组或用户名</q>在框中选择。<q>用户</q>选项。</li><li>在下方框中，选中对应选项的复选框。<q>完全控制</q>在……中<q>允许</q>选择列。按下“确定”退出。如果出现 UAC 提示，同意该更改即可。</li><li>在……中<q>属性</q>在窗口中选择“确定”即可退出。现在您应该已获得了对所选文件夹的完全控制权限。</li></ol>
+<p>如果您的游戏是通过 Windows 商店或 Xbox 应用安装的 Windows 商店游戏，那么还需要处理额外的权限问题。</p>
+<ol>
+<li>默认情况下，Wrye Bash会使用另一个可写路径来存储您的安装程序以及这些安装程序的元数据。<code>My Documents\Wrye Bash</code>文件夹。</li>
+<li>使用 Wrye Bash 可能需要为插件和/或 BSA 重新设置日期。遗憾的是，目前我们尚无在非管理员模式下执行此操作的方法，因此要完成这些操作，您必须以管理员身份运行 Wrye Bash，或者授予相应权限。<q>完全控制</q>与游戏文件夹的处理方式相同。具体而言，《Oblivion》需要定期执行此操作，以便为加载顺序配置更新插件日期。后续版本的游戏通常无需如此操作，因此大多可以在非管理员模式下运行，且无需更改文件权限。</li>
+</ol>
+<h3 id="trouble-backup">设置备份与恢复<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>最简单的方法就是直接运行它。<a href="Wrye%20Bash%20Advanced%20Readme.html#tools">备份设置</a>和/或<a href="Wrye%20Bash%20Advanced%20Readme.html#tools">恢复设置</a>可用命令列表<a href="Wrye%20Bash%20Advanced%20Readme.html#settings">设置菜单</a>这些命令不会备份或恢复任何模组文件或游戏存档，仅处理 Wrye Bash 的设置与数据。运行时，它会要求你指定要备份到或从何处恢复的位置。</p><p>如果您希望手动备份设置，Wrye Bash 存储文件的目录如下所示。</p><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[游戏]\Mopy</td>
+<td>Wrye Bash 的主要资源文件。如果存在，请备份您的 bash.ini 文件；如果 Apps 文件夹不为空，也请将其备份。</td>
+</tr>
+<tr>
+<td>[游戏]\Data\重击补丁</td>
+<td>包含导入/导出功能所使用的 CSV 文件。请备份所有您已导出并希望保留的 CSV 文件。</td>
+</tr>
+<tr>
+<td>[游戏]\Data\BashTags</td>
+<td>其中包含用于覆盖 Bash 标签的文本文件。只有在你添加了任何自定义文件（即非通过 BAIN 安装的文件）时才需要备份。</td>
+</tr>
+<tr>
+<td>[游戏]\Data\文档</td>
+<td>包含模组说明文件。通常无需备份。</td>
+</tr>
+<tr>
+<td>[游戏]\Data\INI 设置调整</td>
+<td>包含INI配置调整。仅当您添加了自定义INI配置调整时才需要备份。</td>
+</tr>
+<tr>
+<td>文档\我的游戏\[游戏名]</td>
+<td>包含 Wrye Bash 的相关设置。务必对其进行备份。</td>
+</tr><tr>
+<td>[游戏] 模组（与[游戏]位于同一文件夹中）</td>
+<td>包含 BAIN 相关包以及其他 Wrye Bash 设置。务必对其进行备份。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trouble-report">如何有效报告漏洞<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>漏洞应通过官方的 Wrye Bash 讨论帖进行报告（链接可在其中找到）。<a href="#contact">联系我们</a>为更好地为您提供帮助，需要以下信息。</p><ul>
+<li>您的 Wrye Bash 版本信息。包括是 Python 安装版还是独立安装版、版本号以及 SVN 编号（仅在使用 SVN 时显示）。</li><li>症状描述。请按步骤说明您所做的一切、您的预期结果以及实际发生的情况。</li><li>如您所见，错误信息非常有帮助。</li><li>您的 Windows 版本。如果您使用的是开启了 UAC 功能的 Windows，并且游戏安装在默认目录中，请通过以下方法之一解决权限问题。<a href="#trouble-permissions">文件权限</a>在报告任何错误之前请先阅读本章节。</li><li>如果您使用了 bash.ini 文件，那么请说明您对它所做的所有修改。</li><li>如果您在使用独立版本时遇到问题，请务必卸载电脑上的所有 Python 组件后再尝试，因为这些组件有时会造成干扰。</li><li>如果问题与此有关<a href="#patch">Bashed Patch 更新补丁</a>，请包含以下内容：<ul>
+<li>您的加载顺序。可通过在“模组”选项卡的列标题上右键点击并选择来设置。<a href="#modsListPlugins">列出插件...</a>.
+        </li><li>您的“Bash标签”。可通过在“Mods”选项卡中的列标题上右键点击并选择来获取。<a href="#modsListBashTags">列出 Bash 标签……</a>.
+        </li><li>你的<a href="#patch">Bashed Patch 更新补丁</a>配置文件。可通过右键点击获取该文件。<a href="#patch">Bashed Patch 更新补丁</a>然后进行选择。<a href="Wrye%20Bash%20Advanced%20Readme.html#modsListPatchConfig">列出补丁配置……</a>.
+    </li></ul>
+</li></ul>
+<h3 id="trouble-known">已知漏洞<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>作为一款复杂的程序，Wrye Bash自然也存在不少漏洞。  
+请访问我们的<a href="https://github.com/wrye-bash/wrye-bash/issues">问题追踪系统</a>用于报告已知漏洞及提出功能改进建议。  
+请尊重开发者的时间——讨论要简短、扼要且聚焦技术层面，避免冗长文字或无关闲聊。</p><h3 id="trouble-mistakes">常见问题<a class="back2top" href="#contents">返回顶部</a></h3>
+<table>
+<thead><tr><th>问题</th><th>原因</th><th>解决方案</th></tr></thead><tbody>
+<tr><td>找不到 bash.py 文件。</td><td>Wrye Bash正在错误的目录中运行。</td><td>请确保是从 Mopy 目录中生成日志的。</td></tr><tr><td>无法找到用户目录</td><td>PyWin32 Python模块未正确安装。</td><td>正确安装 Wrye Python 包。</td></tr><tr><td>找不到 wxversion。</td><td>未知</td><td>先卸载 Python，然后再安装 wxPython（按此顺序操作）。</td></tr><tr><td>没有名为 wx 的模块。</td><td>您未能成功安装 wxPython，或者安装位置有误。</td><td>正确安装 Wrye Python 包。</td></tr><tr><td>NTVDM CPU遇到了非法指令。</td><td>这是一个 Python 相关的问题，会导致 PyWin32（属于 Wrye Python 组件）的安装失败。</td><td>一种解决办法是使用 Wrye Bash 的独立版本。另一种选择则是……<a href="https://pypi.org/project/pywin32/">请单独安装它。</a>安装完 Wrye Bash 之后。</td></tr><tr><td>Wrye Bash 无法启动，也无法生成错误日志。</td><td>Wrye Bash 安装在包含 Unicode 字符的目录中，而 Python 解释器无法正确导入此类目录下的文件。</td><td>将 Wrye Bash 重新安装到没有 Unicode 字符的目录中。</td></tr><tr><td>文件未找到错误</td><td>映射的路径与连接链接可能会让 Wrye Bash 出现混乱，从而导致“文件未找到”的错误。</td><td>请避免在游戏安装时使用映射路径和连接链接。</td></tr><tr>
+<td>无法获取已知文件夹路径。</td>
+<td>这几乎总是由 OneDrive 接管了您的“我的文档”文件夹所导致的。</td>
+<td>按照其中给出的说明操作即可。<a href="https://support.microsoft.com/en-us/office/back-up-your-documents-pictures-and-desktop-folders-with-onedrive-d61a7930-a6fb-4b95-b28a-6552e77c3057">此链接</a>并从 OneDrive 中删除 Documents 文件夹。</td>
+</tr>
+<tr>
+<td>OSError：[Errno 22] 参数无效</td>
+<td>这几乎总是由 OneDrive 接管了您的“我的文档”文件夹所导致的。</td>
+<td>按照其中给出的说明操作即可。<a href="https://support.microsoft.com/en-us/office/back-up-your-documents-pictures-and-desktop-folders-with-onedrive-d61a7930-a6fb-4b95-b28a-6552e77c3057">此链接</a>并从 OneDrive 中删除 Documents 文件夹。</td>
+</tr>
+</tbody></table>
+<h2 id="credits">致谢<a class="back2top" href="#contents">返回顶部</a></h2>
+<h3>原始创建者<a class="back2top" href="#contents">返回顶部</a></h3>
+<ul class="nodot">
+<li><img alt="Monkey God's Icon" class="monkeygod" src="../bash/images/people/wryeavi.jpg"/><span><a href="http://wryemusings.com"><strong>Wrye</strong>:</a>模组制作之猴神啊！</span></li>
+</ul>
+<h3>当前维护者<a class="back2top" href="#contents">返回顶部</a></h3>
+<ul class="nodot">
+<li><img alt="Utumno's Icon" class="bigcred" src="../bash/images/people/utmnavi48.png"/><span><a href="https://github.com/Utumno">乌图姆诺：</a>自304.4版本起一直担任维护者。</span></li>
+<li><img alt="Infernio's Icon" class="bigcred" src="../bash/images/people/ifniavi48.png"/><span><a href="https://github.com/Infernio">地狱之火：</a>自307年起一直担任维护者</span></li>
+</ul>
+<h3>作者与贡献者<a class="back2top" href="#contents">返回顶部</a></h3>
+<ul class="nodot">
+<li><img alt="Badhair's Icon" class="smallcred" src="../bash/images/people/gencavi32.png"/><span><a href="https://github.com/Badhair">Badhair：</a>OBSE配置文件读取代码、各类优化功能等。</span></li>
+<li><img alt="BGazotti's Icon" class="smallcred" src="../bash/images/people/bgazavi32.png"/><span><a href="https://github.com/BGazotti">BGazotti：</a>Linux系统的修复与优化</span></li>
+<li><img alt="Beermotor's Icon" class="smallcred" src="../bash/images/people/brmtavi32.png"/><span><a href="https://github.com/BeermotorWB">啤酒引擎：</a>安装程序目录优化，新增设置调整</span></li>
+<li><img alt="Daidalos' Icon" class="smallcred" src="../bash/images/people/dlosavi32.png"/><span><a href="https://github.com/D4id4los">代达洛斯：</a>LOOT API已更新，启动流程也进行了重构。</span></li>
+<li><img alt="Diana's Icon" class="smallcred" src="../bash/images/people/dianavi32.png"/><span><a href="https://github.com/DianaNites">戴安娜：</a>重构导出/导入链接及参数解析功能</span></li>
+<li><img alt="Ernie's Icon" class="smallcred" src="../bash/images/people/erniavi32.png"/><span><a href="https://github.com/ernieIzde8ski">厄尼：</a>新的微调设置</span></li>
+<li><img alt="Ethatron's Icon" class="smallcred" src="../bash/images/people/ethaavi32.jpg"/><span><a href="https://github.com/Ethatron">埃萨特隆：</a>CBash 更新</span></li>
+<li><img alt="FelesNoctis' Icon" class="smallcred" src="../bash/images/people/flsnavi32.jpg"/><span><a href="https://github.com/FelesNoctis">FelesNoctis：</a>适用于307+版本的文档编辑器，支持图片更新</span></li>
+<li><img alt="Fireundubh's Icon" class="smallcred" src="../bash/images/people/fireavi32.png"/><span><a href="https://github.com/fireundubh">fireundubh：</a>安装程序的优化与修复</span></li>
+<li><img alt="GandaG's Icon" class="smallcred" src="../bash/images/people/gndaavi32.jpg"/><span><a href="https://github.com/GandaG">GandaG：</a>支持 FOMOD，代码重构，构建脚本优化</span></li>
+<li><img alt="Haama's Icon" class="smallcred" src="../bash/images/people/genravi32.png"/><span><a href="https://github.com/Haama">哈玛：</a>OBSE/Pluggy 保存数据定义，各类修复与优化</span></li>
+<li><img alt="Jfpelland's Icon" class="smallcred" src="../bash/images/people/genbavi32.png"/><span><a href="https://github.com/jfpelland">jfpelland：</a>补丁更新、错误修复以及GMST检查逻辑的修正</span></li>
+<li><img alt="Kenneth M. Glassey's Icon" class="smallcred" src="../bash/images/people/kmglavi32.png"/><span><a href="https://github.com/Gavvers/">肯尼思·M·格拉斯西：</a>多项FOMOD相关修复</span></li>
+<li><img alt="Leandor's Icon" class="smallcred" src="../bash/images/people/lndravi32.jpg"/><span><a href="https://github.com/leandor">莱安德尔：</a>CBash与CBashAPI更新</span></li>
+<li><img alt="Lojack's Icon" class="smallcred" src="../bash/images/people/lojkavi32.png"/><span><a href="https://github.com/lojack5">Lojack：</a>278至305版本的维护者：BAIN Wizards，配置文件编辑选项卡等功能。</span></li>
+<li><img alt="Lord Nyriox's Icon" class="smallcred" src="../bash/images/people/lonyavi32.png"/><span><a href="https://github.com/LordNyriox">尼里奥克斯领主：</a>增强了 Oblivion.esm 文件的替换支持功能</span></li>
+<li><img alt="Luna Nova's Icon" class="smallcred" src="../bash/images/people/nalravi32.png"/><span><a href="https://github.com/LunNova">新月之光：</a>首次支持《上古卷轴5：天际》VR模式。</span></li>
+<li><img alt="MacSplody's Icon" class="smallcred" src="../bash/images/people/mcspavi32.png"/><span><a href="https://github.com/MacSplody">MacSplody：</a>修补程序优化，更新战利品系统集成功能，改进单元处理机制</span></li>
+<li><img alt="Myktaylor's Icon" class="smallcred" src="../bash/images/people/myk2avi32.png"/><span><a href="https://github.com/myk002">myktaylor：</a>项目管理、异步安装程序选项卡等</span></li>
+<li><img alt="Nephatrine's Icon" class="smallcred" src="../bash/images/people/nephavi32.png"/><a href="https://github.com/nephatrine">尼法特林：</a>《辐射4》VR模式的初始支持。</li>
+<li><img alt="Nycz's Icon" class="smallcred" src="../bash/images/people/nyczavi32.jpg"/><span><a href="https://github.com/nycz">nycz：</a>初始的 de-wx’ing 处理、LZ4 与 SSE 存档管理，以及异常重构。</span></li>
+<li><img alt="Ortham's Icon" class="smallcred" src="../bash/images/people/orthavi32.png"/><span><a href="https://github.com/Ortham">Ortham：</a>在 v297 至 v306 版本中，对 LOOT API、相关文档、libloadorder 与 libbsa 进行了重构与初步整合更新，同时还重写了相关文档。</span></li>
+<li><img alt="Pacific Morrowind's Icon" class="smallcred" src="../bash/images/people/pcmwavi32.jpg"/><span><a href="https://github.com/NickDickinsonWilde">《太平洋版上古卷轴3：晨风》：</a>268至296版本的维护者：新增补丁工具、标签以及导出/导入链接等功能。</span></li>
+<li><img alt="Ralgor's Icon" class="smallcred" src="../bash/images/people/genpavi32.png"/><span><a href="https://github.com/Ralgor">拉尔戈：</a>单元格支持与导入单元格</span></li>
+<li><img alt="Raziel23x's Icon" class="smallcred" src="../bash/images/people/raziavi32.png"/><span><a href="https://github.com/Raziel23x">Raziel23x：</a>新的调整与优化等内容。</span></li>
+<li><img alt="Sharlikran's Icon" class="smallcred" src="../bash/images/people/sharavi32.jpg"/><span><a href="https://github.com/Sharlikran">沙利克兰：</a>支持《辐射3》/《新维加斯》，初始版本支持 ESL，存档游戏/模组标题结构重组，表格版本识别功能，补丁程序更新，堪称社区中最强大的竞争者之一</span></li>
+<li><img alt="Sibir's Icon" class="smallcred" src="../bash/images/people/sibravi32.png"/><span><a href="https://github.com/sibir-ine">西伯利亚：</a>优化了各种调整参数及BAIN的默认设置，同时解决了Discord与问题反馈板上的相关问题。</span></li>
+<li><img alt="Warmfrost85's Icon" class="smallcred" src="../bash/images/people/wrmfavi32.jpg"/><span><a href="https://github.com/warmfrost85">Warmfrost85：</a>数据清理功能与数据同步功能的改进</span></li>
+<li><img alt="Waruddar's Icon" class="smallcred" src="../bash/images/people/waruavi32.gif"/><span><a href="https://www.nexusmods.com/users/456936">瓦鲁达尔：</a>261至296版本的维护者：CBash、BAIN转换文件（BCFs）等。</span></li>
+<li><img alt="Valda's Icon" class="smallcred" src="../bash/images/people/vldaavi32.png"/><span><a href="https://github.com/valda">瓦尔达：</a>协助了《辐射3》/《新维加斯》的兼容性工作，包括开发新的补丁工具及进行相关调整。</span></li>
+</ul>
+<h3>额外致谢<a class="back2top" href="#contents">返回顶部</a></h3>
+<ul class="nodot">
+<li><strong>翻译人员</strong>
+两种语言及对应译者均按字母顺序排列。
+<ul>
+<li>
+<h4>
+<img alt="Flag of China" class="smallcred" role="img" src="../bash/images/flags/china.svg"/>Wrye Bash 是一款为 Oblivion 和 Skyrim 设计的模组，它通过引入强大的战斗技能与特效，显著提升了游戏的趣味性与挑战性。该模组由 BAIN 开发，并通过 Bashed Patch 进行了优化发布。玩家可使用 ESP/ESL/ESM 等工具来辅助战斗操作，从而更轻松地掌握这些强力技能。</h4>
+<ul>
+<li>
+<img alt="blueksy404's Icon" class="smallcred" src="../bash/images/people/blskavi32.png"/>
+<span><a href="https://www.nexusmods.com/users/2541088">bluesky404</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Germany" class="smallcred" role="img" src="../bash/images/flags/germany.svg"/>德语：</h4>
+<ul>
+<li>
+<img alt="DWS's Icon" class="smallcred" src="../bash/images/bash.svg"/>
+<span><a href="http://mw.modhistory.com/search-au-DWS">DWS</a></span>
+</li>
+<li>
+<img alt="Infernio's Icon" class="smallcred" role="img" src="../bash/images/people/ifniavi48.png"/>
+<span><a href="https://github.com/Infernio">地狱之火</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Italy" class="smallcred" role="img" src="../bash/images/flags/italy.svg"/>意大利语：</h4>
+<ul>
+<li>
+<img alt="Abot's Icon" class="smallcred" src="../bash/images/people/abotavi32.png"/>
+<span><a href="https://www.nexusmods.com/users/38047">关于</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Japan" class="smallcred" role="img" src="../bash/images/flags/japan.svg"/>日文：</h4>
+<ul>
+<li>
+<img alt="Valda's Icon" class="smallcred" src="../bash/images/people/vldaavi32.png"/>
+<span><a href="https://github.com/valda">瓦尔达</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Portugal" class="smallcred" src="../bash/images/flags/portugal.svg"/>葡萄牙语文本：</h4>
+<ul>
+<li>
+<img alt="Silvério Santos' Icon" class="smallcred" src="../bash/images/people/sisaavi32.png"/>
+<span><a href="https://github.com/SantosSi">西尔维里奥·桑托斯</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Brazil" class="smallcred" src="../bash/images/flags/brazil.svg"/>巴西葡萄牙语：</h4>
+<ul>
+<li>
+<img alt="Hadoki's Icon" class="smallcred" src="../bash/images/bash.svg"/>
+<span><a href="https://www.nexusmods.com/users/323588">哈多基</a></span>
+</li>
+<li>
+<img alt="TheBronn's Icon" class="smallcred" src="../bash/images/people/thbravi32.png"/>
+<span><a href="https://github.com/TheBronn">TheBronn</a></span>
+</li>
+<li>
+<img alt="Thiago Ramos's Icon" class="smallcred" src="../bash/images/people/thraavi32.png"/>
+<span><a href="https://github.com/thiagojramos">蒂亚戈·拉莫斯</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Russia" class="smallcred" role="img" src="../bash/images/flags/russia.svg"/>俄文：</h4>
+<ul>
+<li>
+<img alt="cottondisciple's Icon" class="smallcred" src="../bash/images/people/ctndavi32.png"/>
+<span><a href="https://github.com/cottondisciple">cottondisciple</a></span>
+</li>
+<li>
+<img alt="DJ Kovrik's Icon" class="smallcred" src="../bash/images/people/djkvavi32.jpg"/>
+<span><a href="https://www.nexusmods.com/users/100354">DJ_Kovrik</a></span>
+</li>
+<li>
+<img alt="JonySnowball's Icon" class="smallcred" src="../bash/images/people/jnsnavi32.png"/>
+<span><a href="https://github.com/JonySnowball">JonySnowball</a></span>
+</li>
+<li>
+<img alt="xsSplater's Icon" class="smallcred" src="../bash/images/people/xsspavi32.png"/>
+<span><a href="https://github.com/xsSplater">xsSplater</a></span>
+</li>
+<li>
+<img alt="Yurt Page's Icon" class="smallcred" src="../bash/images/bash.svg"/>
+<span>游牧民页面</span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Spain" class="smallcred" role="img" src="../bash/images/flags/spain.svg"/>西班牙语：</h4>
+<ul>
+<li>
+<img alt="SolitaireRocket's Icon" class="smallcred" src="../bash/images/people/soroavi32.png"/>
+<span><a href="https://github.com/SolitaireRocket">SolitaireRocket</a></span>
+</li>
+<li>
+<img alt="Yajziel's Icon" class="smallcred" src="../bash/images/people/yajzavi32.png"/>
+<span><a href="https://github.com/Yajziel">亚吉埃尔</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Sweden" class="smallcred" role="img" src="../bash/images/flags/sweden.svg"/>瑞典语：</h4>
+<ul>
+<li>
+<img alt="David Brofalk's Icon" class="smallcred" src="../bash/images/bash.svg"/>
+<span>大卫·布罗法克</span>
+</li>
+</ul>
+</li>
+<li>
+<h4>泰米尔语：</h4>
+<ul>
+<li>
+<img alt="தமிழ்நேரம's Icon" class="smallcred" src="../bash/images/people/taneavi32.png"/>
+<span><a href="https://github.com/TamilNeram">泰米尔时间</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Turkey" class="smallcred" role="img" src="../bash/images/flags/turkey.svg"/>土耳其语：</h4>
+<ul>
+<li>
+<img alt="DJ Kovrik's Icon" class="smallcred" src="../bash/images/people/tmfcavi32.png"/>
+<span><a href="https://github.com/TheMalteseFalcone">马耳他猎鹰</a></span>
+</li>
+</ul>
+</li>
+<li>
+<h4>
+<img alt="Flag of Ukraine" class="smallcred" role="img" src="../bash/images/flags/ukraine.svg"/>乌克兰语：</h4>
+<ul>
+<li>
+<img alt="IllusiveMan196's Icon" class="smallcred" src="../bash/images/people/ilsvavi32.png"/>
+<span><a href="https://github.com/IllusiveMan196">IllusiveMan196</a></span>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>模组与存档文件专家</strong>
+<ul>
+<li><img alt="Dave Humphrey's Icon" class="smallcred" src="../bash/images/people/uespavi32.png"/><span><a href="https://en.uesp.net/wiki/User:Daveh">戴夫·汉弗莱</a></span></li>
+<li><img alt="ElminsterAU's Icon" class="smallcred" src="../bash/images/people/elmsavi32.png"/><span><a href="https://github.com/ElminsterAU">ElminsterAU</a></span></li>
+<li><img alt="GhostWheel's Icon" class="smallcred" src="../bash/images/people/uespavi32.png"/><span><a href="https://web.archive.org/web/20170707181414/https://mw.modhistory.com/search-au-Ghostwheel">GhostWheel</a></span></li>
+<li><img alt="Resetgun's Icon" class="smallcred" src="../bash/images/people/uespavi32.png"/><span><a href="https://www.nexusmods.com/users/99351">重置枪支功能</a>，又名 mpuonti</span></li>
+<li><img alt="Rick's Icon" class="smallcred" src="../bash/images/people/rickavi32.png"/><span><a href="https://github.com/gibbed">里克</a></span></li>
+<li><img alt="Scripter Ron's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span><a href="https://www.nexusmods.com/users/123768">ScripterRon</a></span></li>
+<li><img alt="Monkey God's Icon" class="smallcred" src="../bash/images/people/wryeavi.jpg"/><span><a href="http://wryemusings.com"><strong>Wrye</strong></a></span></li>
+</ul></li>
+<li><strong>Python之王们</strong>
+<ul>
+<li><img alt="Python Kings' Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>吉多·范罗苏姆以及许多其他人。</span></li>
+</ul>
+</li>
+<li><strong>特别致谢</strong>
+<ul>
+<li><img alt="Breeze582000's Icon" class="smallcred" src="../bash/images/people/brezavi32.gif"/><span><a href="https://www.nexusmods.com/users/245234">Breeze582000：</a>为 Bashmon 提供灵感的 brzMonitor</span></li>
+<li><img alt="dev_akm's Icon" class="smallcred" src="../bash/images/people/dakmavi32.jpg"/><span><a href="https://web.archive.org/web/20190917195458/https://devakm.urikslargda.com/">dev_akm：</a>归档失效等功能。</span></li>
+<li><img alt="ElminsterAU's Icon" class="smallcred" src="../bash/images/people/elmsavi32.png"/><span><a href="https://github.com/ElminsterAU">ElminsterAU：</a> <a href="https://tes5edit.github.io/">xEdit</a>等等。添加或检查新记录类型时极为重要。</span></li>
+<li><img alt="Polemos' Icon" class="smallcred" src="../bash/images/people/polemosavi32.png"/><span><a href="https://github.com/polemion">波勒莫斯：</a></span> <a href="https://github.com/polemion/Wrye-Mash-Polemos">苦涩捣碎物：波勒摩斯之叉</a></li>
+<li><img alt="Quarn's Icon" class="smallcred" src="../bash/images/people/qurnavi32.png"/><span><a href="https://www.nexusmods.com/users/75927">夸恩：</a>BSA重定向功能，黑屏问题修复方案</span></li>
+<li><img alt="Timeslip's Icon" class="smallcred" src="../bash/images/people/tslpavi32.png"/><span><a href="http://timeslip.chorrol.com">时间跳跃：</a>BSA编辑代码、OBMM集成等功能。</span></li>
+<li><img alt="Veritas Secreto's Icon" class="smallcred" src="../bash/images/people/vsecavi32.png"/><span><a href="https://twitter.com/veritassecreto">Veritas_Secreto：</a> <a href="https://www.nexusmods.com/oblivion/mods/39872">泰姆瑞尔NPC全面重制</a></span></li>
+<li><img alt="Yabocy's Icon" class="smallcred" src="../bash/images/people/yacobyavi32.png"/><span><a href="https://github.com/Yacoby">雅各比：</a> <a href="https://github.com/Yacoby/Wrye-Mash">苦味捣碎物：雅各比的分叉器</a></span></li>
+</ul>
+</li>
+<li><strong>额外致谢</strong>
+<ul>
+<li><img alt="Alternity's Icon" class="smallcred" src="../bash/images/people/altyavi32.gif"/><span><a href="https://afkmods.com/index.php?/profile/1652-alt3rn1ty/">替代方案：</a>针对文档中使用的《Wrye Bash》截图/界面图片、相关修改建议，以及为《Skyrim》、《Fallout4》和《Skyrim: Special Edition》所做的各种INI配置调整，总之就是全方位的帮助。</span></li>
+<li><img alt="Arthmoor's Icon" class="smallcred" src="../bash/images/people/armravi32.png"/><span><a href="https://github.com/Arthmoor">阿斯莫尔：</a>对该项目提供全方位支持，包括推送匿名贡献者提交的代码片段、协助处理问题跟踪事务，以及在整个项目中保持高度活跃度。</span></li>
+<li><img alt="ElminsterAU's Icon" class="smallcred" src="../bash/images/people/elmsavi32.png"/><span><a href="https://github.com/ElminsterAU">ElminsterAU：</a>错误报告与技术建议。</span></li>
+<li><img alt="Kmacg94's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>Kmacg94：额外的电量耗尽检测功能。</span></li>
+<li><img alt="Llde's Icon" class="smallcred" src="../bash/images/people/lldeavi32.png"/><span><a href="https://github.com/llde">illde：</a>修复了处理包含无属性文件的归档文件的问题。</span></li>
+<li><img alt="Mator's Icon" class="smallcred" src="../bash/images/people/matravi32.jpg"/><span><a href="https://github.com/matortheeternal">MatorTheEternal：</a>协助将xEdit定义转换为Wrye Bash可使用的格式。</span></li>
+<li><img alt="Metallicow's Icon" class="smallcred" src="../bash/images/people/mcowavi32.png"/><span><a href="https://github.com/Metallicow">Metallicow：</a>全新闪亮风格的工具启动器图标、图形功能、“Mooo”插件，以及 WizBAIN 编辑器。</span></li>
+<li><img alt="Preacui's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span><a href="https://sourceforge.net/u/preacui/profile/">前置准备：</a> <a href="https://3d.xkcd.com/353/">曾经存在过。</a></span></li>
+<li><img alt="Sativarg's Icon" class="smallcred" src="../bash/images/people/genyavi32.png"/><span><a href="https://github.com/Sativarg">萨蒂瓦格：</a>校对。</span></li>
+<li><img alt="Saebel's Icon" class="smallcred" src="../bash/images/people/saebavi32.png"/><span><a href="https://www.nexusmods.com/users/813052">saebel：</a>已修复并补充了缺失的 OBSE INI 设置。</span></li>
+<li><img alt="Tom Supergan's Icon" class="smallcred" src="../bash/images/people/tomsavi32.png"/><span><a href="https://www.nexusmods.com/users/77237">汤姆·苏佩尔甘：</a>几条经过充分研究的建议。</span></li>
+<li><img alt="Testers' Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>致那些在他人遇到困难时提供帮助的测试者、漏洞发现者以及论坛上的热心人士：Arthmoor、Corepc、Daemondarque、TommyH、Surazal 以及众多其他人士。</span></li>
+<li><img alt="Helpers' Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>在此向那些在《Wrye Bash》的开发者缺席期间（2012年5月/6月）为维护该模组做出贡献的社区成员致以感谢：Alt3rn1ty、Arthmoor、Daidalos、Ortham、Trira以及众多其他人士。</span></li>
+</ul>
+</li>
+<li><strong>其他资源</strong>
+<ul>
+<li><img alt="FamFamFam's Icon" class="smallcred" src="../bash/images/people/fffmavi32.png"/><span><a href="http://www.famfamfam.com/lab/icons/silk/">FamFamFam 图标</a></span></li>
+<li><img alt="Blue Bison in Rapids' Icon" class="smallcred" src="../bash/images/people/blbiavi32.png"/><span><a href="http://www.bluebison.net/">Python与Chameleon图像</a></span></li>
+</ul>
+</li>
+</ul>
+<h3>致谢名单<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>也就是从别人那里偷来的点子之类的东西。</p>
+<ul class="nodot">
+<li><strong>Wrye Bash 的功能特性</strong>
+<ul>
+<li><img alt="Kyorisu's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#saves-profiles">保存配置文件</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/2342">《上古卷轴IV》存档管理器</a>由……制作<a href="https://www.nexusmods.com/users/102992">京丽丝</a>.</span></li>
+<li><img alt="Polemos' Icon" class="smallcred" src="../bash/images/people/polemosavi32.png"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#settings-global-or-column-menu">全局菜单</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#settings">设置菜单</a>灵感来源于<a href="https://github.com/polemion/Wrye-Mash-Polemos">苦涩捣碎物：波勒摩斯之叉</a>由……制作<a href="https://github.com/polemion">波勒莫斯</a>.</span></li>
+</ul>
+</li>
+<li><strong>微调设置</strong>
+<ul>
+<li><img alt="Crypton's Icon" class="smallcred" src="../bash/images/people/crypavi32.png"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-assorted-no-flicker">无光线闪烁</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/6150">无光线闪烁</a>由……制作<a href="https://www.nexusmods.com/users/23266">克里普顿</a>.</span></li>
+<li><img alt="Showler's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-ai-mda">AI：最大死亡角色数</a>灵感来源于某论坛帖子<a href="https://www.nexusmods.com/users/38829">肖洛尔</a>.</span></li>
+<li><img alt="Aelius's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-arrow-lc">箭头：垃圾数量</a>,
+                <a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-arrow-lt">箭头键：丢弃物品时间</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-actor-ud">演员：昏迷持续时间</a>灵感来源于 Aelius 发布的论坛帖子。</span></li>
+<li><img alt="Tom Supergan's Icon" class="smallcred" src="../bash/images/people/tomsavi32.png"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-camera-chase-distance">摄像机：追击距离</a>灵感来源于某个模组<a href="https://www.nexusmods.com/users/77237">汤姆·苏佩尔甘</a>.</span></li>
+<li><img alt="Woodman's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-camera-chase-tightness">摄像机：追击紧密度</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/1840">追逐镜头模组</a>.
+                <a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-camera-vanity-speed-mult">摄像机：虚荣速度倍率</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/1852">虚荣镜头平滑器</a>这两个模组都是由同一人创建的。<a href="https://www.nexusmods.com/users/85866">伍德曼</a>.</span></li>
+<li><img alt="David Moyer's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-camera-pdt">摄像机：PC死亡时间</a>灵感来源于<q>扩展死亡镜头功能</q>由……制作<a href="https://web.archive.org/web/20070816033721/http://planetelderscrolls.gamespy.com/View.php?view=User.Profile&amp;id=34591">大卫·莫耶尔</a>.</span></li>
+<li><img alt="KseAli's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-compass-rd">指南针：识别距离</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/4882">KseAli_POI可见性</a>由……制作<a href="https://www.nexusmods.com/users/114786">KseAli</a>.</span></li>
+<li><img alt="Zzyxzz's Icon" class="smallcred" src="../bash/images/people/zzyxavi32.png"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-combat-btavg">战斗：格挡时间（平均值）</a>,
+                <a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-combat-btmax">战斗：格挡时间（最大值）</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-combat-btmin">战斗：格挡时间（最小值）</a>灵感来源于<a href="https://www.nexusmods.com/skyrimspecialedition/mods/113064">修复 NPC 无限生成方块的问题</a>由……制作<a href="https://www.nexusmods.com/users/8515543">Zzyxzz</a>.</span></li>
+<li><img alt="Demuerte's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-magic-cr">魔法：变色龙折射</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/2411">变色龙-无折射效果</a>由……制作<a href="https://www.nexusmods.com/oblivion/users/119345">死亡</a>.</span></li>
+<li><img alt="Ravida's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-movement-ffre">移动：奔跑造成的疲劳/负重影响</a>灵感来源于<q>体育项目</q>由 Ravida 创作。</span></li>
+<li><img alt="5133p39's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-actors-ogaf">异性角色动画：女性</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-races-fbggf">力量行为图性别：女性</a>灵感来源于<a href="https://www.nexusmods.com/skyrimspecialedition/mods/3090">女性死亡效果</a>由……制作<a href="https://www.nexusmods.com/users/277511">5133p39</a>.</span></li>
+<li><img alt="Horse Turning Speed Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-player-hts">玩家：马匹转向速度</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/3477">马匹移动速度加快</a>由……制作<a href="https://www.nexusmods.com/oblivion/users/92715">阿克莱修斯</a>还有另一个模组由……制作。<a href="https://www.nexusmods.com/oblivion/users/87082">dbolivar</a>.</span></li>
+<li><img alt="TDG's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-settings-prompt-a">提示：激活</a>灵感来源于<a href="https://www.nexusmods.com/skyrimspecialedition/mods/35492">TDG的“激活以交互”增强版</a>由……制作<a href="https://www.nexusmods.com/skyrimspecialedition/users/73698518">TDG</a>.</span></li>
+<li><img alt="Timmypod's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>
+<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-clothes-unlimited-a">无限护身符</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#patch-tweak-clothes-unlimited-r">无限戒指</a>灵感来源于<a href="https://www.nexusmods.com/oblivion/mods/2246">无限数量的护身符与戒指</a>由……制作<a href="https://www.nexusmods.com/oblivion/users/98720">timmypod</a>.</span></li>
+</ul>
+</li>
+<li><strong>文件名称</strong>
+<ul>
+<li><img alt="Flak's Icon" class="smallcred" role="img" src="../bash/images/bash.svg"/><span>防空火力：<a href="https://www.nexusmods.com/oblivion/mods/2326">Flak的完整名称项目</a></span></li>
+</ul>
+</li>
+</ul>
+<h2 id="contact">联系我们<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>如果您对 Wrye Bash 有任何问题或建议，最好将其发布在……上。<a href="https://www.afkmods.com/index.php?/topic/4966-wrye-bash-all-games/">Wrye Bash 主题</a>在AFK模组论坛上，或者在该网站上。<a href="https://discord.gg/NwWvAFR">Wrye Bash Discord频道</a>.</p>
+<h2 id="license">许可证<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>Wrye Bash 是在 GNU 通用公共许可证第 3 版或更高版本下发布的。详情请参见附录。<a href="../LICENSE.md" type="text/plain">LICENSE.md</a>如需了解许可详情，请查看相关文件，或访问<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU网站</a>有关其所有许可证的详细信息。</p>
+<h3>打包程序<a class="back2top" href="#contents">返回顶部</a></h3>
+<p>此外，Wrye Bash 还附带了以下程序：</p><ul>
+<li>7zip：<ul>
+<li>网站：<a href="https://www.7-zip.org/">7zip.org</a>
+</li><li>许可证：<a href="https://www.gnu.org/licenses/lgpl.html">LGPL许可证</a>
+</li><li>使用方式：Wrye Bash 使用 7z 来压缩和解压档案。</li></ul>
+</li></ul>
+<h2 id="advanced">高级自述文件相关主题<a class="back2top" href="#contents">返回顶部</a></h2>
+<p>最后这一部分简要概述了其中可能包含的内容。<a href="Wrye%20Bash%20Advanced%20Readme.html">高级使用说明</a>涵盖的部分主题包括：</p><ul>
+<li>安装程序：<ul>
+<li>如何将 Wrye Bash 安装到任意位置。</li><li>Python版本所需的各种Python组件是什么。</li></ul>
+</li><li>BAIN：<ul>
+<li>“安装程序”选项卡中其余用户界面的功能是什么。</li><li>BAIN 默认会跳过哪些文件，以及如何判断文件是否被跳过。</li><li>如何安装脚本扩展插件。</li><li>如何使用 BAIN 编辑 OMOD 转换数据，适用于已支持 OMOD 且兼容 BAIN 的模组。</li><li>如何创建BAIN转换文件，以及相关详细信息。</li><li>上下文菜单中其余命令的功能是什么。</li></ul>
+</li><li>模组标签页：<ul>
+<li>Wrye Bash 中排序插件列表的多种方式。</li><li>“Mods”选项卡右侧的插件详情面板的作用是什么。</li><li>什么是 CSV 文件，以及 Wrye Bash 如何使用它们。</li><li>上下文菜单中其他命令的功能是什么。</li></ul>
+</li><li>Bashed Patch：<ul>
+<li>如何在 Wrye Bash 之外查看或编辑 Bashed Patch。</li><li>什么是 Bash 标签，有哪些现有的标签，以及何时何地该如何使用它们。</li><li>各种调整选项具体是什么。</li><li>什么是过滤功能，以及何时何地使用它。</li><li>什么是物品交换模式，以及如何和何时使用它。</li><li>Wrye Bash 自带的默认 CSV 文件是什么，以及将它们导入 Bashed Patch 后会起到什么作用。</li><li>“分级列表补丁工具”的功能及其最佳使用方法。</li></ul>
+</li><li>存档标签页：<ul>
+<li>“存档”选项卡的功能是什么，以及如何使用它。</li><li>如何使用存档配置文件。</li><li>如何从其他存档游戏及模组中导入角色模型。</li><li>上下文菜单中各命令的功能，以及所使用的各种颜色和符号的含义。</li></ul>
+</li><li>“截图”与“人物”标签页的功能是什么，以及如何使用它们。</li><li>如何自定义显示的启动器列表，包括添加自定义的新启动器。</li><li>如何使用 Wrye Bash 的设置菜单来定制其整体行为。</li><li>如何使用文档浏览器通过 Wrye Bash 查看模组说明文件。</li><li>什么是插件检查工具，以及如何使用它来检测已安装模组的故障等问题。</li><li>什么是 Oblivion.esm 替换，如何使用它以及为何要这样做。</li><li>Wrye Bash 的键盘快捷键有哪些。</li></ul>
+<p>高级说明文档是一份更具技术性的文件，主要面向Wrye Bash的模组开发者及高级用户，而非普通用户。如果您希望了解更多信息，或者不明白Wrye Bash中的某些功能为何会如此运作，那么您要找的答案或许就在其中。<a href="Wrye%20Bash%20Advanced%20Readme.html">高级使用说明</a>.</p>
+滚动内容结束
+</div>
+<div id="footer">
+<div id="version">Wrye Bash v315版本</div>常规设置 ✦<a href="Wrye Bash Advanced Readme.html">高级</a> ✦ <a href="Wrye Bash Technical Readme.html">技术相关</a> ✦ <a href="Wrye Bash Version History.html">版本</a>
+<div id="oldie">JavaScript 已禁用，菜单和幻灯片展示功能无法使用。</div>
+</div>
+</body>
+</html>

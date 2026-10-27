@@ -73,7 +73,7 @@ Patcher 按 `patcher_group` 分四组：**General / Importers / Tweakers / Speci
 
 #### Merge Patches（合并补丁）
 - 类型：来源列表（默认**自动**，列出所有可合并的插件）。
-- 作用：把勾选的、只包含「可合并记录类型」的插件**合并进** Bashed Patch。合并后这些插件会被停用（对话框会先询问是否停用；即使你拒绝，构建后它们也会被停用）。
+- 作用：把勾选的、只包含「可合并记录类型」的插件**合并进** Bashed Patch。点「Rebuild Patch」时，WB 会**先**弹出一个对话框，询问是否停用这些可合并插件（以及带 `NoMerge` / `Deactivate` 标签的插件）；**确认**才会停用，**拒绝则保持激活**，构建仍会照常进行。
 - ⚠️ **不要从 Data 文件夹里删掉被合并的 MOD**——下次重建时它们必须还在。
 - 提示：构建前可保持这些插件**未激活**；合并算法对后续其它 Patcher 仍然正常工作。
 
@@ -105,6 +105,7 @@ Patcher 按 `patcher_group` 分四组：**General / Importers / Tweakers / Speci
 | **Import Names** | 保留各类名称修改 | **看喜好**：选你喜欢的命名 |
 | **Import Object Bounds** | 保留大量对象的包围盒（碰撞）修改 | 总是启用（Fallout 3 起） |
 | **Import Outfits** | 合并 NPC  outfit（着装）修改 | 总是启用（Skyrim 起） |
+| **Import Races** | 保留种族记录的修改（体型、描述、技能、属性、声音等） | 默认关闭；Skyrim 可用，按需启用（Oblivion 亦可用） |
 | **Import Races: Spells** | 合并种族能力/法术的增删改 | 总是启用（Fallout 3/NV/FO4 除外） |
 | **Import Relations** | 合并派系之间的关系增删改 | 总是启用 |
 | **Import Sounds** | 保留各类音效（魔法效果、容器、激活器、灯、天气、门等）修改 | **看喜好**：选你喜欢的音效 |
@@ -112,7 +113,7 @@ Patcher 按 `patcher_group` 分四组：**General / Importers / Tweakers / Speci
 | **Import Stats** | 保留可拾取物品属性（修复/重平衡）修改 | 总是启用；同上 |
 | **Import Text** | 保留长文本（书、装备/法术/武器描述等）修改 | 总是启用（Fallout 4 除外） |
 
-> ❗ Skyrim SE **不可用** 的 Import 类（不在 `game/skyrim/__init__.py` 的 patcher 清单内）：Import Actors: Faces、Import Races、Import Races: Relations、Import Scripts、Import Weapon Modifications。
+> ❗ Skyrim SE **不可用** 的 Import 类（不在 `game/skyrim/__init__.py` 的 patcher 清单内）：Import Actors: Faces、Import Races: Relations、Import Scripts、Import Weapon Modifications。
 
 ---
 
@@ -210,7 +211,7 @@ Wrye Bash 用 **Bash Tags** 判断「哪些插件应该把哪些数据导入补�
   - **Load Error Plugins**（加载出错被跳过）；
   - **World Orphans / Compiled All** 等告警；
   - 完整的 **Active Plugins** 列表（含版本号与标签）。
-- 若补丁超过游戏的 master 上限（Skyrim 为 255，启用 ESL 后更多），WB 会**自动拆分**为 `Bashed Patch, 0-1.esp`、`-2.esp`…，并提示你删除不再需要的旧拆分件。
+- 若某个顶级分组所依赖的 master 数量超过游戏上限（`bush.game.Esp.master_limit`：Skyrim LE 为 255、Skyrim SE 为 253），WB 会**自动拆分**为 `Bashed Patch, 0-1.esp`、`-2.esp`…，并提示你删除不再需要的旧拆分件。给补丁打 ESL 标记只是省一个加载槽位，**不会**提高这个上限。
 - 若游戏支持 ESL 且设置 `bash.mods.auto_flag_esl` 开启、且补丁新增记录 ≤ 2048，补丁会被**自动 ESL 标记**以省一个槽位。
 - 构建后 WB 会尝试**激活** Bashed Patch（及其拆分件）；若设置 `PromptActivateBashedPatch` 开启，会询问你是否激活。
 
@@ -258,7 +259,7 @@ Wrye Bash 用 **Bash Tags** 判断「哪些插件应该把哪些数据导入补�
 
 本文清单针对 **Skyrim / Skyrim SE**。其它游戏的 Patcher 集合由 `bush.game.patchers` 决定（源码 `game/<游戏>/__init__.py`），并在 `gui_patchers.initPatchers()` 里据此实例化。例如：
 
-- **Oblivion / Nehrim**：额外有 Import Actors: Faces、Import Races、Import Races: Relations、Import Scripts、Import Roads，以及 Special 里的 **Race Checker / NPC Checker**。
+- **Oblivion / Nehrim**：额外有 Import Actors: Faces、Import Races: Relations、Import Scripts、Import Roads，以及 Special 里的 **Race Checker / NPC Checker**。
 - **Fallout 3 / NV**：额外有 Import Weapon Modifications、FormID Lists、Replace Form IDs 等。
 - **Fallout 4**：部分 Import（Cells/Graphics/Sounds/Spell Stats/Stats/Text）不可用，且无 Tweak Clothes。
 

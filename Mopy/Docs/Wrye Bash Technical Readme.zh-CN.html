@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<link href="assets/bash_main.css" rel="stylesheet" type="text/css"/>
+<link href="assets/bash_technical.css" rel="stylesheet" type="text/css"/>
+<link href="assets/bash.webmanifest" rel="manifest" type="application/manifest+json"/>
+<link href="images/webicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"/>
+<link href="images/webicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="images/webicon/favicon-194x194.png" rel="icon" sizes="194x194" type="image/png"/>
+<link href="images/webicon/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="images/webicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link color="#cc0000" href="images/webicon/safari-pinned-tab.svg" rel="mask-icon" type="image/svg+xml"/>
+<link href="images/webicon/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<meta content="Wrye Bash Docs" name="apple-mobile-web-app-title"/>
+<meta content="Wrye Bash Docs" name="application-name"/>
+<meta content="#ffc40d" name="msapplication-TileColor"/>
+<meta content="images/webicon/mstile-144x144.png" name="msapplication-TileImage"/>
+<meta content="Wrye Bash Documentation" name="msapplication-tooltip"/>
+<meta content="assets/browserconfig.xml" name="msapplication-config"/>
+<meta content="#ffffcc" name="theme-color"/>
+<script src="assets/bashinit.js"></script>
+<script async="" defer="" src="assets/bashfunc.js"></script>
+<title>《Wrye Bash》技术说明文档</title>
+</head>
+<body>
+<div id="header"><h1>《Wrye Bash》技术说明文档</h1> <a href="javascript:void(0)" id="jstoggle">（JavaScript 切换功能）</a></div>
+<div id="box">
+滚动内容开始
+<div id="fade"></div>
+<h2 id="contents">目录</h2>
+<div class="navboxrhrz" id="navmenu">
+<div id="navtab">M<br/>E<br/>N<br/>U</div>
+<div class="navcontbar">
+<div class="navhead">
+<a class="clsx" href="javascript:void(0)" id="closebutton">←</a>
+<h2>技术说明文档</h2>
+</div>
+<div class="navcontent">
+<ol class="contentsmenu1 menu">
+<li class="list"><a href="#intro">简介</a>
+<ol class="items">
+<li><a href="#intro-glossary">术语表</a></li>
+</ol>
+</li>
+<li class="list"><a href="#darn">改进后的格式设置</a></li>
+<li class="list"><a href="#wizards">BAIN法师们</a>
+<ol class="items">
+<li><a href="#wizards-overview">概览</a></li>
+<li><a href="#wizards-dialog">对话内容</a></li>
+<li><a href="#wizards-language">语言结构</a></li>
+<li><a href="#wizards-functions">功能</a></li>
+<li><a href="#wizards-deprecated-functions">已废弃函数</a></li>
+<li><a href="#wizards-keywords">关键词</a></li>
+<li><a href="#wizards-deprecated-keywords">已废弃的关键词</a></li>
+<li><a href="#wizards-operators">操作符</a></li>
+<li><a href="#wizards-constants">标准常量</a></li>
+<li><a href="#wizards-escape">转义序列</a></li>
+<li><a href="#wizards-examples">示例</a></li>
+<li><a href="#wizards-obmm">巫师阵营与OBMM脚本的对抗</a></li>
+</ol>
+</li>
+<li class="list"><a href="#trusted-binaries">可信二进制文件</a>
+<ol class="items">
+<li><a href="#trusted-binaries-statements">声明</a></li>
+<li><a href="#trusted-binaries-structure">结构</a></li>
+</ol>
+</li>
+<li class="list"><a href="#lo-exports">加载顺序导出</a>
+<ol class="items">
+<li><a href="#lo-exports-wrye-bash">Wrye Bash 格式</a></li>
+<li><a href="#lo-exports-obmm">OBMM格式</a></li>
+</ol>
+</li>
+<li class="list"><a href="#csv-formats">CSV格式</a>
+<ol class="items">
+<li><a href="#csv-formats-package-order">包顺序</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h2 id="intro">简介</h2>
+<p>本说明文档介绍了Wrye Bash中最技术性的内容，即Wizard脚本语言以及某些其他文件类型的语法。关于Wrye Bash最常用功能的信息可在其他文档中找到。<a href="Wrye%20Bash%20General%20Readme.html">通用说明文档</a>，以及<a href="Wrye%20Bash%20Advanced%20Readme.html">高级使用说明</a>其中记载了更为高级且较少使用的功能的相关信息。Wrye Bash的版本历史记录保存在<a href="Wrye%20Bash%20Version%20History.html">版本历史记录</a>文档。</p><h2 id="darn">DarNified书籍WTXT格式化工具</h2>
+<p>Bashed Patch的设置中的DarNified Books选项允许使用Wtxt格式，该格式会在书籍的第一行被指定时自动应用。<code>== title ==</code>
+</p><ul>
+<li><code>&lt;&lt;</code>, <code>^^</code>或者<code>&gt;&gt;</code>在行首生成一个<code>div align=left</code>, <code>div align=center</code>或者<code>div align=right</code>分别加上标签。</li><li><code>== text ==</code>生成二级标题。</li><li><code>=== text</code>生成三级标题。</li><li><code>__text__</code>, <code>~~text~~</code>以及<code>**text**</code>生成高亮文本。</li></ul>
+<h2 id="wizards">BAIN法师</h2>
+<h3 id="wizards-overview">概览</h3>
+<p>BAIN巫师工具允许模组制作者在其打包的文件中加入简单的配置脚本。这些巫师工具使用一种类似于OBMM脚本的简易编程语言来运行，相关脚本被包含在……之中。<code>wizard.txt</code>包中的文件。运行时，向导会依次显示多个窗口供你选择选项，最后会呈现一个汇总页面，告知你将选中哪些子包和插件，以及将要进行的INI配置调整。</p>
+<p>那些使用 Notepad++ 编写安装脚本的用户或许可以考虑使用 Utumno 的工具。<a href="https://www.nexusmods.com/oblivion/mods/32654">适用于 Notepad Plus Plus 的 BAIN 法师脚本高亮工具</a>它具备代码折叠与语法高亮功能，有助于更轻松地发现错误。</p><p>有一个类似的<a href="https://www.nexusmods.com/oblivion/mods/34240">EmEditor 中的 BAIN 巫师语法</a>由 broken85 创建的 EmEditor 语法高亮工具。</p><h3 id="wizards-dialog">对话内容</h3>
+<p>向导中可以使用多种不同的对话框。本节将介绍这些可用的对话框。</p>
+<ul>
+<li>
+<p><dfn>选择一项</dfn>- 该对话框会显示一系列选项，但只能选择其中一个。它会在……时出现。<a href="#wizardsSelectOne">选择一项</a>该功能使用了关键词。每个选项都可以显示与之关联的图片以及描述文字。若要查看更大尺寸的图片，可双击或中键点击该图片。向导允许设置默认答案；如果以自动向导模式运行，则会直接使用默认选项而跳过此页面。</p>
+<img alt="Dialog from Farmhouse Chimneys, showing three mutually exclusive options for chimney meshes. The third one is selected." src="../bash/images/readme/wizard-selectone.png"/>
+</li>
+<li>
+<p><dfn>多选</dfn>- 该对话框会显示一系列选项，用户可以选择任意组合（包括不选择任何选项）。它会在……时出现。<a href="#wizardsSelectMany">多选</a>该功能使用了关键词。每个选项都可以显示与之关联的图片以及描述文字。如需查看更大尺寸的图片，可右键或中键点击该图片。向导允许用户指定默认选项；如果以自动向导模式运行，则会直接使用这些默认选项，从而跳过此页面。</p>
+<img alt="Dialog from DynDOLOD's wizard, showing a list of six options. The first five are checked, the last is unchecked." src="../bash/images/readme/wizard-selectmany.png"/>
+</li>
+<li>
+<p><dfn>取消</dfn>- 若向导因某些原因取消执行，将会显示此对话框。<a href="#wizardsCancel">取消</a>关键词。如果指定了原因，将会显示出来。</p>
+<img alt="Dialog showing that the wizard has been canceled and giving an author-provided reason ('Realistic Water Two is not installed! RWT - Improved Water requries RWT to function.')." src="../bash/images/readme/wizard-cancel.png"/>
+</li>
+<li>
+<p><dfn>错误</dfn>- 如果向导在处理文件时遇到错误，将会显示此对话框，随后向导会退出。</p>
+<img alt="Dialog showing that the wizard has been terminated due to a scripting error (arguments were given to an 'Else' keyword)." src="../bash/images/readme/wizard-error.png"/>
+</li>
+<li>
+<p><dfn>完成</dfn>- 该对话框会在向导结束时显示，用以告知您将选择哪些子包和插件。它会在到达某个向导文件的结尾时出现，或者在满足特定条件时出现。<a href="#wizardsReturn">返回</a>该功能会显示将应用的 INI 设置调整项，同时也可用于展示模组作者的额外说明。</p>
+<img alt="Dialog showing the result of running a wizard for a made-up mod supposedly improving Realistic Water Two's water textures. A '00 Core' sub-package is selected, an 'RWT - Improved Water.esp' plugin is selected, an INI tweak with some LOD settings has been created and and a note is shown informing the user that the INI settings are only a suggestion and may be ignored." src="../bash/images/readme/wizard-finish.png"/>
+</li>
+<li>
+<p><dfn>版本警告</dfn>- 如果用户的系统不满足该软件包对游戏、脚本扩展工具或图形扩展工具的要求，就会显示此对话框。这些要求可通过相应设置来指定。<a href="#wizardsRequireVersions">所需版本</a>关键词。</p>
+<img alt="Dialog showing that the wizard has been aborted because its SKSE version requirement has not been met (wanted is 0.2.2.4, but installed is only 0.2.2.3)." src="../bash/images/readme/wizard-versions.png"/>
+</li>
+</ul>
+<h3 id="wizards-language">语言结构</h3>
+<p>每个 Wizard 行中只包含一条语句。如果某条语句过长需要分多行书写，则需在每行的末尾加上反斜杠。<code>\</code>这将导致 BAIN 将下一行视为第一行的一部分来读取。</p><p>除文件名外，巫师指令对大小写敏感。在编写巫师指令时，请务必使用正确的大小写格式。</p><p>变量名可以包含任意字母数字字符（a-z、A-Z、0-9）以及下划线（_），但不能以数字开头。不得使用与关键字、函数或常量相同的名称来声明变量。可以通过赋值运算符为变量赋值，且变量可存储以下数据类型：</p><ul>
+<li>整数：即正数、负数或零这样的完整数字。可以使用数学运算符对整数进行各种数学运算。</li><li>小数：包含小数点的实数，例如<code>0.123</code>, <code>-3.5</code>, <code>7.0</code>你可以使用数学运算符对小数进行运算。</li><li>字符串：任何字符序列，例如。<code>"Hello"</code>, <code>'World!'</code>与示例相同，字符串必须用双引号或单引号括起来。可以通过转义序列在字符串中包含特殊字符。可以使用加法和乘法运算符来拼接或重复字符串。还可以使用“in”运算符判断一个字符串是否存在于另一个字符串中。</li></ul>
+<p>常量是由 BAIN 预先定义的变量，其值无法被修改。用户不能创建新的常量。</p><p>注释是巫师引擎会忽略的附加文本，用于向其他读者解释巫师代码的功能。注释以分号开头。<code>;</code>并持续到该行末尾。</p><p>表达式的计算遵循标准的运算顺序，例如：<code>3 + 6 * 2</code>将进行评估<code>15</code>.
+</p><h4>常见错误</h4>
+<ul>
+<li>大小写错误。例如，请确保使用的是正确的大小写形式。<code>SelectSubPackage</code>而非<code>SeleCtsUbpacKage</code>.
+    </li><li>引号不匹配。请确保以双引号开头的字符串也用双引号结尾，同样，以单引号开头的字符串也应用单引号结尾。</li><li>行尾的反斜杠缺失或过多。这会导致错误，或是无法显示所有选项。</li><li>行尾多余的空白或制表符可能会导致选项无法正确显示，例如。<code class="box">"","",""\                  </code>
+</li><li>引用了不存在的图片。请确保在向导中尝试显示的所有图片确实存在。</li></ul>
+<h3 id="wizards-functions">功能</h3>
+<p><dfn id="wizardsCompareGameVersion">比较游戏版本</dfn>– 用于将当前运行的《Wrye Bash》游戏版本与用户指定的版本进行对比测试。<code class="box">CompareGameVersion(version_string)</code>
+</p><ul>
+<li><var>version_string</var>- 用于存储文件版本号的字符串，例如：<code>"1.2.0.416"</code>.
+</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>-1</code>- 已安装版本低于所指定的版本。<var>version_string</var>.
+    </li><li><code>0</code>- 已安装版本与指定版本一致<var>version_string</var>.
+    </li><li><code>1</code>- 已安装版本高于所指定的版本<var>version_string</var>.
+</li></ul>
+<p><dfn id="wizardsCompareSEVersion">比较游戏版本</dfn>– 用于将 Wrye Bash 所运行的游戏中的脚本扩展程序版本与用户指定的版本进行对比测试。<code class="box">CompareSEVersion(version_string)</code>
+</p><ul>
+<li><var>version_string</var>- 用于存储文件版本号的字符串，例如：<code>"0.0.20.1"</code>.
+</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>-1</code>- 已安装版本低于所指定的版本<var>version_string</var>.
+    </li><li><code>0</code>- 已安装版本与所指定的版本一致<var>version_string</var>.
+    </li><li><code>1</code>- 已安装版本高于所指定的版本<var>version_string</var>或者该游戏没有可用的脚本扩展工具。</li></ul>
+<p><dfn id="wizardsCompareGEVersion">比较游戏版本</dfn>– 用于将 Wrye Bash 所运行的游戏中的图形扩展程序当前版本与用户指定的版本进行对比测试。<code class="box">CompareGEVersion(version_string)</code>
+</p><ul>
+<li><var>version_string</var>- 用于存储文件版本号的字符串，例如：<code>"3.0.1"</code>.
+</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>-1</code>- 已安装版本低于所指定的版本。<var>version_string</var>.
+    </li><li><code>0</code>- 已安装版本与所指定的版本一致<var>version_string</var>.
+    </li><li><code>1</code>- 已安装版本高于所指定的版本<var>version_string</var>或者该游戏没有可用的图形扩展程序。</li></ul>
+<p><dfn>比较WB版本</dfn>– 用于将已安装的 Wrye Bash 版本与用户指定的版本进行对比测试。<code class="box">CompareWBVersion(version_string)</code>
+</p><ul>
+<li><var>version_string</var>- 用于存储文件版本号的字符串，例如：<code>"307"</code>.
+</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>-1</code>- 已安装版本低于所指定的版本<var>version_string</var>.
+    </li><li><code>0</code>- 已安装版本与所指定的版本一致<var>version_string</var>.
+    </li><li><code>1</code>- 已安装版本高于所指定的版本<var>version_string</var>.
+</li></ul>
+<p><dfn id="wizardsDataFileExists">数据文件是否存在</dfn>– 检查相对于 Data 目录的一个或多个文件是否存在。如果要检测的文件是插件，该功能还能识别出其“幽灵版本”。只有所有指定的文件都存在时，才会返回结果。<code>True</code>.</p>
+<code class="box">DataFileExists(file_name [, ..., file_name_n])</code>
+<ul>
+<li><var>file_name</var>- 一个字符串或存储字符串的变量，用于指定要测试的、相对于 Data 目录的路径。例如：<code>"Oblivion.esm"</code>将会进行测试。<code>"[path to game]\Data\Oblivion.esm"</code>备注：<ul>
+<li>在指定 Data 目录下的路径时，需使用双反斜杠来表示文件夹分隔。例如，假设 MenuQue.dll 已正确安装，<code>"obse\\plugins\\MenuQue.dll"</code>可以正常使用，但<code>"obse\plugins\MenuQue.dll"</code>将会失败。</li>
+<li>您也可以使用以下语法来查找 Data 目录以上的文件：<code>"..\\SoundCommands.log"</code></li>
+<li>在测试多个文件时，用逗号将每个文件分隔开。这些文件不必都在同一个目录中。
+示例：<code>DataFileExists("Oblivion.esm","..\\SoundCommands.log",
+                    "obse\\plugins\\MenuQue.dll")</code>将准确检测每个文件是否存在。</li>
+<li>路径分隔符会自动转换为当前操作系统所支持的格式，因此您可以使用反斜杠或正斜杠。</li>
+<li>这将进行不区分大小写的检查。<strong>即使在区分大小写的文件系统中也是如此</strong>（如大多数 Linux 文件系统）。</li>
+</ul>
+</li>
+</ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>True</code>- 所有文件均存在。</li><li><code>False</code>- 有一个或多个文件不存在。</li></ul>
+<p><dfn>获取插件加载顺序</dfn>- 返回数据目录中某个插件的当前加载顺序索引。
+    您或许可以将其与其他功能结合使用。<a href="#wizardsGetPluginStatus">获取插件状态</a>先检查该插件是否已启用。</p>
+<code class="box">GetPluginLoadOrder(file_name [, fallback_val])</code>
+<ul>
+<li><var>file_name</var>- 用于存储字符串或字符串变量的字段，指定需要获取加载顺序的插件相对于 Data 目录的路径。</li>
+<li><var>fallback_val</var>- 如果插件没有加载顺序索引（例如被禁用或未安装），则应返回该值。<code>-1</code>默认情况下。</li>
+</ul>
+<p class="indent">返回值：</p>
+<ul class="indent">
+<li><var>fallback_val</var>- 如果该插件没有加载顺序索引。</li>
+<li>否则，即为该插件加载顺序索引对应的正整数。</li>
+</ul>
+<p><dfn id="wizardsGetPluginStatus">获取插件状态</dfn>- 测试数据目录中插件的当前状态。在检测状态时会将“幽灵效果”考虑在内。</p>
+<code class="box">GetPluginStatus(file_name)</code>
+<ul>
+<li><var>file_name</var>- 用于存储字符串或字符串变量的字段，指定插件需要测试的、相对于 Data 目录的路径。</li>
+</ul>
+<p class="indent">返回值：</p>
+<ul class="indent">
+<li><code>-1</code>- 该插件不存在。</li>
+<li><code>0</code>- 该插件未被激活、导入或合并。在 Wrye Bash 的“模组”选项卡中，其对应的复选框处于未选中状态。<svg aria-label="an unchecked checkbox" class="wb-ico wb-checkbox green off" data-wb-use="#wb-checkbox-off"></svg>.</li>
+<li><code>1</code>- 该插件处于未激活状态，但其部分内容已导入到 Bashed Patch 中。在 Wrye Bash 的“模组”选项卡中，它对应的复选框处于选中状态。<svg aria-label="a checkbox with a dot" class="wb-ico wb-checkbox green imp" data-wb-use="#wb-checkbox-imp"></svg>.</li>
+<li><code>2</code>- 该插件处于激活状态。在 Wrye Bash 的“模组”选项卡中，其对应的复选框已被选中。<svg aria-label="a checked checkbox" class="wb-ico wb-checkbox green on" data-wb-use="#wb-checkbox-on"></svg>.</li>
+<li><code>3</code>- 该插件已合并到 Bashed Patch 中。在 Wrye Bash 的“模组”选项卡中，它对应的复选框状态为<svg aria-label="a checkbox with a plus" class="wb-ico wb-checkbox green inc" data-wb-use="#wb-checkbox-inc"></svg>.</li>
+</ul>
+<p><dfn id="wizardsDisableINILine">禁用INILine设置</dfn>- 告诉 Wrye Bash 创建一个 ini 调整文件，通过添加注释的方式禁用指定的设置。除此之外，其行为与其他方式完全相同。<a href="#wizardsEditINI">编辑INI文件</a>.</p>
+<code class="box">DisableINILine(file_name, section, setting)</code>
+<ul>
+<li><var>file_name</var>- 字符串：相对于 Data 目录而言，您想要编辑的 ini 文件名称。</li>
+<li><var>section</var>- 字符串：ini 文件中的对应部分<var>setting</var>所在位置。</li>
+<li><var>setting</var>- 字符串：您希望禁用的设置。</li>
+</ul>
+<p><dfn id="wizardsEditINI">编辑INI文件</dfn>- 告诉 Wrye Bash 创建一个包含若干设置调整的 ini 文件。如果指定应用这些调整的文件来自当前安装包或游戏的 ini 文件，Wrye Bash 会自动应用这些调整；否则，它只会生成该文件供用户手动操作。<code class="box">EditINI(file_name, section, setting, value [, comment])</code>
+</p><ul>
+<li><var>file_name</var>- 字符串：相对于 Data 目录而言，您想要编辑的 ini 文件名称。</li><li><var>section</var>- 字符串：ini 文件中的对应部分<var>setting</var>驻留，或使用“set”、“setGS”和“SetNumericGameSetting”（见下方示例）。</li><li><var>setting</var>- 字符串：您希望修改的设置。</li><li><var>value</var>- 任意值：用于设置该参数的数值。</li><li><var>comment</var>- 字符串：可选。用于为该修改项添加注释。</li></ul>
+<p><dfn id="wizardsExec">执行</dfn>- 这将使巫师执行传给它的指令。这对于创建动态生成的菜单非常有用。<code class="box">Exec(lines)</code>
+</p><ul>
+<li><var>lines</var>- 一个由换行符分隔的、包含要执行命令行的字符串，或是一个存储该字符串的变量。凡是需要显示的反斜杠都必须以三个反斜杠的形式表示。例如：<code>\'</code>应如此书写<code>\\\'</code>.
+</li></ul>
+<p><dfn id="wizardsEndExec">结束执行</dfn>- 用于标记所执行行结束的内部函数<a href="wizardsExec">执行</a>声明。尝试直接调用它将会导致错误。</p>
+<code class="box">EndExec(line_count)</code>
+<ul>
+<li><var>line_count</var>- 匹配的行数<a href="wizardsExec">执行</a>其中包含声明。</li>
+</ul>
+<p><dfn>字符串</dfn>- 用于将数值转换为字符串，例如在需要将整数或小数拼接为字符串时。<code class="box">str(value)</code>
+</p><ul>
+<li><var>value</var>- 任意值。整数、小数、变量、常量或字符串均可。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>字符串表示形式<var>value</var>例如，<code>str(5)</code>将会返回<code>"5"</code>.
+</li></ul>
+<p><dfn>整数类型</dfn>- 用于将数值转换为整数，例如将字符串中的数值转换为整型值。<code class="box">int(value)</code>
+</p><ul>
+<li><var>value</var>- 任意值。可以是整数、小数、变量、常量或字符串。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>整数值<var>value</var>如果可能的话。例如<code>int('65')</code>将会返回<code>65</code>.
+    </li><li><code>0</code>- 如果无法进行整数转换。</li></ul>
+<p><dfn>浮点数</dfn>- 用于将数值转换为十进制形式，例如将存储在字符串中的数值转为十进制值。<code class="box">float(value)</code>
+</p><ul>
+<li><var>value</var>- 任意值。可以是整数、小数、变量、常量或字符串。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>小数值<var>value</var>如果可能的话。例如<code>float('2.4')</code>将会返回<code>2.4</code>.
+    </li><li><code>0.0</code>- 如果无法进行小数转换。</li></ul>
+<p><dfn>长度</dfn>- 用于获取字符串的长度。<code class="box">len(string)</code>
+</p><ul>
+<li><var>string</var>- 字符串、变量或常量。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>如有可能，请提供字符串的长度。</li><li><code>0</code>- 如果无法计算长度。</li></ul>
+<p><dfn id="wizardsendswith">以……结尾</dfn>- 测试字符串的结尾内容。<code class="box">endswith(string, ending_1 [, ..., ending_n])</code>
+</p><ul>
+<li><var>string</var>- 字符串、变量或常量。</li><li><var>ending_1</var>穿过<var>ending_n</var>- 字符串、变量或常量。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>True</code>- 如果字符串以所指定的任意结尾字符结束。</li><li><code>False</code>- 如果该字符串的结尾并非指定的任意一种格式。</li></ul>
+<p><dfn id="wizardsstartswith">以……开头</dfn>- 测试字符串的开头内容。<code class="box">startswith(string, prefix_1 [, ..., prefix_n])</code>
+</p><ul>
+<li><var>string</var>- 字符串、变量或常量。</li><li><var>prefix_1</var>穿过<var>prefix_n</var>- 字符串、变量或常量。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><code>True</code>- 如果该字符串以指定的任何前缀开头。</li><li><code>False</code>- 如果该字符串并非以指定的任何前缀开头。</li></ul>
+<p><dfn id="wizardslower">降低</dfn>- 将字符串转换为小写。<code class="box">lower(string)</code>
+</p><ul>
+<li><var>string</var>- 一个字符串或变量。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li><var>string</var>如有可能，将其转换为小写。</li><li>原文<var>string</var>如果发生错误。</li></ul>
+<p><dfn id="wizardsfind">查找</dfn>- 返回子串首次出现的索引。<code class="box">find(string, substring [, start, stop])</code>
+</p><ul>
+<li><var>string</var>- 需要搜索的字符串或变量。</li><li><var>substring</var>- 需要搜索的字符串或变量。</li><li><var>start</var>- 开始搜索的索引位置<var>string</var>除非另有说明，搜索将从开头开始。<var>string</var>.
+    </li><li><var>stop</var>- 停止搜索的索引位置。可选。如未指定，则搜索会进行到末尾为止。<var>string</var>.
+</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>首次出现的索引位置<var>substring</var>在<var>string</var>.
+    </li><li><code>-1</code>- 如果<var>substring</var>未找到。</li></ul>
+<p><dfn id="wizardsrfind">rfind命令</dfn>- 返回子字符串最后一次出现的索引。<code class="box">rfind(string, substring [, start, stop])</code>
+</p><ul>
+<li><var>string</var>- 需要搜索的字符串或变量。</li><li><var>substring</var>- 需要搜索的字符串或变量。</li><li><var>start</var>- 开始搜索的索引位置<var>string</var>若未特别说明，搜索将从开头开始。<var>string</var>.
+    </li><li><var>stop</var>- 停止搜索的索引位置。可选。如未指定，则在末尾停止搜索。<var>string</var>.
+</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>最后一次出现的索引<var>substring</var>在<var>string</var>.
+    </li><li><code>-1</code>- 如果<var>substring</var>未找到。</li></ul>
+<p><dfn id="wizardsGetFilename">获取文件名</dfn>- 对于包含路径的字符串，返回该字符串中的文件名部分。<code class="box">GetFilename(path_string)</code>
+</p><ul>
+<li><var>path_string</var>- 用于操作的路径字符串或变量。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>文件名在<var>path_string</var>.
+    </li><li>为空字符串。<var>path_string</var>这不是路径。</li></ul>
+<p><dfn id="wizardsGetFolder">获取文件夹</dfn>- 对于包含路径的字符串，返回该字符串中的文件夹部分。<code class="box">GetFolder(path_string)</code>
+</p><ul>
+<li><var>path_string</var>- 用于操作的路径字符串或变量。</li></ul>
+<p class="indent">返回值：</p><ul class="indent">
+<li>该文件夹位于<var>path_string</var>.
+    </li><li>为空字符串<var>path_string</var>不包含文件夹，或并非路径。</li></ul>
+<h3 id="wizards-deprecated-functions">已废弃函数</h3>
+<p><dfn id="wizardsCompareObVersion">比较版本号</dfn>- 使用<a href="#wizardsCompareGameVersion">比较游戏版本</a>改为如此。</p>
+<p><dfn id="wizardsCompareOBSEVersion">比较OBSE版本</dfn>- 使用<a href="#wizardsCompareSEVersion">比较游戏版本</a>改为如此。</p>
+<p><dfn id="wizardsCompareOBGEVersion">比较OBGE版本</dfn>- 使用<a href="#wizardsCompareGEVersion">比较游戏版本</a>取而代之。</p>
+<p><dfn id="wizardsGetEspmStatus">获取ESP状态</dfn>- 使用<a href="#wizardsGetPluginStatus">获取插件状态</a>改为如此。</p>
+<h3 id="wizards-keywords">关键词</h3>
+<p>关键字类似于函数，但其参数无需加括号，用于控制向导的流程或执行特殊任务。</p><p><dfn id="wizardsSelectSubPackage">选择子包</dfn>- 使指定的子包被选中以便安装。这相当于在 BAIN 窗口中勾选该子包及其内的所有插件。</p>
+<code class="box">SelectSubPackage name</code>
+<ul>
+<li><var>name</var>- 用于存储要选择的子包名称的字符串或变量。</li></ul>
+<p><dfn>取消选择子包</dfn>- 使指定的子包在安装过程中被取消选中。这相当于在 BAIN 窗口中取消该子包的勾选。<code class="box">DeSelectSubPackage name</code>
+</p><ul>
+<li><code>name</code>- 用于存储要取消选中的子包名称的字符串或变量。</li></ul>
+<p><dfn id="wizardsSelectPlugin">选择插件</dfn>- 使指定的插件被选中以进行安装。这相当于在 BAIN 窗口的插件过滤器中勾选该插件。</p>
+<code class="box">SelectPlugin plugin_name</code>
+<ul>
+<li><var>plugin_name</var>- 用于存储要选择的插件名称的字符串或变量。</li>
+</ul>
+<p><dfn id="wizardsDeSelectPlugin">取消选择插件</dfn>- 使指定的插件在安装过程中被取消选中。这相当于在 BAIN 窗口的插件过滤器中取消该插件的勾选。</p>
+<code class="box">DeSelectPlugin plugin_name</code>
+<ul>
+<li><var>plugin_name</var>- 用于存储要取消选中的插件名称的字符串或变量。</li>
+</ul>
+<p><dfn>全选</dfn>- 选中所有子包和插件以进行安装。这相当于先在 BAIN 窗口中选中所有子包，然后再在 BAIN 窗口的插件过滤器中选中所有插件。</p>
+<code class="box">SelectAll</code>
+<p><dfn>取消全选</dfn>- 取消选中所有子包和插件以进行卸载。这相当于先在 BAIN 窗口的插件过滤器中取消选中所有插件，然后再取消选中 BAIN 窗口中的所有子包。</p>
+<code class="box">DeSelectAll</code>
+<p><dfn id="wizardsSelectAllPlugins">全选插件</dfn>- 选中所有插件以进行安装。这相当于在 BAIN 窗口的插件筛选器中勾选了所有插件。</p>
+<code class="box">SelectAllPlugins</code>
+<p><dfn id="wizardsDeSelectAllPlugins">取消选择所有插件</dfn>– 使所有插件都取消安装选项。这相当于在 BAIN 窗口的插件过滤器中取消选中所有插件。</p>
+<code class="box">DeSelectAllPlugins</code>
+<p><dfn id="wizardsRenamePlugin">重命名插件</dfn>- 更改插件的显示名称。请注意，文件扩展名必须保持不变。</p>
+<code class="box">RenamePlugin original_name, new_name</code>
+<ul>
+<li><var>original_name</var>– 该插件在 BAIN 包中的名称。</li>
+<li><var>new_name</var>– 您希望插件安装后使用的新名称。</li>
+</ul>
+<p><dfn id="wizardsResetPluginName">重置插件名称</dfn>- 将插件的名称重置为默认名称。</p>
+<code class="box">ResetPluginName original_name</code>
+<ul>
+<li><var>original_name</var>– 该插件在 BAIN 包中显示的名称。</li>
+</ul>
+<p><dfn id="wizardsResetAllPluginNames">重置所有插件名称</dfn>- 将所有插件的名称重置为默认名称。</p>
+<code class="box">ResetAllPluginNames</code>
+<p><dfn>注意事项</dfn>- 在向导的最后、完成页面上，为用户添加一条显示备注。<code>'- '</code>将会自动添加。<code class="box">Note text</code>
+</p><ul>
+<li><var>text</var>– 用于在完成页面上显示的字符串、字符串变量或可计算出字符串值的表达式。</li></ul>
+<p><dfn id="wizardsReturn">返回</dfn>- 表示向导操作已完成。系统将直接跳转至结束页面。<code class="box">Return</code>
+</p><p><dfn id="wizardsCancel">取消</dfn>- 取消该向导，可选择在对话框中显示取消原因的文本。<code class="box">Cancel [text]</code>
+</p><ul>
+<li><var>text</var>- 可选。用于在对话框中显示取消该向导的原因的文本。</li></ul>
+<p><dfn id="wizardsRequireVersions">所需版本</dfn>– 根据您指定的版本要求检测用户的系统。如果未满足这些要求，将会出现警告对话框，询问您是否仍要继续。<code class="box">RequireVersions game_version [, se_version, ge_version, wrye_bash_version]</code>
+</p><ul>
+<li><var>game_version</var>- 需要测试的游戏版本。参见<a href="#wizardsCompareGameVersion">比较游戏版本</a>为保持字符串的正确格式。</li><li><var>se_version</var>- 可选。用于测试的 Script Extender 版本。参见<a href="#wizardsCompareSEVersion">比较游戏版本</a>为保持字符串的正确格式。</li><li><var>ge_version</var>- 可选。用于测试的图形扩展程序版本。参见<a href="#wizardsCompareGEVersion">比较游戏版本</a>为保持字符串的正确格式。</li><li><var>wrye_bash_version</var>- 可选。用于测试的 Wrye Bash 版本。见<a href="#wizardsCompareWBVersion">比较WB版本</a>如需更多信息。</li></ul>
+<p><dfn>如果-elif-否则-结束如果语句</dfn>- 一个基本的 If 控制结构。<code class="box">If statement
+   lines
+Elif statement
+   lines
+Elif statement
+   lines
+Else
+   lines
+EndIf</code>
+</p><ul>
+<li><code>If</code>- 开始控制块。<ul>
+<li><var>statement</var>- 如果<var>statement</var>计算结果为<code>True</code>然后会执行其后的代码行，直到遇到下一个 Elif、Else 或 EndIf。</li></ul>
+</li><li><code>Elif</code>
+<ul>
+<li><var>statement</var>- 如果<var>statement</var>计算结果为<code>True</code>，以及初始状态<code>If</code>之前的版本中也没有。<code>Elif</code>是<code>True</code>，然后是其后的那些行。<code>Elif</code>将会持续运行，直到下次为止。<code>Elif</code>, <code>Else</code>，或者<code>EndIf</code>.
+    </li></ul>
+</li><li><code>Else</code>- 如果初始状态为<code>If</code>之前的版本中也没有。<code>Elif</code>是<code>True</code>，随后接下来的命令将会依次执行，直到出现<code>EndIf</code>条件已满足。</li><li><code>EndIf</code>- 表示结束信号<code>If</code>控制块。</li></ul>
+<p><dfn>while循环：继续、中断、结束while循环</dfn>- 一个循环结构。<code class="box">While statement
+    lines
+    Continue
+    lines
+    Break
+    lines
+EndWhile</code>
+</p><ul>
+<li><code>While</code>- 开始执行 while 循环。<ul>
+<li><var>statement</var>- 如果<var>statement</var>计算结果为<code>True</code>这些行开始执行，否则执行流程将跳转到其后。<code>EndWhile</code>.
+    </li></ul>
+</li><li><code>Continue</code>– 向 while 循环发出信号，使其重新开始执行。<code>While</code>声明。</li><li><code>Break</code>- 用于指示 while 循环结束执行，跳转至循环之后。<code>EndWhile</code>.
+    </li><li><code>EndWhile</code>- 结束该 while 循环。<var>statement</var>将会重新进行评估，如果……<code>True</code>执行将再次从开头处开始。<code>While</code>阻挡。</li></ul>
+<p><dfn id="wizardsForContinueBreakEndFor">For-继续-Break-结束For</dfn>- 一个 For 循环。<code class="box">For <var>var</var> from <var>start_value</var> to <var>end_value</var> [by <var>increment_value</var>]
+    lines
+    Continue
+    lines
+    Break
+    lines
+EndFor
+
+For sub in SubPackages
+    For file in sub
+        lines
+    EndFor
+EndFor</code>
+</p><ul>
+<li><code>For</code>- 开始循环语句。循环语句共有三种类型。<ul>
+<li><code><var>var</var> from <var>start_value</var> to <var>end_value</var> [by <var>increment_value</var>]</code>
+<ul>
+<li><var>var</var>- 用于存储数值的变量。</li><li><var>start_value</var>- 初始值<var>var</var>.
+            </li><li><var>end_value</var>- 数值<var>var</var>这将结束该 for 循环。</li><li><var>increment_value</var>- 可选。此值为要添加的数值。<var>var</var>在每次循环结束时。默认值为<code>1</code>如果<var>start_value</var>大于<var>end_value</var>或者<code>-1</code>否则。</li></ul>
+</li><li><code><var>sub</var> in SubPackages</code>- 这种 for 循环用于遍历当前包中的子包名称。</li>
+<ul>
+<li><var>sub</var>- 一个用于存储子包名称的变量。</li>
+</ul>
+<li><code><var>file</var> in <var>sub</var></code>- 这种 for 循环会遍历给定子包中的文件名。这些文件名是相对于 Data 目录而言的，尚未经过 BAIN 通常会进行的重映射处理。<ul>
+<li><var>file</var>- 用于存储文件名的变量。</li><li><var>sub</var>- 需要遍历的子包名称。</li></ul>
+</li></ul>
+</li><li><code>Continue</code>- 用于指示循环再次开始执行<code>For</code>声明。</li><li><code>Break</code>- 表示循环结束，跳转至其后部分执行。<code>EndFor</code>.
+    </li><li><code>EndFor</code>- 结束循环。</li></ul>
+<p><dfn id="wizardsSelectOne">选择一项</dfn>- 显示一个对话框，用户可从选项列表中选择一个选项。<code class="box">SelectOne 'description', \
+        'option 1', 'description 1', 'image 1', \
+        'option 2', 'description 2', 'image 2', \
+        ...,  \
+        'option n', 'description n', 'image n'
+Case 'option 1'
+    lines
+    Break
+Case 'option 2'
+    lines
+    Break
+
+Case 'option n'
+    lines
+    Break
+Default
+    lines
+    Break
+EndSelect</code>
+</p><ul>
+<li><code>SelectOne</code>- 当用户点击“下一步”按钮后，就会进入选择控制模块。<ul>
+<li><var>description</var>- 对话框顶部显示的文本。</li><li><var>option n</var>- 特定选项的文本。如果文本以“|”开头，则视为默认选项，将会被自动选中。</li><li><var>description n</var>- 显示时的描述文字<var>option n</var>已被选中。</li><li><var>image n</var>- 显示时的图片<var>option n</var>已选中。若输入空字符串，则不会显示任何图像。</li>
+</ul>请注意，您也可以使用随 Wrye Bash 附带的图片中的任意一张。<code>Mopy/bash/images/Wizard Images</code>文件夹。只需指定路径即可。<code>Wizard Images\\[image]</code>如果您的包中找不到匹配的图像，Wrye Bash就会去那里查找。例如，指定<code>Wizard Images\\</code>这将允许您将 Wrye Bash 的启动画面作为图像用于您的向导界面中。</li>
+<li><code>Case <var>option</var></code>- 后面的那些行<code>Case</code>如果用户在对话框中选择了对应的选项，该程序将会持续运行，直到……<code>Break</code>或者<code>EndSelect</code>已满足条件。<ul>
+<li><var>option</var>- 该选项为<code>Case</code>对应于。</li></ul>
+</li><li><code>Default</code>- 后面的那些行<code>Default</code>将会持续运行，直到……为止。<code>Break</code>或者<code>EndSelect</code>如果没有任何一个<code>Case</code>选项已运行完毕。</li><li><code>Break</code>- 停止当前运行的线路<code>Case</code>或者<code>Default</code>阻挡。</li><li><code>EndSelect</code>- 表示“选择”控制块的结束。</li></ul>
+<p><dfn id="wizardsSelectMany">多选</dfn>- 显示一个对话框，用户可从列表中选择多个选项。用户点击“下一步”按钮后，系统将进入选择控件模块。具体用法请参见 SelectOne。<code class="box">SelectMany 'description', \
+        'option 1', 'description 1', 'image 1', \
+        'option 2', 'description 2', 'image 2', \
+        ...,  \
+        'option n', 'description n', 'image n'
+Case 'option 1'
+    lines
+    Break
+Case 'option 2'
+    lines
+    Break
+
+Case 'option n'
+    lines
+    Break
+EndSelect</code>
+</p><h3 id="wizards-deprecated-keywords">已废弃的关键词</h3>
+<p><dfn>选择ESP模块</dfn>- 使用<a href="#wizardsSelectPlugin">选择插件</a>改为如此。</p>
+<p><dfn>取消选择ESP</dfn>- 使用<a href="#wizardsDeSelectPlugin">取消选择插件</a>改为如此。</p>
+<p><dfn>选中所有ESP/ESL/ESM插件</dfn>- 使用<a href="#wizardsSelectAllPlugins">选中所有插件</a>改为如此。</p>
+<p><dfn>取消选择所有ESP/ESL/ESM</dfn>- 使用<a href="#wizardsDeSelectAllPlugins">取消选择所有插件</a>改为如此。</p>
+<p><dfn>重命名ESPM</dfn>- 使用<a href="#wizardsRenamePlugin">重命名插件</a>改为如此。</p>
+<p><dfn>重置ESP名称</dfn>- 使用<a href="#wizardsResetPluginName">重置插件名称</a>改为如此。</p>
+<p><dfn>重置所有ESP名称</dfn>- 使用<a href="#wizardsResetAllPluginNames">重置所有插件名称</a>改为如此。</p>
+<h3 id="wizards-operators">操作符</h3>
+<h4>数学运算符</h4>
+<p>注意：对于这些运算符，小数与整数可以混合使用。此时整数会自动转换为小数，最终结果也将为小数形式。</p>
+<p><dfn>新增内容</dfn>: <code>+</code>将一个整数或小数加到另一个数上，或将两个字符串连接起来。</p>
+<code class="box">1 + 1          ; == 2
+1 + 1.0        ; == 2.0
+1.0 + 1        ; == 2.0
+1.0 + 1.0      ; == 2.0
+"foo" + "bar"  ; == "foobar"</code>
+<p><dfn>减法</dfn>: <code>-</code>从另一个数值中减去一个整数或小数。</p>
+<code class="box">1 - 1      ; == 0
+1 - 1.0    ; == 0.0
+1.0 - 1    ; == 0.0
+1.0 - 1.0  ; == 0.0</code>
+<p><dfn>乘法运算</dfn>: <code>*</code>将一个整数或小数与另一个数值相乘，或将一个字符串重复多次（参见示例）。</p>
+<code class="box">1 * 1       ; == 1
+1 * 1.0     ; == 1.0
+1.0 * 1     ; == 1.0
+1.0 * 1.0   ; == 1.0
+; Multiplying a string by
+; an integer just concatenates
+; several copies of it:
+"foo" * 2   ; == "foofoo"
+3 * "h"     ; == "hhh"
+; Note: the other type _must_
+; be an integer, decimals
+; are not allowed:
+2.0 * "a"   ; error</code>
+<p><dfn>部门</dfn>: <code>/</code>将一个整数或小数除以另一个数。除以零会导致错误。</p>
+<code class="box">1 / 1      ; == 1
+1 / 1.0    ; == 1.0
+1.0 / 1    ; == 1.0
+1.0 / 1.0  ; == 1.0
+1 / 0      ; error
+1.0 / 0.0  ; error</code>
+<p><dfn>模块</dfn>: <code>%</code>返回一个整数或小数除以另一个数的余数。如果第二个参数为0，则会引发错误。</p>
+<code class="box">5 % 2      ; == 1
+4 % 2      ; == 0
+5 % 5      ; == 0
+5.0 % 2.5  ; == 0.0
+-7 % 4     ; == -3
+1 % 0      ; error
+1.0 % 0.0  ; error</code>
+<p><dfn>幂运算</dfn>: <code>^</code>将一个整数或小数提升到另一个数的幂次。</p>
+<code class="box">2 ^ 2      ; == 4
+2 ^ 2.0    ; == 4.0
+2.0 ^ 2    ; == 4.0
+2.0 ^ 2.0  ; == 4.0</code>
+<h4>赋值运算符</h4>
+<p>赋值运算符用于将值赋予变量。复合赋值运算符则是赋值运算符与数学运算符的结合体，能够一步完成运算并将结果赋给变量。</p>
+<p><dfn>任务分配</dfn>: <code>=</code></p>
+<code class="box">test = 3     ; test now has value 3
+foo = "bar"  ; foo now has value "bar"</code>
+<p><dfn>复合赋值</dfn>: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>^=</code></p>
+<ul>
+<li>补充内容<code>var += expr</code>): 指定该运算的结果<code>var + expr</code>前往<var>var</var>换句话说，这相当于。<code>var = var + expr</code>也可用于将两个字符串连接起来，方式与之前相同。<code>+</code>.</li>
+<li>减法<code>var -= expr</code>): 指定该运算的结果<code>var - expr</code>前往<var>var</var>换句话说，这相当于。<code>var = var - expr</code>.</li>
+<li>乘法运算<code>var *= expr</code>): 指定该运算的结果<code>var * expr</code>前往<var>var</var>换句话说，这相当于。<code>var = var * expr</code>也可用于通过整数来重复字符串，用法与之类似。<code>*</code>.</li>
+<li>部门/分部<code>var /= expr</code>): 指定该运算的结果<code>var / expr</code>前往<var>var</var>换句话说，这相当于。<code>var = var / expr</code>.</li>
+<li>模块<code>var %= expr</code>): 指定该运算的结果<code>var % expr</code>前往<var>var</var>换句话说，这相当于。<code>var = var % expr</code>.</li>
+<li>幂运算<code>var ^= expr</code>): 指定该运算的结果<code>var ^ expr</code>前往<var>var</var>换句话说，这相当于。<code>var = var ^ expr</code>.</li>
+</ul>
+<h4>递增与递减运算符</h4>
+<p>这些运算符会将包含整数或小数的变量值增加或减少1，然后返回修改后的数值。它们可以放在需要被修改的变量之前或之后。</p>
+<p><em>警告：</em>如果您熟悉其他编程语言，或许会这样认为。<code>++var</code>以及<code>var++</code>行为会有所不同。但在法师职业中，两者的行为方式完全相同，都会返回新值。<code>var + 1</code>两种情况皆然。换言之，法师仅支持<em>预递增</em>以及<em>预减操作</em>操作符。</p>
+<ul>
+<li><dfn>递增</dfn>: <code>++</code>将某个变量值增加<code>1</code>并返回新值。<code class="box">foo = 1      ; foo == 1
+bar = foo++  ; foo == 2, bar == 2
+++bar        ; foo == 2, bar == 3</code></li>
+<li><dfn>减1</dfn>: <code>--</code>将变量值减少<code>1</code>并返回新值。<code class="box">foo = 3      ; foo == 3
+bar = foo--  ; foo == 2, bar == 2
+--bar        ; foo == 2, bar == 1</code></li>
+</ul>
+<h4>布尔运算符</h4>
+<p>布尔运算符可用于检测数值的逻辑真值。</p><p><dfn>还有</dfn>: <code>&amp;</code>, <code>and</code>返回<code>True</code>如果表达式的两边均为真，则<code>False</code>否则。<code class="box">var1 &amp; var2</code>
+<code class="box">var1 and var2</code>
+</p><p><dfn>或者</dfn>: <code>|</code>, <code>or</code>返回<code>True</code>如果该表达式的任意一侧为真，则<code>False</code>否则。<code class="box">var1 | var2</code>
+<code class="box">var1 or var2</code>
+</p><p><dfn>不</dfn>: <code>!</code>, <code>not</code>返回<code>True</code>如果该表达式为<code>False</code>，以及<code>False</code>如果该表达式为<code>True</code>.
+<code class="box">!value</code>
+<code class="box">not value</code>
+</p><p><dfn>在</dfn>: <code>in</code>返回<code>True</code>如果表达式的左侧内容包含在右侧中，则<code>False</code>否则。<code class="box">If value in SubPackages
+    ; do something here
+EndIf</code>
+</p><h4>比较运算符</h4>
+<p>比较运算符用于对两个值或变量进行相互比较。</p><p><dfn>相等</dfn>: <code>==</code>返回<code>True</code>如果该表达式的左侧等于右侧，那么<code>False</code>否则。<code class="box">var1 == var2</code>
+</p><p><dfn>不相等</dfn>: <code>!=</code>返回<code>True</code>如果该表达式的左侧不等于右侧，那么<code>False</code>否则。<code class="box">var1 != var2</code>
+</p><p><dfn>大于或等于</dfn>: <code>&gt;=</code>返回<code>True</code>如果该表达式的左侧值大于或等于右侧值，则<code>False</code>否则。<code class="box">var1 &gt;= var2</code>
+</p><p><dfn>大于</dfn>: <code>&gt;</code>返回<code>True</code>如果该表达式的左侧值大于右侧值，则<code>False</code>否则。<code class="box">var1 &gt; var2</code>
+</p><p><dfn>小于或等于</dfn>: <code>&lt;=</code>返回<code>True</code>如果该表达式的左侧小于或等于右侧，那么<code>False</code>否则。<code class="box">var1 &lt;= var2</code>
+</p><p><dfn>小于</dfn>: <code>&lt;</code>返回<code>True</code>如果该表达式的左侧值小于右侧值，则<code>False</code>否则。<code class="box">var1 &lt; var2</code>
+</p><h4 id="wizards-operators-ci">不区分大小写的运算符</h4>
+<p>某些运算符存在不区分大小写的版本，其功能与普通版本相同，但在比较字符串时会忽略大小写。这类不区分大小写的运算符以冒号结尾。<code>:</code>以下为不区分大小写的运算符：</p><ul>
+<li><code>==:</code>
+</li><li><code>!=:</code>
+</li><li><code>&gt;=:</code>
+</li><li><code>&gt;:</code>
+</li><li><code>&lt;=:</code>
+</li><li><code>&lt;:</code>
+</li><li><code>in:</code>
+</li></ul>
+<h4 id="wizards-operators-dot">点运算符</h4>
+<p>点运算符可用于在变量上调用函数，而无需在函数的参数中指定该变量。对于有过面向对象编程经验的人来说，这一功能应该很熟悉：<code class="box">; These two are equivalent
+myStr.startswith("foo")
+startswith(myStr, "foo")</code>
+</p><p>以下函数可通过点运算符来使用：</p><ul>
+<li><code>len</code>
+</li><li><code>endswith</code>
+</li><li><code>startswith</code>
+</li><li><code>lower</code>
+</li><li><code>find</code>
+</li><li><code>rfind</code>
+</li></ul>
+<h4>索引与切片</h4>
+<p>索引用于访问序列中的特定位置。切片则是索引的扩展功能，可用于获取序列中的某一部分内容。目前只有字符串和字符串变量支持索引/切片操作，其语法与 Python 的语法完全相同。</p>
+<p><dfn>建立索引</dfn>:</p>
+<code class="box">string[index]</code>
+<ul>
+<li><var>index</var>用于检索物品的索引。序列中的第一个物品的索引为0。</li>
+</ul>
+<p><dfn>切割功能</dfn>:</p>
+<code class="box">string[start:stop:step]</code>
+<ul>
+<li><var>start</var>起始索引。序列中的第一个元素的索引为0。若未指定，则索引将从0开始。</li>
+<li><var>stop</var>：要停止的索引位置。若未指定，则使用冒号。<code>:</code>如果指定了该参数，索引将会继续到序列的末尾。如果没有指定且未提供冒号，则仅会对一个字符进行索引。</li>
+<li><var>step</var>：索引时递增的数值。例如，该数值为<code>2</code>会返回序列中的每隔一个项目。若未指定，则值为<code>1</code>将会被使用。</li>
+</ul>
+<p>负数值表示<var>index</var>, <var>start</var>以及<var>stop</var>其位置将相对于序列的末尾。例如，<code>-1</code>即序列末尾的第一个字符。</p>
+<p>示例：</p>
+<code class="box">"Hello"[0]    ; returns "H"
+"Hello"[2]    ; returns "l"
+"Hello"[0:]   ; returns "Hello"
+"Hello"[:]    ; returns "Hello"
+"Hello"[0:2]  ; returns "He"
+"Hello"[-1]   ; returns "o"
+"Hello"[1:3]  ; returns "el"
+"Hello"[-2:]  ; returns "lo"
+</code>
+<h3 id="wizards-constants">标准常量</h3>
+<p>BAIN Wizards 中仅定义了三个常量。</p><p><dfn>真实</dfn> - <code>True</code>等于布尔值<code>true</code>（文本显示形式）或<code>1</code>（二进制表示形式）。</p>
+<p><dfn>错误</dfn> - <code>False</code>等于布尔值<code>false</code>（文本显示形式）或<code>0</code>（二进制表示形式）。</p>
+<p><dfn>子包</dfn>- 一个字符串列表。其中包含该向导所属的安装程序子包的名称。可以通过循环遍历该列表。<code>For</code>声明或与……一起使用<code>in</code>操作员。</p>
+<h3 id="wizards-escape">转义序列</h3>
+<p>转义序列是一组特殊的字符组合，可用于输出不同的字符。允许使用的转义序列包括：</p><ul>
+<li><code>\"</code>：输出一个双引号字符<code>"</code>这样你就可以在字符串中加入引号，而不会让巫师引擎误以为已到达字符串结尾。</li><li><code>\'</code>：输出一个单引号字符<code>'</code>这样你就可以在字符串中加入引号，而不会让巫师引擎误以为已到达字符串末尾。</li><li><code>\t</code>：输出一个制表符。</li><li><code>\n</code>：换行输出。</li><li><code>\\</code>：输出反斜杠<code>\</code>.
+</li></ul>
+<h3 id="wizards-examples">示例</h3>
+<h4>荒野中的巫师们</h4>
+<p>以下模组包含巫师脚本，可作为有用的参考资料：<a href="https://www.nexusmods.com/oblivion/mods/19628">动态窗口照明系统与烟囱——AWLS</a>,  <a href="https://www.nexusmods.com/oblivion/mods/31062">BAIN转换文件</a>,  <a href="https://www.nexusmods.com/oblivion/mods/16513">Bananasplit 更美好的城市</a>,  <a href="https://www.nexusmods.com/oblivion/mods/36005">快速简易的 Frans WIZBAIN 档案创建工具——仅支持英文界面</a>,  <a href="https://www.nexusmods.com/oblivion/mods/35856">金属质感光标模组</a>,  <a href="https://www.nexusmods.com/oblivion/mods/19370">独特景观合集</a>,  <a href="https://www.nexusmods.com/oblivion/mods/18305">天气——完全自然风格</a>.
+</p><h4>创建包概览</h4>
+<p>每个法术师条目都应包含一段简短概述，供用户在开始实际安装步骤之前阅读。请注意，下方的示例中并未出现此类内容。<code>Case</code>所使用的语句及默认字符<code>|</code>位于……之前<code>Start Here_Readme</code>.
+<code class="box">SelectOne "Welcome to the ExampleMod's mod Setup Wizard", \
+    "|Start Here_Readme", "If this is the first time you install this mod it's recommended that you carefully read the rest of the selections readme's to have an idea of what the optional parts of this mod do.", "", \
+    "ExampleMod Overview", "ExampleText bla bla bla \n\nBla Bla Bla \n\n Bla Bla\n Bla", "", \
+    "Changelog", "Example Fixes Release 1.01 \nExample Full Public 1.0 Release \nExample 2nd Beta Release 0.91 \n0.9 - Example Beta Release \n0.3 - Example Alpha Release \n0.01 - Example Initial Release", "", \
+    "Guidelines for a Example install", "", "", \
+    "ExampleMod Screenshots", "", "Screenshots\\ExampleScreenshot.jpg", \
+    "Credits\\Authors", "Wrye - For BAIN. Woooooooot! \nLojack - For the wonderful BAIN wizard installer feature. \nMetallicow - For chewing the cud.", "", \
+    "Language", "Language or Nationality this BAIN wizard was written in. \n\n English (USA)", "Wizard Images\\EnglishUSA.jpg"
+EndSelect
+</code>
+</p><h4>是/否问题</h4>
+<p>在需要向用户提问并获取是/否答案时非常有用。<code>SelectOne</code>以及<code>SelectSubPackage</code>在下方的示例中，该关键词可以被其他关键字替代。<code class="box">SelectOne "Example: Yes/No Question?", \
+      "Yes", "Description", "Wizard Images\\Yes.jpg", \
+      "No", "Description", "Wizard Images\\No.jpg"
+    Case "Yes"
+        SelectSubPackage "00 Example Subpackage" ;;;Action/No Action
+        Break
+    Case "No"
+        ;No Plugin ;;Action/No Action
+        Break
+EndSelect
+</code>
+</p><h4>检查插件是否存在。</h4>
+<p>假设你想在用户数据文件夹中查找某个特定插件，以确认是否需要应用某个补丁（可能是你自己创建的）。<code class="box">If DataFileExists("ExamplePlugin.esp")
+    Note "ExamplePlugin Detected." ;;;Action/No Action
+    SelectPlugin "PatchPlugin.esp" ;;;Action/No Action
+Else ; ExamplePlugin.esp wasn't detected
+    ; No Plugin                    ;;;Action/No Action
+EndIf
+</code>
+</p><h4>安全使用新版 BAIN 工具功能</h4>
+<p>当你需要使用 Wrye Bash 最新版本才具备的功能，同时又希望为使用旧版本的用户保留兼容性时，此功能非常有用。<code class="box">If CompareWBVersion('292') &gt;= 0
+    ; User is running 292+
+    ; Do some 292+ only stuff here, like...
+    EditINI('Oblivion.ini', 'Display', 'bAllowScreenShot', 1)
+Else
+    ; User is running &lt; 292, so EditINI is unavailable.
+    Note "Don't forget to enable screenshots in Oblivion.ini"
+EndIf
+</code>
+</p><h4>其他功能示例</h4>
+<p>这些：<code class="box">EditINI('TargetINI.ini', 'set', 'ANVars.UseEW', 1)
+EditINI('TargetINI.ini', 'setGS', 'fPCBaseMagickaMult', 1)
+EditINI('TargetINI.ini', 'SetNumericGameSetting', 'fPerkSneakAttackMarksmanNoviceMult', 1.5, "default is 2.0")
+</code>
+</p><p>将生成 INI 配置调整项：<code class="box">set ANVars.UseEW to 1
+setGS fPCBaseMagickaMult 1
+SetNumericGameSetting fPerkSneakAttackMarksmanNoviceMult 1.5;default is 2.0
+</code>
+</p><p>此内容：<code class="box">GetFilename("C:\Program Files\Bethesda Softworks\Oblivion\Oblivion.exe")</code>
+</p><p>会返回<code>"Oblivion.exe"</code>这个：<code class="box">GetFilename("C:\Program Files\Bethesda Softworks\Oblivion")</code>
+</p><p>将返回空字符串。</p><p>此内容：<code class="box">GetFolder("Data\mine.esp")</code>
+</p><p>会返回<code>"Data"</code>这个：<code class="box">GetFolder("mine.esp")</code>
+</p><p>将返回空字符串。</p><h3 id="wizards-obmm">法师对抗OBMM脚本</h3>
+<p>本节将比较 Wizards 中提供的功能与关键字，以及 OBMM 脚本中所具备的功能与关键字。</p><h4>OBMM脚本与Wizards功能之间存在直接关联。</h4>
+<table>
+<thead><tr><th>OBMM 脚本</th><th>巫师们</th></tr></thead><tbody>
+<tr><td><code class="box">If &lt;function&gt; [...]
+IfNot &lt;function&gt; [...]</code>
+</td><td><code class="box">If statement
+If not statement</code>
+</td></tr><tr><td><code class="box">Else
+EndIf</code>
+</td><td><code class="box">Elif
+Else
+EndIf</code>
+</td></tr><tr><td><code class="box">If DialogYesNo &lt;Message&gt; [Title]</code>
+</td><td><code class="box">SelectOne message, "Yes", yes_description, yes_image, "No", no_description, no_image
+Case "Yes"
+    statements
+    Break
+Case "NO"
+    statements
+    Break
+EndSelect</code>
+</td></tr><tr><td><code class="box">If DataFileExists &lt;FileName&gt;</code>
+</td><td><code class="box">If DataFileExists(filename)</code>
+</td></tr><tr><td><code class="box">If ScriptExtenderPresent</code>
+</td><td><code class="box">If CompareSEVersion("0.0.0.0") == 1</code>
+</td></tr><tr><td><code class="box">If ScriptExtenderNewerThan &lt;version&gt;</code>
+</td><td><code class="box">If CompareSEVersion(version) == 1</code>
+</td></tr><tr><td><code class="box">If GraphicsExtenderPresent</code>
+</td><td><code class="box">If CompareGEVersion("0.0.0.0") == 1</code>
+</td></tr><tr><td><code class="box">If GraphicsExtenderNewerThan &lt;version&gt;</code>
+</td><td><code class="box">If CompareGEVersion(version) == 1</code>
+</td></tr><tr><td><code class="box">If OblivionNewerThan &lt;version&gt;</code>
+</td><td><code class="box">If CompareGameVersion(version) == 1</code>
+</td></tr><tr><td><code class="box">If Equal &lt;arg1&gt; &lt;arg2&gt;
+If GreaterThan &lt;arg1&gt; &lt;arg2&gt;
+If GreaterEqual &lt;arg1&gt; &lt;arg2&gt;
+If fGreaterThan &lt;arg1&gt; &lt;arg2&gt;
+If fGreaterEqual &lt;arg1&gt; &lt;arg2&gt;</code>
+</td><td><code class="box">If statement == statement
+If statement &gt; statement
+If statement &gt;= statement
+If statement &gt; statement
+If statement &gt;= statement</code>
+</td></tr><tr><td><code class="box">Select &lt;Title&gt; &lt;Option1&gt; [Option2] [...]
+SelectWithPreview &lt;Title&gt; &lt;Option1&gt; &lt;ImagePath1&gt; [Option2] [ImagePath2] [...]
+SelectWithDescriptions &lt;Title&gt; &lt;Option1&gt; &lt;Description1&gt; [Option2] [Description2] [...]
+SelectWithDescriptionsAndPreviews &lt;Title&gt; &lt;Option1&gt; &lt;ImagePath1&gt; &lt;Description1&gt; [Option2] [ImagePath2] [Description2] [...]</code>
+</td><td><code class="box">SelectOne title, option1, description1, image1, option2, description2, image2 [...]</code>
+</td></tr><tr><td><code class="box">SelectMany &lt;Title&gt; &lt;Option1&gt; [Option2] [...]
+SelectManyWithPreview &lt;Title&gt; &lt;Option1&gt; &lt;ImagePath1&gt; [Option2] [ImagePath2] [...]
+SelectManyWithDescriptions &lt;Title&gt; &lt;Option1&gt; &lt;Description1&gt; [Option2] [Description2] [...]
+SelectManyWithDescriptionsAndPreviews &lt;Title&gt; &lt;Option1&gt; &lt;ImagePath1&gt; &lt;Description1&gt; [Option2] [ImagePath2] [Description2] [...]</code>
+</td><td><code class="box">SelectMany title, option1, description1, image1 [...]</code>
+</td></tr><tr><td><code class="box">Case &lt;option&gt;
+    Default
+    Break
+EndSelect</code>
+</td><td><code class="box">Case option
+    Default
+    Break
+EndSelect</code>
+</td></tr><tr><td><code class="box">For Count &lt;Variable&gt; &lt;Start&gt; &lt;End&gt; [Step]
+    Continue
+    Exit
+EndFor</code>
+</td><td><code class="box">For variable from start to end by step
+    Continue
+    Break
+EndFor</code>
+</td></tr><tr><td><code class="box">Return</code>
+</td><td><code class="box">Return</code>
+</td></tr><tr><td><code class="box">DontInstallPlugin &lt;Plugin&gt;
+InstallPlugin &lt;Plugin&gt;</code>
+</td><td><code class="box">DeSelectPlugin plugin
+SelectPlugin plugin</code>
+</td></tr><tr><td><code class="box">CopyPlugin &lt;CopyFrom&gt; &lt;CopyTo&gt;</code>
+</td><td><code class="box">RenamePlugin original_name new_name</code>
+</td></tr><tr><td><code class="box">EditINI &lt;section&gt; &lt;key&gt; &lt;value&gt;</code>
+</td><td><code class="box">EditINI("Oblivion.ini", section, setting, value)</code>
+</td></tr><tr><td><code class="box">FatalError</code>
+</td><td><code class="box">Cancel [message]</code>
+</td></tr><tr><td><code class="box">SetVar &lt;Variable&gt; &lt;Value&gt;</code>
+</td><td><code class="box">variable = value</code>
+</td></tr><tr><td><code class="box">StringLength &lt;Variable&gt; &lt;String&gt;</code>
+</td><td><code class="box">variable = len(string)
+variable = string.len()</code>
+</td></tr><tr><td><code class="box">iSet &lt;Variable&gt; &lt;expression&gt;
+fSet &lt;Variable&gt; &lt;expression&gt;</code>
+</td><td><code class="box">variable = expression</code>
+</td></tr><tr><td><code class="box">ExecLines &lt;lines&gt;</code>
+</td><td><code class="box">Exec(lines)</code>
+</td></tr><tr><td><code class="box">SubString &lt;Variable&gt; &lt;String&gt; &lt;startfrom&gt; [length]</code>
+</td><td><code class="box">find(variable, string, start, stop)
+variable.find(string, start, stop)</code>
+</td></tr></tbody></table>
+<h4>OBMM中的功能及其在Wizards中的对应实现方式</h4>
+<table>
+<thead><tr><th>OBMM 脚本</th><th>巫师们</th></tr></thead><tbody>
+<tr><td><code class="box">If VersionGreaterThan &lt;version&gt;
+If VersionLessThan &lt;version&gt;</code>
+</td><td>使用<code>CompareWBVersion</code>查看 Wrye Bash 的版本号。</td></tr><tr><td><code class="box">Message &lt;Message&gt; [Title]
+DisplayImage &lt;Image File Path&gt; [Title]
+DisplayText &lt;Text File Path&gt; [Title]</code>
+</td><td>使用类似方法即可实现相同的功能。<code>Note</code>以及<code>SelectOne</code>或者<code>SelectMany</code>关键词。</td></tr><tr><td><code class="box">ConflictWith &lt;ModName&gt; [Comment] [Level]
+DependsOn &lt;ModName&gt; [Comment] [Level]</code>
+</td><td>可以使用类似方法实现相同的功能。<code>If DataFileExists(modname)</code>.
+        </td></tr><tr><td><code class="box">DontInstallDataFile &lt;FileName&gt;
+InstallDataFile &lt;FileName&gt;
+DontInstallDataFolder &lt;FolderName&gt; [RecurseSubfolders]
+InstallDataFolder &lt;FolderName&gt; [RecurseSubfolders]
+CopyDataFile &lt;CopyFrom&gt; &lt;CopyTo&gt;
+CopyDataFolder &lt;CopyFrom&gt; &lt;CopyTo&gt; [RecurseSubfolders]</code>
+</td><td>通过以不同的方式打包该模组，再加以使用，即可获得类似的功能。<code>SelectSubPackage</code>以及<code>DeSelectSubPackage</code>.
+            </td></tr><tr><td><code class="box">For Each DataFolder &lt;Variable&gt; &lt;FolderPath&gt; [RecurseSubFolders] [SearchString]
+For Each DataFile &lt;Variable&gt; &lt;FolderPath&gt; [RecurseSubFolders] [SearchString]
+For Each PluginFolder &lt;Variable&gt; &lt;FolderPath&gt; [RecurseSubFolders] [SearchString]
+For Each Plugin &lt;Variable&gt; &lt;FolderPath&gt; [RecurseSubFolders] [SearchString]</code>
+</td><td>使用方法：<code class="box">For sub in SubPackages</code>
+<p>和/或：<code class="box">For file in sub</code>
+</p><p>遍历安装程序中的文件和文件夹。然后使用：<code class="box">file.lower().endswith(".esp")
+GetFilename(file)
+GetFolder(file)</code>
+</p><p>以及其他用于测试文件名和文件夹的字符串操作函数。</p></td></tr></tbody></table>
+<h4>OBMM 中具有功能，但 Wizards 中没有对应方法。</h4>
+<code class="box">SelectVar &lt;Variable&gt;
+SelectString &lt;Variable&gt;
+Goto &lt;label&gt;
+Label &lt;label&gt;
+LoadBefore &lt;Plugin1&gt; &lt;Plugin2&gt;
+LoadAfter &lt;Plugin1&gt; &lt;Plugin2&gt;
+UncheckESP &lt;plugin&gt;
+SetDeactivationWarning &lt;plugin&gt; &lt;warning&gt;
+ConflictsWith &lt;ModName&gt; &lt;MinMajorVersion&gt; &lt;MinMinorVersion&gt;&lt;MaxMajorVersion&gt; &lt;MaxMinorVersion&gt; [Comment] [Level]
+ConflictsWithRegex &lt;ModName&gt; [Comment] [Level]
+ConflictsWithRegex &lt;ModName&gt; &lt;MinMajorVersion&gt; &lt;MinMinorVersion&gt;&lt;MaxMajorVersion&gt; &lt;MaxMinorVersion&gt; [Comment] [Level]
+DependsOn &lt;ModName&gt; &lt;MinMajorVersion&gt; &lt;MinMinorVersion&gt;&lt;MaxMajorVersion&gt; &lt;MaxMinorVersion&gt; [Comment] [Level]
+DependsOnRegex &lt;ModName&gt; [Comment] [Level]
+DependsOnRegex &lt;ModName&gt; &lt;MinMajorVersion&gt; &lt;MinMinorVersion&gt;&lt;MaxMajorVersion&gt; &lt;MaxMinorVersion&gt; [Comment] [Level]
+RegisterBSA &lt;FileName&gt;
+UnregisterBSA &lt;FileName&gt;
+EditShader &lt;ShaderPackage&gt; &lt;ShaderName&gt; &lt;BinaryObjectPath&gt;
+SetGMST &lt;file&gt; &lt;Editor ID&gt; &lt;new value&gt;
+SetGlobal &lt;file&gt; &lt;Editor ID&gt; &lt;new value&gt;
+SetPluginByte &lt;file&gt; &lt;offset&gt; &lt;new value&gt;
+SetPluginByte &lt;file&gt; &lt;offset&gt; &lt;new value&gt;
+SetPluginShort &lt;file&gt; &lt;offset&gt; &lt;new value&gt;
+SetPluginLong &lt;file&gt; &lt;offset&gt; &lt;new value&gt;
+SetPluginFloat &lt;file&gt; &lt;offset&gt; &lt;new value&gt;
+GetFolderName &lt;Variable&gt; &lt;path&gt;
+GetFileName &lt;Variable&gt; &lt;path&gt;
+GetFileNameWithoutExtension &lt;Variable&gt; &lt;path&gt;
+CombinePaths &lt;Variable&gt; &lt;path1&gt; &lt;path2&gt;
+RemoveString &lt;Variable&gt; &lt;String&gt; &lt;startfrom&gt; [length]
+InputString &lt;Variable&gt; [Title] [Initial]
+ReadINI &lt;Variable&gt; &lt;section&gt; &lt;value&gt;
+ReadRenderInfo &lt;Variable&gt; &lt;value&gt;
+EditXMLLine &lt;file&gt; &lt;line number&gt; &lt;new line&gt;
+EditXMLReplace &lt;file&gt; &lt;text to find&gt; &lt;text to replace&gt;
+</code>
+<h4>在 Wizards 中存在而 OBMM 中没有对应方法的函数</h4>
+<code class="box">CompareWBVersion(version)
+GetPluginStatus(plugin)
+DisableINILine(file_name, section, setting)
+str(value)
+int(value)
+float(value)
+SelectAll
+DeSelectAll
+SelectAllPlugins
+DeSelectAllPlugins
+While expression
+    Continue
+    Break
+EndWhile
+RequireVersions oblivion, obse, obge, wrye_bash
+</code>
+<h4>在 OBMM 中存在但在 Wrye Bash 中无意义的功能</h4>
+<table>
+<thead><tr><th>OBMM 脚本</th><th>巫师们</th></tr></thead><tbody>
+<tr><td><code class="box">PatchDataFile &lt;NewFile&gt; &lt;FileToPatch&gt; [Create]
+PatchPlugin &lt;NewFile&gt; &lt;FileToPatch&gt; [Create]</code>
+</td><td>由于 BAIN 具备冲突解决能力，因此无需此功能。</td></tr><tr><td><code class="box">AllowRunOnLines</code></td><td>巫师类模组默认支持跨行文本。</td></tr></tbody></table>
+<h2 id="trusted-binaries">可信二进制文件</h2>
+<p>该格式用于数据的导出与导入。<a href="Wrye%20Bash%20Advanced%20Readme.html#settings-trusted-binaries">可信二进制文件</a>设置页面。它采用简单的纯文本格式，以UTF-8编码存储。<em>不</em>编写文件时请包含清单，同时也要准备好处理清单——因为309版本之前的Wrye Bash会在相关文件的中写入清单。<code>.txt</code>扩展程序。</p>
+<p>每一行要么是<em>声明</em>或者一个<em>评论</em>如果该行以以下所述的某个语句关键字开头，则属于语句；否则将被视为注释并完全忽略。几乎所有的空格（字符串变量中的空格除外）都是可选的，也会被忽略。行结束符可以是 Windows 风格或 Unix 风格。</p>
+<p>如您所见，其语法相当糟糕。这是因为其中很多内容仅仅是通过编写 Python 代码生成的。<code>repr()</code>是的，由于兼容性考虑，我们无法对其进行更改。</p>
+<h3 id="trusted-binaries-statements">声明</h3>
+<ul>
+<li>
+<p><dfn id="trusted-binaries-badDlls">损坏的 DLL 文件</dfn>- 开始一段‘错误’的二进制数据。全部<a href="#trusted-binaries-dll">DLL文件</a>此条之后的所有语句都将被视为“无效”内容，这意味着BAIN会直接跳过这些内容的安装。</p>
+<code class="box">badDlls [comment]</code>
+<ul>
+<li><var>comment</var>- 关键字后的可选注释。</li>
+</ul>
+</li>
+<li>
+<p><dfn id="trusted-binaries-dll">DLL文件</dfn>- 开启一个新的二进制条目。可选地，可在其后加上冒号作为结束标记。</p>
+<code class="box">dll: path [:]</code>
+<ul>
+<li><var>path</var>– 二进制文件的路径，相对于 Data 文件夹。请注意，两者均<code>/</code>以及<code>\</code>在此处，这些都将被视为有效的路径分隔符，因此像这样的 Unix 路径名<code>skse/plugins/my\file\with\backlashes.so</code>BAIN 无法处理该文件。或许可以考虑为你的二进制文件取一个更合理的名称？</li>
+</ul>
+</li>
+<li>
+<p><dfn id="trusted-binaries-goodDlls">goodDlls</dfn>- 开始一段“良好”的二进制数据。全部<a href="#trusted-binaries-dll">DLL文件</a>此条之后的声明将被视为“有效”，也就是说BAIN会允许其安装。</p>
+<code class="box">goodDlls [comment]</code>
+<ul>
+<li><var>comment</var>- 关键字后的可选注释。</li>
+</ul>
+</li>
+<li>
+<p><dfn id="trusted-binaries-version">版本</dfn>- 在最后一个二进制文件中添加一个版本条目（按照最后一个参数的指定）<a href="#trusted-binaries-dll">DLL文件</a>声明）。请注意<code>\[</code>以及<code>\]</code>以下内容代表字面意义上的‘[’和‘]’字符，而非其通常含义（即语法中的可选部分）。</p>
+<code class="box">version [index]: \[[u]name, size[L], crc[L]\]</code>
+<ul>
+<li><var>index</var>- 一个供人类阅读的可选数字。
+                当单个二进制文件包含多个版本条目时十分有用。</li>
+<li><var>name</var>- 该二进制文件所属的包名（已去除文件扩展名）。这是一个被单引号或双引号包围的字符串，该字符串中也可以包含<code>u</code>前缀（引号之前的部分），如果存在则会被忽略。</li>
+<li><var>size</var>- 该版本二进制文件的大小，为一个十进制整数。可能包含小数部分。<code>L</code>后缀，如果存在则会被忽略。</li>
+<li><var>crc</var>- 该版本二进制文件的 CRC-32 值，为一个十进制整数。可能带有前导零。<code>L</code>后缀，如果存在则会被忽略。</li>
+</ul>
+</li>
+</ul>
+<h3 id="trusted-binaries-structure">结构</h3>
+<p>这种格式并没有固定的结构。不过，有两点规则是必须遵守的：</p>
+<ul>
+<li>在……之前<a href="#trusted-binaries-dll">DLL文件</a>该语句可能会出现。<a href="#trusted-binaries-goodDlls">goodDlls</a>或者<a href="#trusted-binaries-badDlls">损坏的 DLL 文件</a>该语句必须出现在之前的某一行中。</li>
+<li>在……之前<a href="#trusted-binaries-version">版本</a>该语句可能会出现，即<a href="#trusted-binaries-dll">DLL文件</a>该语句必须出现在之前的某一行中。</li>
+</ul>
+<p>违反其中任何一条规则都会导致语法错误，一旦尝试导入该文件，Wrye Bash就会弹出错误提示。</p>
+<p>建议仅使用一个。<a href="#trusted-binaries-goodDlls">goodDlls</a>以及<a href="#trusted-binaries-badDlls">损坏的 DLL 文件</a>每个文件一个块，且仅有一个。<a href="#trusted-binaries-dll">DLL文件</a>每个二进制文件对应一个数据块，每块又包含相应的描述信息。以下是由 Wrye Bash 307 导出的示例文件：</p>
+<code class="box">goodDlls (those dlls that you have chosen to allow to be installed)
+dll:skse\plugins\chargen.dll:
+version 00: [u'RaceMenu v3-4-5-29624-3-4-5', 585216, 2162501321L]
+dll:skse\plugins\nioverride.dll:
+version 00: [u'RaceMenu v3-4-5-29624-3-4-5', 827904, 1370081254]
+dll:skse\plugins\additemmenule.dll:
+version 00: [u'AddItemMenuLE320_SKSE173-64905-3-2-1557583553', 268800, 1953112203]
+dll:skse\plugins\storageutil.dll:
+version 00: [u'Campfire 1.11-64798-1-11', 978944, 50366834]
+version 01: [u'PapyrusUtil - Scripting Utility Functions-58705-3-3', 978944, 50366834]
+badDlls (those dlls that you have chosen to NOT allow to be installed)
+None</code>
+<p>请注意后面的注释。<a href="#trusted-binaries-goodDlls">goodDlls</a>以及<a href="#trusted-binaries-badDlls">损坏的 DLL 文件</a>声明，以及<code>None</code>行——那也是一条注释。</p>
+<p>导入此文件后，将有四个二进制文件被添加到“合格”二进制文件列表中。BAIN会根据这些文件的版本信息来决定是否安装它们。下表展示了这一过程：</p>
+<ul>
+<li><code>skse\plugins\chargen.dll</code>可以安装，但<strong>仅此而已</strong>如果：<ul>
+<li>它来自一个名为“RaceMenu v3-4-5-29624-3-4-5”（忽略扩展名）的包，大小为585216字节，CRC-32值为2162501321。</li>
+</ul>
+</li>
+<li><code>skse\plugins\nioverride.dll</code>可以安装，但<strong>仅此而已</strong>如果：<ul>
+<li>它来自一个名为“RaceMenu v3-4-5-29624-3-4-5”（忽略扩展名）的包，大小为827904字节，CRC-32值为1370081254。</li>
+</ul>
+</li>
+<li><code>skse\plugins\additemmenule.dll</code>可以安装，但<strong>仅此而已</strong>如果：<ul>
+<li>它来自一个名为（忽略扩展名）‘AddItemMenuLE320_SKSE173-64905-3-2-1557583553’的包，大小为268800字节，CRC-32值为1953112203。</li>
+</ul>
+</li>
+<li><code>skse\plugins\storageutil.dll</code>可以安装，但<strong>仅此而已</strong>如果：<ul>
+<li>它来自一个名称为（忽略扩展名）‘Campfire 1.11-64798-1-11’的包，大小为978944字节，CRC-32值为50366834。<strong>或者</strong></li>
+<li>它来自一个名为“PapyrusUtil - Scripting Utility Functions-58705-3-3”（忽略扩展名）的软件包，大小为978944字节，CRC-32值为50366834。</li>
+</ul>
+</li>
+</ul>
+<h2 id="lo-exports">加载顺序导出</h2>
+<p>该<q>加载顺序..</q>命令<a href="Wrye%20Bash%20Advanced%20Readme.html#mods-lo-export">导出…</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#mods-lo-import">导入…</a>采用类似该格式的方式使用<code>plugins.txt</code>《天际：特别版》所使用的格式（实际上目前两者基本相同，但此处仍将其作为独立格式明确列出，以防贝塞斯达未来决定对其进行更改）。</p>
+<p>此外，还有一种格式与之类似，但有所不同。<q>加载顺序..</q>命令<a href="Wrye%20Bash%20Advanced%20Readme.html#mods-lo-import-obmm">从 OBMM 导入……</a>该格式源自 OBMM。Wrye Bash 并不会导出此格式，仅会导入它（以便从 OBMM 中轻松导入）。两者的定义均在以下章节中给出。</p>
+<h3 id="lo-exports-wrye-bash">Wrye Bash 格式</h3>
+<p>该格式使用UTF-8编码的文件（无BOM）。行终止符可以是CR-LF或LF。共有三种类型的行：</p>
+<ol>
+<li>空行</li>
+<li>已激活的插件</li>
+<li>未激活的插件</li>
+</ol>
+<h4>空行</h4>
+<p>一个<dfn>空行</dfn>仅由空白字符组成的行
+   （包括行尾符）。这类行会被直接跳过。</p>
+<h4>已激活的插件</h4>
+<p>一个<dfn>已激活的插件</dfn>通过以星号开头的行来标识。<code>*, U+002A ASTERISK</code>）其后是一串表示插件名称的字符（具体什么是插件名称见下文说明）。这样的行用于标明该插件在导出的加载顺序中的位置，同时表明它在导出时处于激活状态。由于这种表示方式，文件名中包含星号的插件将不会被导出。反正星号在 Windows 系统中也是无效字符，游戏根本无法处理它，因此实际上这并不构成问题。</p>
+<h4>未激活的插件</h4>
+<p><dfn>未激活的插件</dfn>这是一行由字符序列组成的文本，用于表示插件名称。与处于激活状态的插件不同，这类行的开头没有星号。此类行既标明了相应插件的位置，也表明在数据导出时该插件处于非激活状态。</p>
+<h4>插件名称</h4>
+<p>就本格式而言，一个<dfn>插件名称</dfn>其定义即为任何以有效插件文件扩展名结尾的 Unicode 字符串。末尾的空格是可以存在的——在检查扩展名之前会将其去除。开头的空格也是允许的，但不应被去除（因为它们属于插件名称的一部分）。</p>
+<p>当前有效<dfn>插件文件扩展名</dfn>有：</p>
+<ul>
+<li><code>.esl</code></li>
+<li><code>.esm</code></li>
+<li><code>.esp</code></li>
+<li><code>.esu</code></li>
+</ul>
+<p>如果某一行原本符合活跃插件或非活跃插件的条件，但由于生成的插件名称无效而不符合要求，那么负责导入的程序必须拒绝该文件，并向用户显示错误信息。理想情况下，该程序还应标出有问题的那一行，以便让用户知晓问题所在并能够进行修复。</p>
+<p><strong>注意：</strong>实现时可以自由地将有效扩展名列表限制为特定游戏所支持的那些（例如，如果要将加载顺序导入到《湮没》中），<code>.esl</code>那样做是没有意义的）。在这种情况下，也必须显示错误信息。</p>
+<h4>评论</h4>
+<p>该格式也支持。<dfn>评论</dfn>注释以井号开头。<code>#, U+0023 NUMBER SIGN)</code>并且会一直持续到该行结束（即下一行分隔符出现）。在确定该行类型之前，这些内容会被剔除。因此，仅包含空白字符和注释的行会变成空行（从而被跳过），而以某些字符开头后再跟有注释的行则会成为有效的或无效的插件行。</p>
+<p>建议各实现方案在导出的文件顶部添加注释，标明该文件的来源工具。这样便于人工阅读者了解该文件是由何种工具生成的（从而能够将错误报告等发送到正确的地址）。</p>
+<h4>解读功能</h4>
+<p>以下是一个简单的伪代码算法，用于说明如何解析和理解这种格式的文件：</p>
+<code class="box">$lo := An empty list
+$active := An empty set
+For $line in $file: {
+    $strippedLine := Strip comments out of $line
+    Check if $strippedLine is empty or all whitespace: {
+        If yes, move on to the next line
+        Otherwise, do the following: {
+            $isActive := Does $strippedLine begin with an asterisk?
+            Check if $isActive is true: {
+                If yes, $plugin := Remove the leading asterisk from $strippedLine
+                Otherwise, $plugin := $strippedLine
+            }
+            $trimmedPlugin := Trim trailing spaces from $plugin
+            Check if $trimmedPlugin is a valid plugin name: {
+                If yes, append $trimmedPlugin to the end of $lo
+                Otherwise, reject the whole file and show an error to the user
+            }
+            Check if $isActive is true: {
+                If yes, add $trimmedPlugin to $active
+            }
+        }
+    }
+}</code>
+<p>运行该算法后，导出的加载顺序即为<code>$lo</code>（索引为0的是最先加载的插件，索引最大的则是最后加载的插件），而导出的活跃插件则位于其中。<code>$active</code>负责导出的实现方案绝不得导出那些无法转换为有效插件名称的、处于激活状态或未激活状态的插件行。</p>
+<h3 id="lo-exports-obmm">OBMM格式</h3>
+<p>该格式与 Wrye Bash 的格式类似，但更为简单。它仅包含一种行类型：激活插件行。因此，这种行也不使用星号标记。</p>
+<p>由于这种设计，该格式无法存储关于未激活插件的信息，因此使用该格式导入数据时永远不可能做到完美。</p>
+<p>Wrye Bash 对此格式还有进一步的要求：不支持注释，插件名称仍需遵循上述规则。此外，它不对编码方式做任何假设，而是通过内容来推断编码类型。</p>
+<h4>解读功能</h4>
+<p>以下是一个简单的伪代码算法，用于说明 Wrye Bash 如何解析和解释此类格式的文件：</p>
+<code class="box">$lo := An empty list
+$data := Read binary data from $file
+Try to decode $data and split it into $lines {
+    If that is not possible, reject the whole file and show an error to the user
+    Otherwise, for $line in $lines: {
+        Check if $line is a valid plugin name: {
+            If yes, append $line to the end of $lo
+            Otherwise, reject the whole file and show an error to the user
+        }
+    }
+}</code>
+<p>运行该算法后，导出的加载顺序（以及同时激活的插件）即为<code>$lo</code>（最早加载的插件位于索引0处，最晚加载的插件则位于最后一个索引位置。）</p>
+<h2 id="csv-formats">CSV格式</h2>
+<p>本节介绍 Wrye Bash 所使用的基于 CSV 的格式。请参阅<a href="https://en.wikipedia.org/wiki/Comma-separated_values">维基百科上关于CSV文件的文章</a>关于该格式的简介：Wrye Bash 所使用的所有 CSV 文件都必须以 UTF-8 编码。目前这些文件需要包含 UTF-8 BOM，但这是出于历史原因；在未来的版本中，BOM 将变为可选项。</p>
+<p>Wrye Bash 所使用的所有 CSV 文件均以逗号分隔各个值，并使用双引号对值进行引用。通常所有值都会被加上引号，但早期版本生成的 CSV 文件中某些值的引号可能缺失，因此需做好处理这些情况的准备。</p>
+<p>CSV 文件中的列名通常并不重要，还可以进行本地化处理。只有该 CSV 文件的使用场景及其内容才能决定其实际含义。</p>
+<p>这些属性用于定义……<dfn>WBCSV</dfn>文件，即本节后续内容中将使用的术语。</p>
+<h3 id="csv-formats-package-order">包顺序</h3>
+<p>该格式由以下内容使用<a href="Wrye%20Bash%20Advanced%20Readme.html#bain-export-order">导出顺序...</a>以及<a href="Wrye%20Bash%20Advanced%20Readme.html#bain-import-order">导入顺序...</a>导出和导入 BAIN 包顺序。</p>
+<p>该文件为 WBCSV 格式，包含两列。每一行代表包顺序中的一个条目，而行的排列顺序则决定了各包的加载顺序。在导入时，缺失的包将被跳过。</p>
+<table>
+<thead>
+<tr>
+<th colspan="3">包顺序格式</th>
+</tr>
+<tr>
+<th>列名</th>
+<th>含义</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件包</td>
+<td>该包的名称。</td>
+<td>另类开局——重活一次 4.1.7.7z</td>
+</tr>
+<tr>
+<td>已安装？（是/否）</td>
+<td><code>Y</code>如果该软件包已安装，则<code>N</code>如果并非如此的话。</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h4>示例文件</h4>
+<pre><code class="box">"Package","Installed? (Y/N)"
+"==Basics==","N"
+"Vanilla Script Sources.zip","Y"
+"SKSE Scripts 2.2.3.7z","Y"
+"Address Libary - All in one (Anniversary Edition)-32444-8-1664465359.zip","Y"
+"==Essentials==","N"
+"Alternate Start - Live Another Life 4.1.7.7z","Y"
+"Unofficial Skyrim Creation Club Content Patch-18975-7-2-1666561973.zip","Y"
+"Unofficial Skyrim Special Edition Patch-266-4-2-8-1663527575.7z","Y"
+"==SKSE Fixes &amp; Plugins==","N"
+"ConsoleUtilSSE-24858-1-4-0-1665802090.zip","Y"
+"MfgFix-11669-1-6-1-1664520342.7z","Y"
+"SSE Display Tweaks-34705-0-5-12-1664893623.zip","Y"
+"SSEDT - Personal Config.7z","Y"
+"SSE Engine Fixes for 1.6.629 and newer-17230-6-1-1-1664974106.7z","Y"
+"Simple Item Spawner-64653-1-50-1653532324.zip","Y"
+"==Body==","N"
+"XP32 Maximum Skeleton Special Extended-1988-4-81-1660739371.7z","Y"
+"==Characters==","N"
+"Expressive Facial Animation - Female Edition-19181-1-7-1575746557.7z","Y"
+"Expressive Facial Animation - Male Edition-19532-1-21-1575813430.7z","Y"
+"RaceMenu Anniversary Edition v0-4-19-14-19080-0-4-19-14-1667000011.7z","Y"
+"==Combat==","N"
+"Armor Rating Rescaled Remake-35296-1-0-2-1663883868.zip","Y"
+"==Crafting==","N"
+"Ars Metallica 2.0.6.7z","Y"
+"==Interface==","N"
+"Immersive HUD - iHUD-12440-0-2b.7z","Y"
+"SkyHUD v090B v4-463-0-90B.zip","Y"
+"Better MessageBox Controls v1_2-1428-1-2.zip","Y"
+"Dialogue Interface ReShaped-46546-1-03-1616150370.zip","Y"
+"More Informative Console 1.1.0 AE (1.6.640 plus )-19250-1-1-0-1664127904.zip","Y"
+"==Tools==","N"
+"FNIS Behavior SE 7_6 XXL-3038-7-6-1582110624.7z","Y"
+"My SkyHUD Preset.7z","Y"
+"==Last==","N"</code></pre>
+滚动内容结束
+</div>
+<div id="footer">
+<div id="version">Wrye Bash v315版本</div>
+<a href="Wrye Bash General Readme.html">通用设置</a> ✦ <a href="Wrye Bash Advanced Readme.html">高级</a>✦ 技术相关 ✦<a href="Wrye Bash Version History.html">版本</a>
+<div id="oldie">JavaScript 已禁用，菜单和幻灯片展示功能无法使用。</div>
+</div>
+</body>
+</html>
