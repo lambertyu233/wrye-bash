@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrye Bash 中文文档</title>
+<style>
+  :root { --bg:#fffdf5; --fg:#333; --accent:#cc0000; --card:#fff; --border:#e5d9b0; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif; background:var(--bg); color:var(--fg); line-height:1.65; }
+  header { background:linear-gradient(135deg,#cc0000,#8a0000); color:#fff; padding:54px 24px; text-align:center; }
+  header h1 { margin:0; font-size:2.1rem; letter-spacing:1px; }
+  header p { margin:10px 0 0; opacity:.92; font-size:1.02rem; }
+  main { max-width:880px; margin:36px auto; padding:0 20px; }
+  .cards { display:grid; gap:16px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 22px; text-decoration:none; color:inherit; display:block; transition:.15s; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .card:hover { transform:translateY(-2px); border-color:var(--accent); box-shadow:0 6px 16px rgba(204,0,0,.16); }
+  .card h2 { margin:0 0 6px; font-size:1.22rem; color:var(--accent); }
+  .card span { color:#666; font-size:.95rem; }
+  .extra { text-align:center; margin-top:28px; }
+  .extra a { color:var(--accent); text-decoration:none; border-bottom:1px dashed var(--accent); }
+  footer { text-align:center; color:#999; padding:36px 16px; font-size:.85rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Wrye Bash 中文文档</h1>
+  <p>模组管理工具 Wrye Bash 的简体中文翻译文档</p>
+</header>
+<main>
+  <div class="cards">
+    <a class="card" href="Wrye Bash General Readme.zh-CN.html">
+      <h2>通用说明文档</h2>
+      <span>安装、BAIN 安装器、加载顺序、Bashed Patch、启动器、国际化与故障排除等入门内容。</span>
+    </a>
+    <a class="card" href="Wrye Bash Advanced Readme.zh-CN.html">
+      <h2>高级使用指南</h2>
+      <span>面向进阶用户的深入主题与高级配置说明。</span>
+    </a>
+    <a class="card" href="Wrye Bash Technical Readme.zh-CN.html">
+      <h2>技术文档</h2>
+      <span>架构、数据结构、Bash 标签与底层技术实现细节。</span>
+    </a>
+    <a class="card" href="Wrye Bash Version History.zh-CN.html">
+      <h2>版本历史</h2>
+      <span>各版本变更记录、修复与功能更新说明。</span>
+    </a>
+  </div>
+  <p class="extra"><a href="Bash Readme Template.zh-CN.txt">模组说明文件模板（中文版 txt）</a></p>
+</main>
+<footer>
+  本中文文档由社区翻译，非官方作品。原文与版权归 Wrye Bash 项目贡献者所有。
+</footer>
+</body>
+</html>

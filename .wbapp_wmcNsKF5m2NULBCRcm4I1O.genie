@@ -1,0 +1,5 @@
+appId: wbapp_wmcNsKF5m2NULBCRcm4I1O
+name: Wrye Bash中文文档
+localDir: D:\code\Skyrim\wrye-bash\Mopy\Docs
+appType: web
+entryHtml: index.html
